@@ -13,12 +13,12 @@
             <ColumnDefinition Width="84*"/>
             <ColumnDefinition Width="23*"/>
         </Grid.ColumnDefinitions>
-        <Rectangle HorizontalAlignment="Left" Height="99" Margin="0,933,0,0" Stroke="#0B5793" Fill="#0B5793" VerticalAlignment="Top" Width="1920" Grid.ColumnSpan="4"/>
-        <Image x:Name="STI_ONN" Height="620" Width="800" Source="/STI ONN Logo transparent 3.png" Stretch="Fill" Margin="186,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1"/>
-        <Button x:Name="touch" Content="Touch to Start" HorizontalAlignment="Left" Margin="338,866,0,0" VerticalAlignment="Top" Height="116" Width="495" Click="touch_Click" FontSize="60" FontFamily="Tw Cen MT" FontWeight="Bold" Foreground="White" BorderBrush="{x:Null}" Grid.Column="1" Background="#FFD4D4D4" Opacity=".85">
+        <Rectangle HorizontalAlignment="Left" Height="130" Margin="0,902,0,0" Stroke="#0B5793" Fill="#0B5793" VerticalAlignment="Top" Width="1920" Grid.ColumnSpan="4"/>
+        <Image x:Name="STI_ONN" Height="1166" Width="1683" Source="/STI ONN Logo transparent 3.png" Stretch="Fill" Margin="118,-184,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <Button x:Name="touch" Content="Touch to Start" HorizontalAlignment="Left" Margin="339,862,0,0" VerticalAlignment="Top" Height="120" Width="494" FontSize="60" FontFamily="Tw Cen MT" FontWeight="Bold" Foreground="White" BorderBrush="{x:Null}" Grid.Column="1" Background="#FFD4D4D4" Opacity="0.85">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="15"/>
+                    <Setter Property="CornerRadius" Value="50"/>
                 </Style>
             </Button.Resources>
         </Button>
