@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <RootNamespace>STI_ONN</RootNamespace>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="STI ONN Logo transparent 3.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="STI ONN Logo transparent 3.png" />
+  </ItemGroup>
+
+</Project>
