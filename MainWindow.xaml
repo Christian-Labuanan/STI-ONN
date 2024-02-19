@@ -6,9 +6,21 @@
         xmlns:local="clr-namespace:STI_ONN"
         mc:Ignorable="d"
         Title="STI ONN" Height="auto" Width="auto">
-    <Grid Background="#FFEAF2FF" HorizontalAlignment="Center" VerticalAlignment="Center" Height="{Binding ElementName=window, Mode=OneWay}">
-        <Rectangle HorizontalAlignment="Center" Height="49" Margin="0,385,0,0" Stroke="#0B5793" Fill="#0B5793" VerticalAlignment="Top" Width="800"/>
-        <Image x:Name="STI_ONN" Height="350" Width="500" Source="/STI ONN Logo transparent 3.png" Stretch="Fill" Margin="150,42,150,42"/>
-        <Button x:Name="touch" Content="Touch to Start" HorizontalAlignment="Center" Margin="0,348,0,0" VerticalAlignment="Top" Height="62" Width="322"/>
+    <Grid Background="#FFEAF2FF" HorizontalAlignment="Center" VerticalAlignment="Center" Height="1032" Width="1920">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="374*"/>
+            <ColumnDefinition Width="1440*"/>
+            <ColumnDefinition Width="84*"/>
+            <ColumnDefinition Width="23*"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle HorizontalAlignment="Left" Height="99" Margin="0,933,0,0" Stroke="#0B5793" Fill="#0B5793" VerticalAlignment="Top" Width="1920" Grid.ColumnSpan="4"/>
+        <Image x:Name="STI_ONN" Height="620" Width="800" Source="/STI ONN Logo transparent 3.png" Stretch="Fill" Margin="186,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1"/>
+        <Button x:Name="touch" Content="Touch to Start" HorizontalAlignment="Left" Margin="338,866,0,0" VerticalAlignment="Top" Height="116" Width="495" Click="touch_Click" FontSize="48" FontFamily="Tw Cen MT" FontWeight="Bold" Foreground="White" BorderBrush="{x:Null}" Grid.Column="1" Background="#FFD4D4D4" Opacity=".85">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="15"/>
+                </Style>
+            </Button.Resources>
+        </Button>
     </Grid>
 </Window>
