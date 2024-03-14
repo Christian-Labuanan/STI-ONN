@@ -17,6 +17,9 @@
                     <Setter Property="CornerRadius" Value="50"/>
                 </Style>
             </Button.Resources>
+            <Button.Effect>
+                <DropShadowEffect BlurRadius="1" Opacity="0.75" Color="#FF656464"/>
+            </Button.Effect>
         </Button>
     </Grid>
 </Window>

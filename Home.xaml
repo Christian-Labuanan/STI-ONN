@@ -20,5 +20,14 @@
             </Button.Resources>
             <Image Source="D:\FILES\COLLEGE\Thesis Code\STI-ONN\assets\back.png" Stretch="Fill" Height="50" Width="29"/>
         </Button>
+        <Rectangle HorizontalAlignment="Center" Height="115" Margin="0,905,0,0" Stroke="#FFE4E4E4" VerticalAlignment="Top" Width="938" Opacity="1" RadiusX="50" RadiusY="50">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.95">
+                    <GradientStop Color="#FFB5B4B4" Offset="1"/>
+                    <GradientStop Color="#FFF1F1F1" Offset="0"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Label x:Name="greet" Content="WELCOME STIERS!" HorizontalAlignment="Center" Margin="0,381,0,0" VerticalAlignment="Top" FontSize="100" FontFamily="" FontWeight="Bold"/>
     </Grid>
 </Window>
