@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace STI_ONN
 {
     /// <summary>
-    /// Interaction logic for Home.xaml
+    /// Interaction logic for Building.xaml
     /// </summary>
-    public partial class Home : Window
+    public partial class Building : Window
     {
-        public Home()
+        public Building()
         {
             InitializeComponent();
         }
@@ -27,15 +27,8 @@ namespace STI_ONN
         private void touch_Click_1(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            MainWindow m1 = new MainWindow();   
-            m1.Show();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            this.Hide();
-            Building bldg = new Building();
-            bldg.Show();
+            Home home = new Home(); 
+            home.Show();
         }
     }
 }
