@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="STI ONN Logo transparent 3.png" />
+    <Resource Include="assets\STI ONN Logo transparent 3.png" />
   </ItemGroup>
 
 </Project>
