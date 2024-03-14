@@ -11,10 +11,12 @@
 
   <ItemGroup>
     <None Remove="STI ONN Logo transparent 3.png" />
+    <None Remove="STI-model.jpg" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="assets\STI ONN Logo transparent 3.png" />
+    <Resource Include="STI-model.jpg" />
   </ItemGroup>
 
 </Project>

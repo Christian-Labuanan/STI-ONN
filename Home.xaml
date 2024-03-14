@@ -11,7 +11,7 @@
         WindowStyle="None">
     <Grid Background="#FFEAF2FF" HorizontalAlignment="Center" VerticalAlignment="Center" Height="1080" Width="1920">
         <Rectangle HorizontalAlignment="Center" Height="130" Margin="0,955,0,0" Stroke="#0B5793" Fill="#0B5793" VerticalAlignment="Top" Width="1920"/>
-        <Image x:Name="STI_ONN" Height="340" Width="494" Source="assets/STI ONN Logo transparent 3.png" Stretch="Fill" Margin="0,-90,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Image x:Name="STI_ONN" Height="472" Width="684" Source="assets/STI ONN Logo transparent 3.png" Stretch="Fill" Margin="0,-144,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
         <Button x:Name="touch" HorizontalAlignment="Left" Margin="57,28,0,0" VerticalAlignment="Top" Height="104" Width="113" FontSize="60" FontFamily="Tw Cen MT" FontWeight="Bold" Foreground="Black" BorderBrush="{x:Null}" Background="#FFD4D4D4" Opacity="0.85" Click="touch_Click_1">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
@@ -28,6 +28,36 @@
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Label x:Name="greet" Content="WELCOME STIERS!" HorizontalAlignment="Center" Margin="0,381,0,0" VerticalAlignment="Top" FontSize="100" FontFamily="" FontWeight="Bold"/>
+        <Label x:Name="greet" Content="WELCOME STIERS!" HorizontalAlignment="Center" Margin="0,421,0,0" VerticalAlignment="Top" FontSize="100" FontFamily="Tw Cen MT Condensed Extra Bold" FontWeight="Bold"/>
+        <Button Content="Building" Margin="568,912,1041,0" VerticalAlignment="Top" Height="100" FontSize="55" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" Click="Button_Click" Foreground="White" BorderBrush="{x:Null}">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="50"/>
+                </Style>
+            </Button.Resources>
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.105"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+        <Button Content="Announcement" Margin="967,912,526,0" VerticalAlignment="Top" Height="100" FontSize="55" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" Click="Button_Click" Foreground="White" BorderBrush="{x:Null}">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="50"/>
+                </Style>
+            </Button.Resources>
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.105"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
     </Grid>
 </Window>
