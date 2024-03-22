@@ -19,4 +19,8 @@
     <Resource Include="STI-model.jpg" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="assets\Maps\" />
+  </ItemGroup>
+
 </Project>

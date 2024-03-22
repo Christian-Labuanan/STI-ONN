@@ -31,6 +31,9 @@
                 </Expander>
             </Grid>
             <Image Margin="655,-158,655,815" Source="/assets/STI ONN Logo transparent 3.png" Stretch="Fill"/>
+            <Grid Margin="492,0,0,0">
+                <Image x:Name="mapImage" Stretch="Uniform"/>
+            </Grid>
         </Grid>
     </Viewbox>
 </Window>
