@@ -8,15 +8,29 @@
         Title="Building" Height="auto" Width="auto"
         WindowState="Maximized"
         WindowStyle="None">
-    <Grid Background="#FFEAF2FF" HorizontalAlignment="Center" VerticalAlignment="Center" Height="1080" Width="1920">
-        <Button x:Name="touch" HorizontalAlignment="Left" Margin="57,28,0,0" VerticalAlignment="Top" Height="104" Width="113" FontSize="60" FontFamily="Tw Cen MT" FontWeight="Bold" Foreground="Black" BorderBrush="{x:Null}" Background="#FFD4D4D4" Opacity="0.85" Click="touch_Click_1">
-            <Button.Resources>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="50"/>
-                </Style>
-            </Button.Resources>
-            <Image Source="D:\FILES\COLLEGE\Thesis Code\STI-ONN\assets\back.png" Stretch="Fill" Height="50" Width="29"/>
-        </Button>
-
-    </Grid>
+    <Viewbox StretchDirection="Both">
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="1080" Width="1920">
+            <Grid Margin="0,0,1428,0" Background="#FFEAF2FF">
+                <Button x:Name="touch" HorizontalAlignment="Left" Margin="37,28,0,0" VerticalAlignment="Top" Height="68" Width="72" FontSize="60" FontFamily="Tw Cen MT" FontWeight="Bold" Foreground="Black" BorderBrush="{x:Null}" Background="#FFD4D4D4" Opacity="0.85" Click="touch_Click_1">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="50"/>
+                        </Style>
+                    </Button.Resources>
+                    <Image Source="D:\FILES\COLLEGE\Thesis Code\STI-ONN\assets\back.png" Stretch="Fill" Height="26" Width="20"/>
+                </Button>
+                <Rectangle Height="60" Margin="45,160,157,860" Fill="White" RadiusX="30" RadiusY="30"/>
+                <Label Content="Floor Map" HorizontalAlignment="Center" Margin="0,26,0,0" VerticalAlignment="Top" FontSize="55" FontWeight="Bold" FontFamily="Tw Cen MT"/>
+                <Expander Header="Floor Selection" Margin="57,170,228,437" FontSize="25">
+                    <Grid Background="white">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="45*"/>
+                            <ColumnDefinition Width="623*"/>
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </Expander>
+            </Grid>
+            <Image Margin="655,-158,655,815" Source="/assets/STI ONN Logo transparent 3.png" Stretch="Fill"/>
+        </Grid>
+    </Viewbox>
 </Window>

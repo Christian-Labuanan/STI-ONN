@@ -7,16 +7,18 @@
         mc:Ignorable="d"
         Title="Announcement" Height="auto" Width="auto"
         WindowState="Maximized"
-        WindowStyle="None">
-    <Grid Background="#FFEAF2FF" HorizontalAlignment="Center" VerticalAlignment="Center" Height="1080" Width="1920">
-        <Button x:Name="touch" HorizontalAlignment="Left" Margin="57,28,0,0" VerticalAlignment="Top" Height="104" Width="113" FontSize="60" FontFamily="Tw Cen MT" FontWeight="Bold" Foreground="Black" BorderBrush="{x:Null}" Background="#FFD4D4D4" Opacity="0.85" Click="touch_Click_1">
-            <Button.Resources>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="50"/>
-                </Style>
-            </Button.Resources>
-            <Image Source="D:\FILES\COLLEGE\Thesis Code\STI-ONN\assets\back.png" Stretch="Fill" Height="50" Width="29"/>
-        </Button>
-
-    </Grid>
+        WindowStyle="None"
+        Background="#FFEAF2FF">
+    <Viewbox StretchDirection="Both">
+        <Grid Background="#FFEAF2FF" HorizontalAlignment="Center" VerticalAlignment="Center" Height="1080" Width="1920">
+            <Button x:Name="touch" HorizontalAlignment="Left" Margin="57,28,0,0" VerticalAlignment="Top" Height="68" Width="72" FontSize="60" FontFamily="Tw Cen MT" FontWeight="Bold" Foreground="Black" BorderBrush="{x:Null}" Background="#FFD4D4D4" Opacity="0.85" Click="touch_Click_1">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="50"/>
+                    </Style>
+                </Button.Resources>
+                <Image Source="D:\FILES\COLLEGE\Thesis Code\STI-ONN\assets\back.png" Stretch="Fill" Height="26" Width="20"/>
+            </Button>
+        </Grid> 
+    </Viewbox>
 </Window>

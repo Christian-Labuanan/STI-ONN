@@ -7,19 +7,21 @@
         mc:Ignorable="d"
         Title="STI ONN" Height="auto" Width="auto"
         WindowState="Maximized"
-        WindowStyle="None">
-    <Grid Background="#FFEAF2FF" HorizontalAlignment="Center" VerticalAlignment="Center" Height="1080" Width="1920">
-        <Rectangle HorizontalAlignment="Center" Height="130" Margin="0,952,0,0" Stroke="#0B5793" Fill="#0B5793" VerticalAlignment="Top" Width="1920"/>
-        <Image x:Name="STI_ONN" Height="1041" Width="1504" Source="assets/STI ONN Logo transparent 3.png" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,-24,0,0"/>
-        <Button x:Name="touch" Content="Touch to Start" HorizontalAlignment="Center" Margin="0,883,0,0" VerticalAlignment="Top" Height="120" Width="494" FontSize="60" FontFamily="Tw Cen MT" FontWeight="Bold" Foreground="White" BorderBrush="{x:Null}" Background="#FFD4D4D4" Opacity="0.85" Click="touch_Click_1">
-            <Button.Resources>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="50"/>
-                </Style>
-            </Button.Resources>
-            <Button.Effect>
-                <DropShadowEffect BlurRadius="1" Opacity="0.75" Color="#FF656464"/>
-            </Button.Effect>
-        </Button>
-    </Grid>
+        WindowStyle="None" Background="#FFEAF2FF">
+    <Viewbox  StretchDirection="Both">
+        <Grid Background="#FFEAF2FF" >
+            <Rectangle Height="130" Margin="0,952,0,0" Stroke="#0B5793" Fill="#0B5793" Width="1920"/>
+            <Image x:Name="STI_ONN" Source="assets/STI ONN Logo transparent 3.png" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,-24,0,0"/>
+            <Button x:Name="touch" Content="Touch to Start" HorizontalAlignment="Center" Margin="0,883,0,0" VerticalAlignment="Top" Height="120" Width="494" FontSize="60" FontFamily="Tw Cen MT" FontWeight="Bold" Foreground="White" BorderBrush="{x:Null}" Background="#FFD4D4D4" Opacity="0.85" Click="touch_Click_1">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="50"/>
+                    </Style>
+                </Button.Resources>
+                <Button.Effect>
+                    <DropShadowEffect BlurRadius="1" Opacity="0.75" Color="#FF656464"/>
+                </Button.Effect>
+            </Button>
+        </Grid>
+    </Viewbox>
 </Window>
