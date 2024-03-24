@@ -10,6 +10,9 @@
         WindowStyle="None">
     <Viewbox StretchDirection="Both">
         <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="1080" Width="1920">
+            <Grid Margin="492,0,0,947">
+                <Image Margin="357,-180,357,-179" Source="/assets/STI ONN Logo transparent 3.png" Stretch="Fill"/>
+            </Grid>
             <Grid Margin="0,0,1428,0" Background="#FFEAF2FF">
                 <Button x:Name="touch" HorizontalAlignment="Left" Margin="37,28,0,0" VerticalAlignment="Top" Height="68" Width="72" FontSize="60" FontFamily="Tw Cen MT" FontWeight="Bold" Foreground="Black" BorderBrush="{x:Null}" Background="#FFD4D4D4" Opacity="0.85" Click="touch_Click_1">
                     <Button.Resources>
@@ -30,9 +33,17 @@
                     </Grid>
                 </Expander>
             </Grid>
-            <Image Margin="655,-158,655,815" Source="/assets/STI ONN Logo transparent 3.png" Stretch="Fill"/>
+
+
+
             <Grid Margin="492,0,0,0">
                 <Image x:Name="mapImage" Stretch="Uniform"/>
+
+                <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                    <Canvas Name="canvas" MouseWheel="Canvas_MouseWheel" Background="Transparent" SizeChanged="Canvas_SizeChanged" Height="762" Width="1418" HorizontalAlignment="Right">
+                        <Image Name="image" Source="D:\FILES\COLLEGE\Thesis Code\STI-ONN\assets\Maps\untitled.png" Height="836" Canvas.Left="-40" Canvas.Top="5" Width="1468" RenderTransformOrigin="0.5,0.5"/>
+                    </Canvas>
+                </ScrollViewer>
             </Grid>
         </Grid>
     </Viewbox>
