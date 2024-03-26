@@ -10,15 +10,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="assets\back.png" />
+    <None Remove="assets\Maps\untitled.png" />
     <None Remove="STI ONN Logo transparent 3.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="assets\back.png" />
+    <Resource Include="assets\Maps\untitled.png" />
     <Resource Include="assets\STI ONN Logo transparent 3.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="assets\Maps\" />
   </ItemGroup>
 
 </Project>

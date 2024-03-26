@@ -11,21 +11,31 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace STI_ONN
 {
-    /// <summary>
-    /// Interaction logic for Building.xaml
-    /// </summary>
     public partial class Building : Window
     {
-        private double _zoomLevel = 1.0;
+        private bool isDragging = false;
+        private Point lastPosition;
+
+        private DispatcherTimer interactionTimer;
+
         public Building()
         {
             InitializeComponent();
+
+            // Initialize and start the interaction timer
+            interactionTimer = new DispatcherTimer();
+            interactionTimer.Interval = TimeSpan.FromMinutes(.10);//set the time limit here
+            interactionTimer.Tick += InteractionTimer_Tick;
+            ResetInteractionTimer();
         }
 
+        //zoom in and out 
+        //drag left and right
         private void touch_Click_1(object sender, RoutedEventArgs e)
         {
             this.Hide();
@@ -33,40 +43,74 @@ namespace STI_ONN
             home.Show();
         }
 
-        private void ZoomIn_Click(object sender, RoutedEventArgs e)
+        private void Image_MouseWheel(object sender, MouseWheelEventArgs e)
         {
-            Zoom(1.1);
+            var delta = e.Delta;
+            var scale = delta > 0 ? 1.1 : 0.9; // Increase or decrease zoom factor
+            image.Width *= scale;
+            image.Height *= scale;
+            ResetInteractionTimer();
         }
 
-        private void ZoomOut_Click(object sender, RoutedEventArgs e)
+        private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Zoom(0.9);
+            isDragging = true;
+            lastPosition = e.GetPosition(canvas);
+            image.CaptureMouse();
+            ResetInteractionTimer();
         }
 
-        private void Zoom(double zoomFactor)
+        private void Image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            _zoomLevel *= zoomFactor;
-            var transform = new ScaleTransform(_zoomLevel, _zoomLevel);
-            image.LayoutTransform = transform;
-            CenterImage();
+            isDragging = false;
+            image.ReleaseMouseCapture();
+            ResetInteractionTimer();
         }
 
-        private void CenterImage()
+        private void Image_MouseMove(object sender, MouseEventArgs e)
         {
-            double offsetX = (canvas.ActualWidth - (image.ActualWidth * _zoomLevel)) / 2;
-            double offsetY = (canvas.ActualHeight - (image.ActualHeight * _zoomLevel)) / 2;
-            Canvas.SetLeft(image, offsetX);
-            Canvas.SetTop(image, offsetY);
+            if (isDragging)
+            {
+                var currentPosition = e.GetPosition(canvas);
+                var deltaX = currentPosition.X - lastPosition.X;
+                var deltaY = currentPosition.Y - lastPosition.Y;
+                lastPosition = currentPosition;
+
+                Canvas.SetLeft(image, Canvas.GetLeft(image) + deltaX);
+                Canvas.SetTop(image, Canvas.GetTop(image) + deltaY);
+                interactionTimer.Stop();
+                ResetInteractionTimer();
+            }
         }
 
-        private void Canvas_MouseWheel(object sender, MouseWheelEventArgs e)
+
+        //timer
+        private void ResetInteractionTimer()
         {
-            double zoomFactor = e.Delta > 0 ? 1.1 : 0.9;
-            Zoom(zoomFactor);
+            // Reset the timer
+            interactionTimer.Stop();
+            interactionTimer.Start();
         }
-        private void Canvas_SizeChanged(object sender, SizeChangedEventArgs e)
+
+        private void InteractionTimer_Tick(object sender, EventArgs e)
         {
-            CenterImage();
+            // Timer ticked without any interaction, return to the previous window
+            ReturnToPreviousWindow();
+        }
+
+        private void ReturnToPreviousWindow()
+        {
+            // Close the current window and show the previous window
+            this.Close();
+            MainWindow main = new MainWindow();
+            main.Show();
+            interactionTimer.Stop();
+        }
+
+        // Event handlers to track user interaction
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            ResetInteractionTimer();
         }
     }
 }

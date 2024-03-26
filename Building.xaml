@@ -20,10 +20,12 @@
                             <Setter Property="CornerRadius" Value="50"/>
                         </Style>
                     </Button.Resources>
-                    <Image Source="D:\FILES\COLLEGE\Thesis Code\STI-ONN\assets\back.png" Stretch="Fill" Height="26" Width="20"/>
+                    <Image Source="/assets/back.png" Stretch="Fill" Height="26" Width="20"/>
                 </Button>
                 <Rectangle Height="60" Margin="45,160,157,860" Fill="White" RadiusX="30" RadiusY="30"/>
                 <Label Content="Floor Map" HorizontalAlignment="Center" Margin="0,26,0,0" VerticalAlignment="Top" FontSize="55" FontWeight="Bold" FontFamily="Tw Cen MT"/>
+
+                <!-- floor dropdown -->
                 <Expander Header="Floor Selection" Margin="57,170,228,437" FontSize="25">
                     <Grid Background="white">
                         <Grid.ColumnDefinitions>
@@ -34,14 +36,18 @@
                 </Expander>
             </Grid>
 
-
-
+            <!-- Map scroll placeholder -->
             <Grid Margin="492,0,0,0">
                 <Image x:Name="mapImage" Stretch="Uniform"/>
 
-                <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                    <Canvas Name="canvas" MouseWheel="Canvas_MouseWheel" Background="Transparent" SizeChanged="Canvas_SizeChanged" Height="762" Width="1418" HorizontalAlignment="Right">
-                        <Image Name="image" Source="D:\FILES\COLLEGE\Thesis Code\STI-ONN\assets\Maps\untitled.png" Height="836" Canvas.Left="-40" Canvas.Top="5" Width="1468" RenderTransformOrigin="0.5,0.5"/>
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="10,154,0,0">
+                    <Canvas Name="canvas" Background="White" Height="900" VerticalAlignment="Bottom">
+                        <Image Height="844" Source="/assets/Maps/untitled.png" Width="1469" Canvas.Top="10"
+                               Name="image"
+                               MouseWheel="Image_MouseWheel"
+                               MouseLeftButtonDown="Image_MouseLeftButtonDown"
+                               MouseLeftButtonUp="Image_MouseLeftButtonUp"
+                               MouseMove="Image_MouseMove" Canvas.Left="-29"/>
                     </Canvas>
                 </ScrollViewer>
             </Grid>
