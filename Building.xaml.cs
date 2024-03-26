@@ -33,16 +33,16 @@ namespace STI_ONN
             interactionTimer.Tick += InteractionTimer_Tick;
             ResetInteractionTimer();
         }
-
-        //zoom in and out 
-        //drag left and right
+        
+        //return button
         private void touch_Click_1(object sender, RoutedEventArgs e)
         {
             this.Hide();
             Home home = new Home(); 
             home.Show();
         }
-
+        //zoom in and out 
+        //drag left and right
         private void Image_MouseWheel(object sender, MouseWheelEventArgs e)
         {
             var delta = e.Delta;
