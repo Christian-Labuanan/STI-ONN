@@ -29,7 +29,7 @@ namespace STI_ONN
 
             // Initialize and start the interaction timer
             interactionTimer = new DispatcherTimer();
-            interactionTimer.Interval = TimeSpan.FromMinutes(.10);//set the time limit here
+            interactionTimer.Interval = TimeSpan.FromMinutes(.30);//set the time limit here
             interactionTimer.Tick += InteractionTimer_Tick;
             ResetInteractionTimer();
         }
