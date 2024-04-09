@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:STI_ONN"
         mc:Ignorable="d"
-        Title="Building" Height="auto" Width="auto"
+        Title="Building" 
+        Height="auto" 
+        Width="auto"
         WindowState="Maximized"
         WindowStyle="None">
     <Viewbox StretchDirection="Both">
@@ -22,11 +24,11 @@
                     </Button.Resources>
                     <Image Source="/assets/back.png" Stretch="Fill" Height="26" Width="20"/>
                 </Button>
-                <Rectangle Height="60" Margin="45,160,157,860" Fill="White" RadiusX="30" RadiusY="30"/>
+                <Rectangle Height="60" Margin="17,162,185,858" Fill="White" RadiusX="30" RadiusY="30"/>
                 <Label Content="Floor Map" HorizontalAlignment="Center" Margin="0,26,0,0" VerticalAlignment="Top" FontSize="55" FontWeight="Bold" FontFamily="Tw Cen MT"/>
 
                 <!-- floor dropdown -->
-                <Expander Header="Floor Selection" Margin="57,170,228,437" FontSize="25">
+                <Expander Header="Floor Selection" Margin="37,174,248,433" FontSize="25">
                     <Grid Background="white">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="45*"/>
@@ -34,20 +36,54 @@
                         </Grid.ColumnDefinitions>
                     </Grid>
                 </Expander>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="316,162,0,0">
+                    <Button Click="ZoomResetButton_Click" Margin="5" Background="White" BorderBrush="White" Height="46" Width="49">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="15"/>
+                            </Style>
+                        </Button.Resources>
+                        <Image Source="/assets/zoom-reset.png" Stretch="Fill" Height="46" Width="49"/>
+                    </Button>
+                    <Button Click="ZoomInButton_Click" Margin="5" Background="White" BorderBrush="White" Height="46" Width="49">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="15"/>
+                            </Style>
+                        </Button.Resources>
+                        <Image Source="/assets/zoom-in.png" Stretch="Fill" Height="46" Width="49"/>
+                    </Button>
+                    <Button Click="ZoomOutButton_Click" Margin="5" Background="White" BorderBrush="White" Height="46" Width="49">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="15"/>
+                            </Style>
+                        </Button.Resources>
+                        <Image Source="/assets/zoom-out.png" Stretch="Fill" Height="46" Width="49"/>
+                    </Button>
+                </StackPanel>
             </Grid>
 
             <!-- Map scroll placeholder -->
             <Grid Margin="492,0,0,0">
                 <Image x:Name="mapImage" Stretch="Uniform"/>
 
+
                 <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="10,154,0,0">
                     <Canvas Name="canvas" Background="White" Height="900" VerticalAlignment="Bottom">
-                        <Image Height="844" Source="/assets/Maps/untitled.png" Width="1469" Canvas.Top="10"
+                        <Image Height="844" Source="/assets/Maps/ground.png" Width="1469" Canvas.Top="10"
                                Name="image"
                                MouseWheel="Image_MouseWheel"
                                MouseLeftButtonDown="Image_MouseLeftButtonDown"
                                MouseLeftButtonUp="Image_MouseLeftButtonUp"
                                MouseMove="Image_MouseMove" Canvas.Left="-29"/>
+                        <Rectangle Name="clickableSection" Width="200" Height="232" Fill="#FFD63F3F"
+                        MouseDown="ClickableSection_Click" Canvas.Left="423" Canvas.Top="192" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                     </Canvas>
                 </ScrollViewer>
             </Grid>

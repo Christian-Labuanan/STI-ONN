@@ -24,9 +24,9 @@ namespace STI_ONN
 
         private void touch_Click_1(object sender, RoutedEventArgs e)
         {
-            this.Hide();
             Home h1 = new Home();
             h1.Show();
+            this.Hide();
         }
     }
 }

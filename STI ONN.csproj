@@ -11,14 +11,22 @@
 
   <ItemGroup>
     <None Remove="assets\back.png" />
-    <None Remove="assets\Maps\untitled.png" />
+    <None Remove="assets\Maps\ground.png" />
+    <None Remove="assets\zoom-in.png" />
+    <None Remove="assets\zoom-out.png" />
+    <None Remove="assets\zoom-reset.png" />
     <None Remove="STI ONN Logo transparent 3.png" />
+    <None Remove="zoom-reset.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="assets\back.png" />
-    <Resource Include="assets\Maps\untitled.png" />
+    <Resource Include="assets\Maps\ground.png" />
     <Resource Include="assets\STI ONN Logo transparent 3.png" />
+    <Resource Include="assets\zoom-in.png" />
+    <Resource Include="assets\zoom-out.png" />
+    <Resource Include="assets\zoom-reset.png" />
+    <Resource Include="zoom-reset.png" />
   </ItemGroup>
 
 </Project>

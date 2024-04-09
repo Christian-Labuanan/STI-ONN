@@ -25,10 +25,10 @@ namespace STI_ONN
         }
 
         private void touch_Click_1(object sender, RoutedEventArgs e)
-        {
-            this.Hide();
+        {  
             Home home1 = new Home();    
             home1.Show();
+            this.Hide();
         }
     }
 }

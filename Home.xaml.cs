@@ -26,24 +26,24 @@ namespace STI_ONN
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            this.Hide();
+        { 
             Building bldg = new Building();
             bldg.Show();
+            this.Hide();
         }
 
         private void Button_Click2(object sender, RoutedEventArgs e)
         {
-            this.Hide();
             Announcement ancmnt = new Announcement();
             ancmnt.Show();
+            this.Hide();
         }
 
         private void touch_Click_1(object sender, RoutedEventArgs e)
         {
-            this.Hide();
             MainWindow main = new MainWindow();
             main.Show();
+            this.Hide();
         }
 
     }

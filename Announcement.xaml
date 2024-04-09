@@ -17,7 +17,7 @@
                         <Setter Property="CornerRadius" Value="50"/>
                     </Style>
                 </Button.Resources>
-                <Image Source="D:\FILES\COLLEGE\Thesis Code\STI-ONN\assets\back.png" Stretch="Fill" Height="26" Width="20"/>
+                <Image Source="\assets\back.png" Stretch="Fill" Height="26" Width="20"/>
             </Button>
         </Grid> 
     </Viewbox>
