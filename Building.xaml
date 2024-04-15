@@ -35,6 +35,7 @@
                             <ColumnDefinition Width="623*"/>
                         </Grid.ColumnDefinitions>
                     </Grid>
+                    
                 </Expander>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top"/>
