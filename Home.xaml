@@ -20,7 +20,7 @@
                         <Setter Property="CornerRadius" Value="50"/>
                     </Style>
                 </Button.Resources>
-                <Image Source="D:\FILES\COLLEGE\Thesis Code\STI-ONN\assets\back.png" Stretch="Fill" Height="26" Width="20"/>
+                <Image Source="/assets/back.png" Stretch="Fill" Height="42" Width="30"/>
             </Button>
             <Rectangle HorizontalAlignment="Center" Height="115" Margin="0,905,0,0" Stroke="#FFE4E4E4" VerticalAlignment="Top" Width="938" Opacity="1" RadiusX="50" RadiusY="50">
                 <Rectangle.Fill>
