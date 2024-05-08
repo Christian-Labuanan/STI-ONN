@@ -1,12 +1,21 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace STI_ONN
 {
-    public partial class Building : Window
+    public partial class Floor2 : Window
     {
         private double originalWidth;
         private double originalHeight;
@@ -19,10 +28,9 @@ namespace STI_ONN
 
         private DispatcherTimer interactionTimer;
 
-        public Building()
+        public Floor2()
         {
             InitializeComponent();
-
             // Store the original size of the image
             originalWidth = image.Width;
             originalHeight = image.Height;
@@ -238,6 +246,12 @@ namespace STI_ONN
             ResetInteractionTimer();
         }
 
+        private void ground_btn(object sender, RoutedEventArgs e)
+        {
+            Building b1 = new Building();
+            b1.Show();
+            this.Close();
+        }
         private void home_btn(object sender, RoutedEventArgs e)
         {
             Home h1 = new Home();
@@ -249,20 +263,6 @@ namespace STI_ONN
         {
             Announcement a1 = new Announcement();
             a1.Show();
-            this.Close();
-        }
-
-        private void mezzanine_btn(object sender, RoutedEventArgs e)
-        {
-            Mezzanine m1 = new Mezzanine();
-            m1.Show();
-            this.Close();
-        }
-
-        private void floor2_btn(object sender, RoutedEventArgs e)
-        {
-            Floor2 f2 = new Floor2();
-            f2.Show();
             this.Close();
         }
     }

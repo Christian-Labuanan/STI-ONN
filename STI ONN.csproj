@@ -11,11 +11,21 @@
 
   <ItemGroup>
     <None Remove="assets\back.png" />
+    <None Remove="assets\Icons\2nd.png" />
+    <None Remove="assets\Icons\3rd.png" />
+    <None Remove="assets\Icons\4th.png" />
+    <None Remove="assets\Icons\ground.png" />
     <None Remove="assets\Icons\home.png" />
     <None Remove="assets\Icons\megaphone.png" />
+    <None Remove="assets\Icons\mezanine.png" />
+    <None Remove="assets\Icons\roofdeck.png" />
+    <None Remove="assets\Maps\2ndFloor.png" />
     <None Remove="assets\Maps\3dlast.png" />
+    <None Remove="assets\Maps\3rdFloor.png" />
+    <None Remove="assets\Maps\4thFloor.png" />
     <None Remove="assets\Maps\ground.png" />
     <None Remove="assets\Maps\Ground3d.png" />
+    <None Remove="assets\Maps\Roofdeck.png" />
     <None Remove="assets\zoom-in.png" />
     <None Remove="assets\zoom-out.png" />
     <None Remove="assets\zoom-reset.png" />
@@ -23,13 +33,23 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="assets\Icons\2nd.png" />
+    <Resource Include="assets\Icons\3rd.png" />
+    <Resource Include="assets\Icons\4th.png" />
+    <Resource Include="assets\Icons\ground.png" />
     <Resource Include="assets\Icons\megaphone.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="assets\Icons\back.png" />
     <Resource Include="assets\Icons\home.png" />
+    <Resource Include="assets\Icons\mezanine.png" />
+    <Resource Include="assets\Icons\roofdeck.png" />
+    <Resource Include="assets\Maps\2ndFloor.png" />
+    <Resource Include="assets\Maps\3rdFloor.png" />
+    <Resource Include="assets\Maps\4thFloor.png" />
     <Resource Include="assets\Maps\Ground3d.png" />
+    <Resource Include="assets\Maps\Roofdeck.png" />
     <Resource Include="assets\STI ONN Logo transparent 3.png" />
     <Resource Include="assets\Icons\zoom-in.png" />
     <Resource Include="assets\Icons\zoom-out.png" />
