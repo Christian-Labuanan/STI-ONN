@@ -11,7 +11,11 @@
 
   <ItemGroup>
     <None Remove="assets\back.png" />
+    <None Remove="assets\Icons\home.png" />
+    <None Remove="assets\Icons\megaphone.png" />
+    <None Remove="assets\Maps\3dlast.png" />
     <None Remove="assets\Maps\ground.png" />
+    <None Remove="assets\Maps\Ground3d.png" />
     <None Remove="assets\zoom-in.png" />
     <None Remove="assets\zoom-out.png" />
     <None Remove="assets\zoom-reset.png" />
@@ -19,12 +23,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="assets\back.png" />
-    <Resource Include="assets\Maps\ground.png" />
+    <Resource Include="assets\Icons\megaphone.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="assets\Icons\back.png" />
+    <Resource Include="assets\Icons\home.png" />
+    <Resource Include="assets\Maps\Ground3d.png" />
     <Resource Include="assets\STI ONN Logo transparent 3.png" />
-    <Resource Include="assets\zoom-in.png" />
-    <Resource Include="assets\zoom-out.png" />
-    <Resource Include="assets\zoom-reset.png" />
+    <Resource Include="assets\Icons\zoom-in.png" />
+    <Resource Include="assets\Icons\zoom-out.png" />
+    <Resource Include="assets\Icons\zoom-reset.png" />
   </ItemGroup>
 
 </Project>

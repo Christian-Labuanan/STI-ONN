@@ -17,7 +17,7 @@
                         <Setter Property="CornerRadius" Value="50"/>
                     </Style>
                 </Button.Resources>
-                <Image Source="/assets/back.png" Stretch="Fill" Height="43" Width="31"/>
+                <Image Source="/assets/Icons/back.png" Stretch="Fill" Height="43" Width="31"/>
             </Button>
             <Rectangle HorizontalAlignment="Center" Height="130" Margin="0,955,0,0" Stroke="#0B5793" Fill="#0B5793" VerticalAlignment="Top" Width="1920"/>
             <Image x:Name="STI_ONN" Height="472" Width="684" Source="/assets/STI ONN Logo transparent 3.png" Stretch="Fill" Margin="0,-144,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>

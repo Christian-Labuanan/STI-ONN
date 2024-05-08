@@ -15,41 +15,150 @@
             <Grid Margin="492,0,0,947">
                 <Image Margin="357,-180,357,-179" Source="/assets/STI ONN Logo transparent 3.png" Stretch="Fill"/>
             </Grid>
-            <Grid Margin="0,0,1428,0" Background="#FFEAF2FF">
-                <Button x:Name="touch" HorizontalAlignment="Left" Margin="37,28,0,0" VerticalAlignment="Top" Height="68" Width="72" FontSize="60" FontFamily="Tw Cen MT" FontWeight="Bold" Foreground="Black" BorderBrush="{x:Null}" Background="#FFD4D4D4" Opacity="0.85" Click="touch_Click_1">
-                    <Button.Resources>
-                        <Style TargetType="{x:Type Border}">
-                            <Setter Property="CornerRadius" Value="50"/>
-                        </Style>
-                    </Button.Resources>
-                    <Image Source="/assets/back.png" Stretch="Fill" Height="26" Width="20"/>
-                </Button>
-                <Rectangle Height="60" Margin="17,162,185,858" Fill="White" RadiusX="30" RadiusY="30"/>
-                <Label Content="Floor Map" HorizontalAlignment="Center" Margin="0,26,0,0" VerticalAlignment="Top" FontSize="55" FontWeight="Bold" FontFamily="Tw Cen MT"/>
+            <Grid Margin="0,0,1488,0" Background="#FFEAF2FF">
+                <Label Content="Floor Map" HorizontalAlignment="Center" Margin="0,24,0,0" VerticalAlignment="Top" FontSize="55" FontWeight="Bold" FontFamily="Tw Cen MT"/>
 
-                <!-- floor dropdown -->
-                <Expander Header="Floor Selection" Margin="37,174,248,433" FontSize="25">
-                    <Grid Background="white">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="45*"/>
-                            <ColumnDefinition Width="623*"/>
-                        </Grid.ColumnDefinitions>
-                    </Grid>
-                    
-                </Expander>
+                <!-- menubar -->
+                <Grid>
+                    <TextBlock Text="Floors" Margin="152,398,152,627" FontWeight="Bold" FontSize="40"/>
+                </Grid>
 
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Menu Margin="0,223,0,0" Background="Transparent">
+                    <Menu.ItemsPanel>
 
+                        <ItemsPanelTemplate>
 
+                            <VirtualizingStackPanel Orientation="Vertical" />
 
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="316,162,0,0">
+                        </ItemsPanelTemplate>
+
+                    </Menu.ItemsPanel>
+
+                    <MenuItem Margin="0,0,0,-62" FontSize="40" FontWeight="Bold">
+                        <MenuItem.Header>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="0*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="Home" Margin="85,0,-86,0"/>
+                            </Grid>
+                        </MenuItem.Header>
+
+                        <MenuItem.Icon>
+
+                            <Image Source="/assets/Icons/home.png" Margin="45,-19,-81,-17" />
+
+                        </MenuItem.Icon>
+                    </MenuItem>
+
+                    <MenuItem Margin="-1,94,1,-156" FontSize="40" FontWeight="Bold">
+                        <MenuItem.Header>
+                            <Grid>
+                                <TextBlock Text="Announcement" Margin="85,0,-86,0"/>
+                            </Grid>
+                        </MenuItem.Header>
+
+                        <MenuItem.Icon>
+
+                            <Image Source="/assets/Icons/megaphone.png" Margin="45,-19,-81,-17" />
+
+                        </MenuItem.Icon>
+                    </MenuItem>
+
+                    <MenuItem Margin="-1,237,1,-299" FontSize="40" FontWeight="Bold">
+                        <MenuItem.Header>
+                            <Grid>
+                                <TextBlock Text="Ground" Margin="85,0,-86,0"/>
+                            </Grid>
+                        </MenuItem.Header>
+
+                        <MenuItem.Icon>
+
+                            <Image Source="/assets/Icons/megaphone.png" Margin="45,-19,-81,-17" />
+
+                        </MenuItem.Icon>
+                    </MenuItem>
+
+                    <MenuItem Margin="0,317,0,-379" FontSize="40" FontWeight="Bold">
+                        <MenuItem.Header>
+                            <Grid>
+                                <TextBlock Text="Mezzanine" Margin="85,0,-86,0"/>
+                            </Grid>
+                        </MenuItem.Header>
+
+                        <MenuItem.Icon>
+
+                            <Image Source="/assets/Icons/megaphone.png" Margin="45,-19,-81,-17" />
+
+                        </MenuItem.Icon>
+                    </MenuItem>
+
+                    <MenuItem Margin="1,398,-1,-460" FontSize="40" FontWeight="Bold">
+                        <MenuItem.Header>
+                            <Grid>
+                                <TextBlock Text="2nd Floor" Margin="85,0,-86,0"/>
+                            </Grid>
+                        </MenuItem.Header>
+
+                        <MenuItem.Icon>
+
+                            <Image Source="/assets/Icons/megaphone.png" Margin="45,-19,-81,-17" />
+
+                        </MenuItem.Icon>
+                    </MenuItem>
+
+                    <MenuItem Margin="-1,478,1,-540" FontSize="40" FontWeight="Bold">
+                        <MenuItem.Header>
+                            <Grid>
+                                <TextBlock Text="3rd Floor" Margin="85,0,-86,0"/>
+                            </Grid>
+                        </MenuItem.Header>
+
+                        <MenuItem.Icon>
+
+                            <Image Source="/assets/Icons/megaphone.png" Margin="45,-19,-81,-17" />
+
+                        </MenuItem.Icon>
+                    </MenuItem>
+
+                    <MenuItem Margin="1,558,-1,-620" FontSize="40" FontWeight="Bold">
+                        <MenuItem.Header>
+                            <Grid>
+                                <TextBlock Text="4th Floor" Margin="85,0,-86,0"/>
+                            </Grid>
+                        </MenuItem.Header>
+
+                        <MenuItem.Icon>
+
+                            <Image Source="/assets/Icons/megaphone.png" Margin="45,-19,-81,-17" />
+
+                        </MenuItem.Icon>
+                    </MenuItem>
+
+                    <MenuItem Margin="-1,637,1,-699" FontSize="40" FontWeight="Bold">
+                        <MenuItem.Header>
+                            <Grid>
+                                <TextBlock Text="Roof Deck" Margin="85,0,-86,0"/>
+                            </Grid>
+                        </MenuItem.Header>
+
+                        <MenuItem.Icon>
+
+                            <Image Source="/assets/Icons/megaphone.png" Margin="45,-19,-81,-17" />
+
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </Menu>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="204,162,0,0">
                     <Button Click="ZoomResetButton_Click" Margin="5" Background="White" BorderBrush="White" Height="46" Width="49">
                         <Button.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="15"/>
                             </Style>
                         </Button.Resources>
-                        <Image Source="/assets/zoom-reset.png" Stretch="Fill" Height="46" Width="49"/>
+                        <Image Source="/assets/Icons/zoom-reset.png" Stretch="Fill" Height="46" Width="49"/>
                     </Button>
                     <Button Click="ZoomInButton_Click" Margin="5" Background="White" BorderBrush="White" Height="46" Width="49">
                         <Button.Resources>
@@ -57,7 +166,7 @@
                                 <Setter Property="CornerRadius" Value="15"/>
                             </Style>
                         </Button.Resources>
-                        <Image Source="/assets/zoom-in.png" Stretch="Fill" Height="46" Width="49"/>
+                        <Image Source="/assets/Icons/zoom-in.png" Stretch="Fill" Height="46" Width="49"/>
                     </Button>
                     <Button Click="ZoomOutButton_Click" Margin="5" Background="White" BorderBrush="White" Height="46" Width="49">
                         <Button.Resources>
@@ -65,26 +174,44 @@
                                 <Setter Property="CornerRadius" Value="15"/>
                             </Style>
                         </Button.Resources>
-                        <Image Source="/assets/zoom-out.png" Stretch="Fill" Height="46" Width="49"/>
+                        <Image Source="/assets/Icons/zoom-out.png" Stretch="Fill" Height="46" Width="49"/>
                     </Button>
                 </StackPanel>
             </Grid>
 
             <!-- Map scroll placeholder -->
             <Grid Margin="492,0,0,0">
-                <Image x:Name="mapImage" Stretch="Uniform"/>
+                <Image x:Name="mapImage" Stretch="Uniform" Margin="-64,0,0,0"/>
 
 
                 <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="10,154,0,0">
                     <Canvas Name="canvas" Background="White" Height="900" VerticalAlignment="Bottom">
-                        <Image Height="844" Source="/assets/Maps/ground.png" Width="1469" Canvas.Top="10"
+                        <Image Height="844" Source="/assets/Maps/Ground3d.png" Width="1469" Canvas.Top="25"
                                Name="image"
                                MouseWheel="Image_MouseWheel"
                                MouseLeftButtonDown="Image_MouseLeftButtonDown"
                                MouseLeftButtonUp="Image_MouseLeftButtonUp"
-                               MouseMove="Image_MouseMove" Canvas.Left="-29"/>
-                        <Rectangle Name="clickableSection" Width="200" Height="232" Fill="#FFD63F3F"
-                        MouseDown="ClickableSection_Click" Canvas.Left="423" Canvas.Top="192" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                               MouseMove="Image_MouseMove" Canvas.Left="-94" RenderTransformOrigin="0.5,0.5">
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform AngleX="-4.4"/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <Rectangle Name="clickableSection" Fill="#FFD63F3F"
+                        MouseDown="ClickableSection_Click" Canvas.Left="436" Canvas.Top="321" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="119" Width="142">
+                            <Rectangle.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.997"/>
+                                    <SkewTransform AngleX="-25" AngleY="15.516"/>
+                                    <RotateTransform Angle="-14.6"/>
+                                    <TranslateTransform X="0.486" Y="-2.401"/>
+                                </TransformGroup>
+                            </Rectangle.RenderTransform>
+                        </Rectangle>
                     </Canvas>
                 </ScrollViewer>
             </Grid>

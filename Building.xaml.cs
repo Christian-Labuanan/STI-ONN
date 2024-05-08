@@ -45,14 +45,6 @@ namespace STI_ONN
             interactionTimer.Tick += InteractionTimer_Tick;
             ResetInteractionTimer();
         }
-        
-        // Return button
-        private void touch_Click_1(object sender, RoutedEventArgs e)
-        {
-            this.Hide();
-            Home home = new Home(); 
-            home.Show();
-        }
 
         // Zoom in and out 
         // Drag left and right
