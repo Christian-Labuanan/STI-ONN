@@ -16,21 +16,21 @@ namespace STI_ONN
         {
             Building bldg = new Building();
             bldg.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void Button_Click2(object sender, RoutedEventArgs e)
         {
             Announcement ancmnt = new Announcement();
             ancmnt.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void touch_Click_1(object sender, RoutedEventArgs e)
         {
             MainWindow main = new MainWindow();
             main.Show();
-            this.Hide();
+            this.Close();
         }
 
     }

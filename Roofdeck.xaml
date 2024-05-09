@@ -5,8 +5,230 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:STI_ONN"
         mc:Ignorable="d"
-        Title="Roofdeck" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Roofdeck"
+            Height="auto" 
+    Width="auto"
+    WindowState="Maximized"
+    WindowStyle="None">
+
+    <Viewbox StretchDirection="Both">
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="1080" Width="1920">
+            <Grid Margin="492,0,0,947">
+                <Image Margin="357,-180,357,-179" Source="/assets/STI ONN Logo transparent 3.png" Stretch="Fill"/>
+            </Grid>
+            <Grid Margin="0,0,1488,0" Background="#FFEAF2FF">
+                <Label Content="Floor Map" HorizontalAlignment="Center" Margin="0,24,0,0" VerticalAlignment="Top" FontSize="55" FontWeight="Bold" FontFamily="Tw Cen MT"/>
+
+                <!-- menubar -->
+                <TextBlock Text="Floors" Margin="152,381,152,644" FontWeight="Bold" FontSize="40"/>
+                <Line
+                X1="0" Y1="10"
+                X2="400" Y2="10"
+                Stroke="Black"
+                StrokeThickness="1" Margin="20,367,10,675" RenderTransformOrigin="0.5,0.5" >
+                    <Line.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-0.348"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Line.RenderTransform>
+                </Line>
+
+                <Menu Margin="0,199,0,0" Background="Transparent">
+                    <Menu.ItemsPanel>
+
+                        <ItemsPanelTemplate>
+
+                            <VirtualizingStackPanel Orientation="Vertical" />
+
+                        </ItemsPanelTemplate>
+
+                    </Menu.ItemsPanel>
+
+                    <MenuItem Margin="0,9,0,-47" FontSize="40" FontWeight="Bold" Click="home_btn">
+                        <MenuItem.Header>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="0*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="Home" Margin="85,0,-86,0"/>
+                            </Grid>
+                        </MenuItem.Header>
+
+                        <MenuItem.Icon>
+
+                            <Image Source="/assets/Icons/home.png" Margin="45,-19,-81,-17" />
+
+                        </MenuItem.Icon>
+                    </MenuItem>
+
+                    <MenuItem Margin="-1,79,1,-141" FontSize="40" FontWeight="Bold" Click="announcement_btn">
+                        <MenuItem.Header>
+                            <Grid>
+                                <TextBlock Text="Announcement" Margin="85,0,-86,0"/>
+                            </Grid>
+                        </MenuItem.Header>
+
+                        <MenuItem.Icon>
+
+                            <Image Source="/assets/Icons/megaphone.png" Margin="45,-19,-81,-17" />
+
+                        </MenuItem.Icon>
+                    </MenuItem>
+
+                    <MenuItem Margin="-1,237,1,-299" FontSize="40" FontWeight="Bold">
+                        <MenuItem.Header>
+                            <Grid>
+                                <TextBlock Text="Ground" Margin="85,0,-86,0"/>
+                            </Grid>
+                        </MenuItem.Header>
+
+                        <MenuItem.Icon>
+
+                            <Image Source="/assets/Icons/ground.png" Margin="45,-19,-81,-17" />
+
+                        </MenuItem.Icon>
+                    </MenuItem>
+
+                    <MenuItem Margin="0,317,0,-379" FontSize="40" FontWeight="Bold" Click="mezzanine_btn">
+                        <MenuItem.Header>
+                            <Grid>
+                                <TextBlock Text="Mezzanine" Margin="85,0,-86,0"/>
+                            </Grid>
+                        </MenuItem.Header>
+
+                        <MenuItem.Icon>
+
+                            <Image Source="/assets/Icons/mezanine.png" Margin="45,-19,-81,-17" />
+
+                        </MenuItem.Icon>
+                    </MenuItem>
+
+                    <MenuItem Margin="1,398,-1,-460" FontSize="40" FontWeight="Bold" Click="floor2_btn">
+                        <MenuItem.Header>
+                            <Grid>
+                                <TextBlock Text="2nd Floor" Margin="85,0,-86,0"/>
+                            </Grid>
+                        </MenuItem.Header>
+
+                        <MenuItem.Icon>
+
+                            <Image Source="/assets/Icons/2nd.png" Margin="45,-19,-81,-17" />
+
+                        </MenuItem.Icon>
+                    </MenuItem>
+
+                    <MenuItem Margin="-1,478,1,-540" FontSize="40" FontWeight="Bold" Click="floor3_btn">
+                        <MenuItem.Header>
+                            <Grid>
+                                <TextBlock Text="3rd Floor" Margin="85,0,-86,0"/>
+                            </Grid>
+                        </MenuItem.Header>
+
+                        <MenuItem.Icon>
+
+                            <Image Source="/assets/Icons/3rd.png" Margin="45,-19,-81,-17" />
+
+                        </MenuItem.Icon>
+                    </MenuItem>
+
+                    <MenuItem Margin="1,558,-1,-620" FontSize="40" FontWeight="Bold" Click="floor4_btn">
+                        <MenuItem.Header>
+                            <Grid>
+                                <TextBlock Text="4th Floor" Margin="85,0,-86,0"/>
+                            </Grid>
+                        </MenuItem.Header>
+
+                        <MenuItem.Icon>
+
+                            <Image Source="/assets/Icons/4th.png" Margin="45,-19,-81,-17" />
+
+                        </MenuItem.Icon>
+                    </MenuItem>
+
+                    <MenuItem Margin="-1,637,1,-699" FontSize="40" FontWeight="Bold" Click="roofdeck_btn">
+                        <MenuItem.Header>
+                            <Grid>
+                                <TextBlock Text="Roof Deck" Margin="85,0,-86,0"/>
+                            </Grid>
+                        </MenuItem.Header>
+
+                        <MenuItem.Icon>
+
+                            <Image Source="/assets/Icons/roofdeck.png" Margin="45,-19,-81,-17" />
+
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </Menu>
+            </Grid>
+
+
+            <!-- Map scroll placeholder -->
+            <Grid Margin="492,0,0,0">
+                <Image x:Name="mapImage" Stretch="Uniform" Margin="-64,0,0,0"/>
+
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="-59,154,0,0">
+                    <Canvas Name="canvas" Background="White" Height="900" VerticalAlignment="Bottom">
+                        <Image Height="844" Source="/assets/Maps/Roofdeck5th.png" Width="1469" Canvas.Top="25"
+                           Name="image"
+                           MouseWheel="Image_MouseWheel"
+                           MouseLeftButtonDown="Image_MouseLeftButtonDown"
+                           MouseLeftButtonUp="Image_MouseLeftButtonUp"
+                           MouseMove="Image_MouseMove" Canvas.Left="14" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform AngleX="-4.4"/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <Rectangle Name="clickableSection" Fill="#FFD63F3F"
+                    MouseDown="ClickableSection_Click" Canvas.Left="1136" Canvas.Top="334" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Height="38" Width="100">
+                            <Rectangle.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.828"/>
+                                    <SkewTransform AngleX="-25" AngleY="37.69"/>
+                                    <RotateTransform Angle="-39.725"/>
+                                    <TranslateTransform X="6.948" Y="26.232"/>
+                                </TransformGroup>
+                            </Rectangle.RenderTransform>
+                        </Rectangle>
+                    </Canvas>
+                </ScrollViewer>
+
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1057,936,0,0" Height="116" Width="305">
+                    <Button Click="ZoomResetButton_Click" Margin="5" Background="White" BorderBrush="White" Height="84" Width="89">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="15"/>
+                            </Style>
+                        </Button.Resources>
+                        <Image Source="/assets/Icons/zoom-reset.png" Stretch="Fill" Height="74" Width="79"/>
+                    </Button>
+                    <Button Click="ZoomInButton_Click" Margin="5" Background="White" BorderBrush="White" Height="84" Width="87">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="15"/>
+                            </Style>
+                        </Button.Resources>
+                        <Image Source="/assets/Icons/zoom-in.png" Stretch="Fill" Height="74" Width="77"/>
+                    </Button>
+                    <Button Click="ZoomOutButton_Click" Margin="5" Background="White" BorderBrush="White" Height="90" Width="83">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="15"/>
+                            </Style>
+                        </Button.Resources>
+                        <Image Source="/assets/Icons/zoom-out.png" Stretch="Fill" Height="80" Width="83"/>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Viewbox>
 </Window>

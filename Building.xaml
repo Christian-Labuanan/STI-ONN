@@ -10,7 +10,7 @@
         Width="auto"
         WindowState="Maximized"
         WindowStyle="None">
-    
+
     <Viewbox StretchDirection="Both">
         <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="1080" Width="1920">
             <Grid Margin="492,0,0,947">
@@ -121,7 +121,7 @@
                         </MenuItem.Icon>
                     </MenuItem>
 
-                    <MenuItem Margin="-1,478,1,-540" FontSize="40" FontWeight="Bold">
+                    <MenuItem Margin="-1,478,1,-540" FontSize="40" FontWeight="Bold" Click="floor3_btn">
                         <MenuItem.Header>
                             <Grid>
                                 <TextBlock Text="3rd Floor" Margin="85,0,-86,0"/>
@@ -135,7 +135,7 @@
                         </MenuItem.Icon>
                     </MenuItem>
 
-                    <MenuItem Margin="1,558,-1,-620" FontSize="40" FontWeight="Bold">
+                    <MenuItem Margin="1,558,-1,-620" FontSize="40" FontWeight="Bold" Click="floor4_btn">
                         <MenuItem.Header>
                             <Grid>
                                 <TextBlock Text="4th Floor" Margin="85,0,-86,0"/>
@@ -149,7 +149,7 @@
                         </MenuItem.Icon>
                     </MenuItem>
 
-                    <MenuItem Margin="-1,637,1,-699" FontSize="40" FontWeight="Bold">
+                    <MenuItem Margin="-1,637,1,-699" FontSize="40" FontWeight="Bold" Click="roofdeck_btn">
                         <MenuItem.Header>
                             <Grid>
                                 <TextBlock Text="Roof Deck" Margin="85,0,-86,0"/>
@@ -170,14 +170,14 @@
             <Grid Margin="492,0,0,0">
                 <Image x:Name="mapImage" Stretch="Uniform" Margin="-64,0,0,0"/>
 
-                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="10,154,0,0">
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="-58,154,0,0">
                     <Canvas Name="canvas" Background="White" Height="900" VerticalAlignment="Bottom">
                         <Image Height="844" Source="/assets/Maps/Ground3d.png" Width="1469" Canvas.Top="25"
                                Name="image"
                                MouseWheel="Image_MouseWheel"
                                MouseLeftButtonDown="Image_MouseLeftButtonDown"
                                MouseLeftButtonUp="Image_MouseLeftButtonUp"
-                               MouseMove="Image_MouseMove" Canvas.Left="-94" RenderTransformOrigin="0.5,0.5">
+                               MouseMove="Image_MouseMove" Canvas.Left="14" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Center">
                             <Image.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform/>
@@ -188,21 +188,20 @@
                             </Image.RenderTransform>
                         </Image>
                         <Rectangle Name="clickableSection" Fill="#FFD63F3F"
-                        MouseDown="ClickableSection_Click" Canvas.Left="436" Canvas.Top="321" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="119" Width="142">
+                        MouseDown="ClickableSection_Click" Canvas.Left="543" Canvas.Top="321" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="125" Width="142">
                             <Rectangle.RenderTransform>
                                 <TransformGroup>
-                                    <ScaleTransform ScaleX="0.997"/>
-                                    <SkewTransform AngleX="-25" AngleY="15.516"/>
-                                    <RotateTransform Angle="-14.6"/>
-                                    <TranslateTransform X="0.486" Y="-2.401"/>
+                                    <ScaleTransform ScaleX="1.019"/>
+                                    <SkewTransform AngleX="-25" AngleY="12.682"/>
+                                    <RotateTransform Angle="-12.719"/>
+                                    <TranslateTransform X="1.277" Y="-6.034"/>
                                 </TransformGroup>
                             </Rectangle.RenderTransform>
                         </Rectangle>
                     </Canvas>
                 </ScrollViewer>
 
-
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1057,936,0,0" Height="92" Width="305">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1057,936,0,0" Height="114" Width="305">
                     <Button Click="ZoomResetButton_Click" Margin="5" Background="White" BorderBrush="White" Height="84" Width="89">
                         <Button.Resources>
                             <Style TargetType="{x:Type Border}">

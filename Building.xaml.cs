@@ -265,5 +265,26 @@ namespace STI_ONN
             f2.Show();
             this.Close();
         }
+
+        private void floor3_btn(object sender, RoutedEventArgs e)
+        {
+            Floor3 floor3 = new Floor3();
+            floor3.Show();
+            this.Close();
+        }
+
+        private void floor4_btn(object sender, RoutedEventArgs e)
+        {
+            Floor4 floor4 = new Floor4();
+            floor4.Show();  
+            this.Close();
+        }
+
+        private void roofdeck_btn(object sender, RoutedEventArgs e)
+        {
+            Roofdeck roofdeck = new Roofdeck();
+            roofdeck.Show();
+            this.Close();
+        }
     }
 }
