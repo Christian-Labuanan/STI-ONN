@@ -43,27 +43,40 @@ namespace STI_ONN
             var delta = e.Delta;
             var scale = delta > 0 ? 1.1 : 0.9; // Increase or decrease zoom factor
 
-            // Calculate the zooming center point
+            // Calculate the zooming center point relative to the image
             Point zoomCenter = e.GetPosition(image);
 
             // Calculate the new width and height after zooming
             double newWidth = image.Width * scale;
             double newHeight = image.Height * scale;
 
-            // Calculate the adjustment for the left and top offsets to maintain the center position
-            double deltaX = (newWidth - image.Width) * zoomCenter.X / image.Width;
-            double deltaY = (newHeight - image.Height) * zoomCenter.Y / image.Height;
+            // Calculate the adjustment for the clickable section size and position
+            double sectionWidthAdjustment = clickableSection.Width * (scale - 1);
+            double sectionHeightAdjustment = clickableSection.Height * (scale - 1);
 
             // Apply the new width and height to the image
             image.Width = newWidth;
             image.Height = newHeight;
 
-            // Adjust the left and top offsets to maintain the center position
-            Canvas.SetLeft(image, Canvas.GetLeft(image) - deltaX);
-            Canvas.SetTop(image, Canvas.GetTop(image) - deltaY);
+            // Adjust the size of the clickable section
+            clickableSection.Width += sectionWidthAdjustment;
+            clickableSection.Height += sectionHeightAdjustment;
+
+            // Calculate the new position of the clickable section relative to the image
+            double sectionLeftRelativeToImage = Canvas.GetLeft(clickableSection) - Canvas.GetLeft(image);
+            double sectionTopRelativeToImage = Canvas.GetTop(clickableSection) - Canvas.GetTop(image);
+
+            // Calculate the new position of the clickable section
+            double newSectionLeftRelativeToImage = sectionLeftRelativeToImage * scale;
+            double newSectionTopRelativeToImage = sectionTopRelativeToImage * scale;
+
+            // Apply the new position of the clickable section
+            Canvas.SetLeft(clickableSection, Canvas.GetLeft(image) + newSectionLeftRelativeToImage);
+            Canvas.SetTop(clickableSection, Canvas.GetTop(image) + newSectionTopRelativeToImage);
 
             ResetInteractionTimer();
         }
+
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
