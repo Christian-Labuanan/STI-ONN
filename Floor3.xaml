@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:STI_ONN"
         mc:Ignorable="d"
         Title="Floor3" 
-            Height="auto" 
-    Width="auto"
-    WindowState="Maximized"
-    WindowStyle="None">
+        Height="auto" 
+        Width="auto"
+        WindowState="Maximized"
+        WindowStyle="None">
 
     <Viewbox StretchDirection="Both">
         <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="1080" Width="1920">
@@ -79,7 +79,7 @@
                         </MenuItem.Icon>
                     </MenuItem>
 
-                    <MenuItem Margin="-1,237,1,-299" FontSize="40" FontWeight="Bold">
+                    <MenuItem Margin="-1,237,1,-299" FontSize="40" FontWeight="Bold" Click="ground_btn">
                         <MenuItem.Header>
                             <Grid>
                                 <TextBlock Text="Ground" Margin="85,0,-86,0"/>
@@ -187,13 +187,24 @@
                             </Image.RenderTransform>
                         </Image>
                         <Rectangle Name="clickableSection" Fill="#FFD63F3F"
-                    MouseDown="ClickableSection_Click" Canvas.Left="460" Canvas.Top="320" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Height="85" Width="118">
+                    MouseDown="room301" Canvas.Left="378" Canvas.Top="311" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Height="91" Width="88">
                             <Rectangle.RenderTransform>
                                 <TransformGroup>
-                                    <ScaleTransform ScaleX="0.997"/>
-                                    <SkewTransform AngleX="-25" AngleY="15.516"/>
-                                    <RotateTransform Angle="-14.6"/>
-                                    <TranslateTransform X="0.486" Y="-2.401"/>
+                                    <ScaleTransform ScaleX="1.068"/>
+                                    <SkewTransform AngleX="-25" AngleY="6.749"/>
+                                    <RotateTransform Angle="-5.571"/>
+                                    <TranslateTransform X="-0.194" Y="1.302"/>
+                                </TransformGroup>
+                            </Rectangle.RenderTransform>
+                        </Rectangle>
+                        <Rectangle x:Name="clickableSection_Copy" Fill="#FFD63F3F"
+                            MouseDown="ClickableSection_Click" Canvas.Left="475" Canvas.Top="313" RenderTransformOrigin="0.5,0.5" Height="91" Width="74" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Rectangle.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="1.076"/>
+                                    <SkewTransform AngleX="-25" AngleY="5.757"/>
+                                    <RotateTransform Angle="-5.709"/>
+                                    <TranslateTransform X="0.095" Y="0.484"/>
                                 </TransformGroup>
                             </Rectangle.RenderTransform>
                         </Rectangle>

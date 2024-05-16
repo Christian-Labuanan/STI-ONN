@@ -22,7 +22,20 @@ namespace STI_ONN
         private double originalHeight;
         private double squareWidth;
         private double squareHeight;
+        private double originalImageLeft;
+        private double originalImageTop;
+
         private double originalScale = 1.0;
+
+        private double originalClickableSectionLeft;
+        private double originalClickableSectionTop;
+        private double originalClickableSectionWidth;
+        private double originalClickableSectionHeight;
+
+        private double originalClickableSectionCopyLeft;
+        private double originalClickableSectionCopyTop;
+        private double originalClickableSectionCopyWidth;
+        private double originalClickableSectionCopyHeight;
 
         private bool isDragging = false;
         private Point lastPosition;
@@ -36,6 +49,22 @@ namespace STI_ONN
             originalHeight = image.Height;
             squareWidth = clickableSection.Width;
             squareHeight = clickableSection.Height;
+
+            // Store the original position of the image
+            originalImageLeft = Canvas.GetLeft(image);
+            originalImageTop = Canvas.GetTop(image);
+
+            // Store the original position and size of the clickable section
+            originalClickableSectionLeft = Canvas.GetLeft(clickableSection);
+            originalClickableSectionTop = Canvas.GetTop(clickableSection);
+            originalClickableSectionWidth = clickableSection.Width;
+            originalClickableSectionHeight = clickableSection.Height;
+            //302
+            originalClickableSectionCopyLeft = Canvas.GetLeft(clickableSection_Copy);
+            originalClickableSectionCopyTop = Canvas.GetTop(clickableSection_Copy);
+            originalClickableSectionCopyWidth = clickableSection_Copy.Width;
+            originalClickableSectionCopyHeight = clickableSection_Copy.Height;
+
 
             // Initialize and start the interaction timer
             interactionTimer = new DispatcherTimer();
@@ -51,24 +80,53 @@ namespace STI_ONN
             var delta = e.Delta;
             var scale = delta > 0 ? 1.1 : 0.9; // Increase or decrease zoom factor
 
-            // Calculate the zooming center point
+            // Calculate the zooming center point relative to the image
             Point zoomCenter = e.GetPosition(image);
 
             // Calculate the new width and height after zooming
             double newWidth = image.Width * scale;
             double newHeight = image.Height * scale;
 
-            // Calculate the adjustment for the left and top offsets to maintain the center position
-            double deltaX = (newWidth - image.Width) * zoomCenter.X / image.Width;
-            double deltaY = (newHeight - image.Height) * zoomCenter.Y / image.Height;
+            // Calculate the adjustment for the clickable section size and position
+            //room301
+            double sectionWidthAdjustment = clickableSection.Width * (scale - 1);
+            double sectionHeightAdjustment = clickableSection.Height * (scale - 1);
+            //room 302
+            double sectionWidthAdjustment302 = clickableSection_Copy.Width * (scale - 1);
+            double sectionHeightAdjustment302 = clickableSection_Copy.Height * (scale - 1);
 
             // Apply the new width and height to the image
             image.Width = newWidth;
             image.Height = newHeight;
 
-            // Adjust the left and top offsets to maintain the center position
-            Canvas.SetLeft(image, Canvas.GetLeft(image) - deltaX);
-            Canvas.SetTop(image, Canvas.GetTop(image) - deltaY);
+            // Adjust the size of the clickable section
+            //301
+            clickableSection.Width += sectionWidthAdjustment;
+            clickableSection.Height += sectionHeightAdjustment;
+            //302
+            clickableSection_Copy.Width += sectionWidthAdjustment302;
+            clickableSection_Copy.Height += sectionHeightAdjustment302;
+
+            // Calculate the new position of the clickable section relative to the image
+            double sectionLeftRelativeToImage = Canvas.GetLeft(clickableSection) - Canvas.GetLeft(image);
+            double sectionTopRelativeToImage = Canvas.GetTop(clickableSection) - Canvas.GetTop(image);
+            //302
+            double sectionLeftRelativeToImage302 = Canvas.GetLeft(clickableSection_Copy) - Canvas.GetLeft(image);
+            double sectionTopRelativeToImage302 = Canvas.GetTop(clickableSection_Copy) - Canvas.GetTop(image);
+
+            // Calculate the new position of the clickable section
+            double newSectionLeftRelativeToImage = sectionLeftRelativeToImage * scale;
+            double newSectionTopRelativeToImage = sectionTopRelativeToImage * scale;
+            //302
+            double newSectionLeftRelativeToImage302 = sectionLeftRelativeToImage302 * scale;
+            double newSectionTopRelativeToImage302 = sectionTopRelativeToImage302 * scale;
+
+            // Apply the new position of the clickable section
+            Canvas.SetLeft(clickableSection, Canvas.GetLeft(image) + newSectionLeftRelativeToImage);
+            Canvas.SetTop(clickableSection, Canvas.GetTop(image) + newSectionTopRelativeToImage);
+            //302
+            Canvas.SetLeft(clickableSection_Copy, Canvas.GetLeft(image) + newSectionLeftRelativeToImage302);
+            Canvas.SetTop(clickableSection_Copy, Canvas.GetTop(image) + newSectionTopRelativeToImage302);
 
             ResetInteractionTimer();
         }
@@ -101,8 +159,12 @@ namespace STI_ONN
                 Canvas.SetLeft(image, Canvas.GetLeft(image) + deltaX);
                 Canvas.SetTop(image, Canvas.GetTop(image) + deltaY);
 
+                //301
                 Canvas.SetLeft(clickableSection, Canvas.GetLeft(clickableSection) + deltaX);
                 Canvas.SetTop(clickableSection, Canvas.GetTop(clickableSection) + deltaY);
+                //302
+                Canvas.SetLeft(clickableSection_Copy, Canvas.GetLeft(clickableSection_Copy) + deltaX);
+                Canvas.SetTop(clickableSection_Copy, Canvas.GetTop(clickableSection_Copy) + deltaY);
                 ResetInteractionTimer();
             }
         }
@@ -126,21 +188,20 @@ namespace STI_ONN
             // Reset the image transformation
             image.LayoutTransform = Transform.Identity;
 
-            // Get the size of the Canvas
-            double canvasWidth = canvas.ActualWidth;
-            double canvasHeight = canvas.ActualHeight;
+            // Reset the position of the image to its original position
+            Canvas.SetLeft(image, originalImageLeft);
+            Canvas.SetTop(image, originalImageTop);
 
-            // Calculate the new position to center the image within the Canvas
-            double leftOffset = (canvasWidth - originalWidth) / 2;
-            double topOffset = (canvasHeight - originalHeight) / 2;
-
-            // Limit the offset to keep the image within the bounds
-            leftOffset = Math.Max(0, leftOffset);
-            topOffset = Math.Max(0, topOffset);
-
-            // Set the new position of the image
-            Canvas.SetLeft(image, leftOffset);
-            Canvas.SetTop(image, topOffset);
+            // Reset the position and size of the clickable section to its original values
+            Canvas.SetLeft(clickableSection, originalClickableSectionLeft);
+            Canvas.SetTop(clickableSection, originalClickableSectionTop);
+            clickableSection.Width = originalClickableSectionWidth;
+            clickableSection.Height = originalClickableSectionHeight;
+            //302
+            Canvas.SetLeft(clickableSection_Copy, originalClickableSectionCopyLeft);
+            Canvas.SetTop(clickableSection_Copy, originalClickableSectionCopyTop);
+            clickableSection_Copy.Width = originalClickableSectionCopyWidth;
+            clickableSection_Copy.Height = originalClickableSectionCopyHeight;
 
             // Reset the screensaver timer
             ResetInteractionTimer();
@@ -239,6 +300,7 @@ namespace STI_ONN
 
         #endregion
 
+        #region navbarleft
         private void ClickableSection_Click(object sender, MouseButtonEventArgs e)
         {
             MessageBox.Show("Room 101/ Bar");
@@ -299,6 +361,13 @@ namespace STI_ONN
             Roofdeck roofdeck = new Roofdeck();
             roofdeck.Show();
             this.Close();
+        }
+        #endregion
+
+        private void room301(object sender, RoutedEventArgs e)
+        {
+            room301 rm301 = new room301();
+            rm301.Show();
         }
     }
 }

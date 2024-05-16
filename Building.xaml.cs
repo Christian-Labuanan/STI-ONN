@@ -12,7 +12,15 @@ namespace STI_ONN
         private double originalHeight;
         private double squareWidth;
         private double squareHeight;
+        private double originalImageLeft;
+        private double originalImageTop;
+
         private double originalScale = 1.0;
+
+        private double originalClickableSectionLeft;
+        private double originalClickableSectionTop;
+        private double originalClickableSectionWidth;
+        private double originalClickableSectionHeight;
 
         private bool isDragging = false;
         private Point lastPosition;
@@ -28,6 +36,16 @@ namespace STI_ONN
             originalHeight = image.Height;
             squareWidth = clickableSection.Width;
             squareHeight = clickableSection.Height;
+
+            // Store the original position of the image
+            originalImageLeft = Canvas.GetLeft(image);
+            originalImageTop = Canvas.GetTop(image);
+
+            // Store the original position and size of the clickable section
+            originalClickableSectionLeft = Canvas.GetLeft(clickableSection);
+            originalClickableSectionTop = Canvas.GetTop(clickableSection);
+            originalClickableSectionWidth = clickableSection.Width;
+            originalClickableSectionHeight = clickableSection.Height;
 
             // Initialize and start the interaction timer
             interactionTimer = new DispatcherTimer();
@@ -131,21 +149,15 @@ namespace STI_ONN
             // Reset the image transformation
             image.LayoutTransform = Transform.Identity;
 
-            // Get the size of the Canvas
-            double canvasWidth = canvas.ActualWidth;
-            double canvasHeight = canvas.ActualHeight;
+            // Reset the position of the image to its original position
+            Canvas.SetLeft(image, originalImageLeft);
+            Canvas.SetTop(image, originalImageTop);
 
-            // Calculate the new position to center the image within the Canvas
-            double leftOffset = (canvasWidth - originalWidth) / 2;
-            double topOffset = (canvasHeight - originalHeight) / 2;
-
-            // Limit the offset to keep the image within the bounds
-            leftOffset = Math.Max(0, leftOffset);
-            topOffset = Math.Max(0, topOffset);
-
-            // Set the new position of the image
-            Canvas.SetLeft(image, leftOffset);
-            Canvas.SetTop(image, topOffset);
+            // Reset the position and size of the clickable section to its original values
+            Canvas.SetLeft(clickableSection, originalClickableSectionLeft);
+            Canvas.SetTop(clickableSection, originalClickableSectionTop);
+            clickableSection.Width = originalClickableSectionWidth;
+            clickableSection.Height = originalClickableSectionHeight;
 
             // Reset the screensaver timer
             ResetInteractionTimer();
