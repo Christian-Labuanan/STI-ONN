@@ -79,10 +79,10 @@
                         </MenuItem.Icon>
                     </MenuItem>
 
-                    <MenuItem Margin="-1,237,1,-299" FontSize="40" FontWeight="Bold">
+                    <MenuItem Margin="-1,237,1,-299" FontSize="40" FontWeight="Bold" Background="#FF0B5793">
                         <MenuItem.Header>
                             <Grid>
-                                <TextBlock Text="Ground" Margin="85,0,-86,0"/>
+                                <TextBlock Text="Ground" Margin="85,0,-86,0" Foreground="White"/>
                             </Grid>
                         </MenuItem.Header>
 

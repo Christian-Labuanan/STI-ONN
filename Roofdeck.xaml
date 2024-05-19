@@ -149,10 +149,10 @@
                         </MenuItem.Icon>
                     </MenuItem>
 
-                    <MenuItem Margin="-1,637,1,-699" FontSize="40" FontWeight="Bold" Click="roofdeck_btn">
+                    <MenuItem Margin="-1,637,1,-699" FontSize="40" FontWeight="Bold" Background="#FF0B5793">
                         <MenuItem.Header>
                             <Grid>
-                                <TextBlock Text="Roof Deck" Margin="85,0,-86,0"/>
+                                <TextBlock Text="Roof Deck" Margin="85,0,-86,0" Foreground="White"/>
                             </Grid>
                         </MenuItem.Header>
 

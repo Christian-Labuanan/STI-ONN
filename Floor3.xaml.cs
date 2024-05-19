@@ -342,13 +342,6 @@ namespace STI_ONN
             this.Close();
         }
 
-        private void floor3_btn(object sender, RoutedEventArgs e)
-        {
-            Floor3 floor3 = new Floor3();
-            floor3.Show();
-            this.Close();
-        }
-
         private void floor4_btn(object sender, RoutedEventArgs e)
         {
             Floor4 floor4 = new Floor4();
@@ -366,8 +359,22 @@ namespace STI_ONN
 
         private void room301(object sender, RoutedEventArgs e)
         {
+            // Create and show the room 301 window
             room301 rm301 = new room301();
-            rm301.Show();
+            rm301.Owner = this;
+
+            // Show the dimming overlay to dim the window
+            dimmingOverlay.Visibility = Visibility.Visible;
+
+            // Handle the Closed event of the room 301 window to hide the dimming overlay when the window is closed
+            rm301.Closed += (s, args) =>
+            {
+                // Hide the dimming overlay
+                dimmingOverlay.Visibility = Visibility.Collapsed;
+            };
+
+            // Show the room 301 window
+            rm301.ShowDialog();
         }
     }
 }

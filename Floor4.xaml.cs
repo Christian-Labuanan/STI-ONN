@@ -290,13 +290,6 @@ namespace STI_ONN
             this.Close();
         }
 
-        private void floor4_btn(object sender, RoutedEventArgs e)
-        {
-            Floor4 floor4 = new Floor4();
-            floor4.Show();
-            this.Close();
-        }
-
         private void roofdeck_btn(object sender, RoutedEventArgs e)
         {
             Roofdeck roofdeck = new Roofdeck();

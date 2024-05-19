@@ -121,10 +121,10 @@
                         </MenuItem.Icon>
                     </MenuItem>
 
-                    <MenuItem Margin="-1,478,1,-540" FontSize="40" FontWeight="Bold" Click="floor3_btn">
+                    <MenuItem Margin="-1,478,1,-540" FontSize="40" FontWeight="Bold" Background="#FF0B5793">
                         <MenuItem.Header>
                             <Grid>
-                                <TextBlock Text="3rd Floor" Margin="85,0,-86,0"/>
+                                <TextBlock Text="3rd Floor" Margin="85,0,-86,0" Foreground="White"/>
                             </Grid>
                         </MenuItem.Header>
 
@@ -197,6 +197,7 @@
                                 </TransformGroup>
                             </Rectangle.RenderTransform>
                         </Rectangle>
+
                         <Rectangle x:Name="clickableSection_Copy" Fill="#FFD63F3F"
                             MouseDown="ClickableSection_Click" Canvas.Left="475" Canvas.Top="313" RenderTransformOrigin="0.5,0.5" Height="91" Width="74" HorizontalAlignment="Left" VerticalAlignment="Center">
                             <Rectangle.RenderTransform>
@@ -210,7 +211,6 @@
                         </Rectangle>
                     </Canvas>
                 </ScrollViewer>
-
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1057,936,0,0" Height="110" Width="305">
                     <Button Click="ZoomResetButton_Click" Margin="5" Background="White" BorderBrush="White" Height="84" Width="89">
@@ -239,6 +239,7 @@
                     </Button>
                 </StackPanel>
             </Grid>
+            <Rectangle Fill="#80000000" Visibility="Collapsed" Name="dimmingOverlay" />
         </Grid>
     </Viewbox>
 </Window>

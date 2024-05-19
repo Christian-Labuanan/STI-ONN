@@ -135,10 +135,10 @@
                         </MenuItem.Icon>
                     </MenuItem>
 
-                    <MenuItem Margin="1,558,-1,-620" FontSize="40" FontWeight="Bold" Click="floor4_btn">
+                    <MenuItem Margin="1,558,-1,-620" FontSize="40" FontWeight="Bold" Background="#FF0B5793">
                         <MenuItem.Header>
                             <Grid>
-                                <TextBlock Text="4th Floor" Margin="85,0,-86,0"/>
+                                <TextBlock Text="4th Floor" Margin="85,0,-86,0" Foreground="White"/>
                             </Grid>
                         </MenuItem.Header>
 

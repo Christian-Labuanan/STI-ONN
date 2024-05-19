@@ -261,13 +261,6 @@ namespace STI_ONN
             this.Close();
         }
 
-        private void mezzanine_btn(object sender, RoutedEventArgs e)
-        {
-            Mezzanine m1 = new Mezzanine();
-            m1.Show();
-            this.Close();
-        }
-
         private void floor2_btn(object sender, RoutedEventArgs e)
         {
             Floor2 f2 = new Floor2();

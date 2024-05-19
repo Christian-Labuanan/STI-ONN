@@ -273,12 +273,6 @@ namespace STI_ONN
             this.Close();
         }
 
-        private void floor2_btn(object sender, RoutedEventArgs e)
-        {
-            Floor2 f2 = new Floor2();
-            f2.Show();
-            this.Close();
-        }
 
         private void floor3_btn(object sender, RoutedEventArgs e)
         {
@@ -300,5 +294,6 @@ namespace STI_ONN
             roofdeck.Show();
             this.Close();
         }
+
     }
 }

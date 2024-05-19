@@ -48,16 +48,16 @@ namespace STI_ONN
             System.Data.DataTable dt = new System.Data.DataTable();
 
             // Add columns to DataTable
-            for (int col = 1; col <= 25; col++)
+            for (int col = 1; col <= 7; col++)
             {
                 dt.Columns.Add($"Column{col}");
             }
 
             // Loop through the cells and populate the DataTable
-            for (int row = 1; row <= 7; row++)
+            for (int row = 1; row <=25; row++)
             {
                 DataRow dr = dt.NewRow();
-                for (int col = 1; col <= 25; col++)
+                for (int col = 1; col <= 7; col++)
                 {
                     dr[col - 1] = (range.Cells[row, col] as Microsoft.Office.Interop.Excel.Range)?.Value2?.ToString();
                 }

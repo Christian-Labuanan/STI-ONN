@@ -289,11 +289,5 @@ namespace STI_ONN
             this.Close();
         }
 
-        private void roofdeck_btn(object sender, RoutedEventArgs e)
-        {
-            Roofdeck roofdeck = new Roofdeck();
-            roofdeck.Show();
-            this.Close();
-        }
     }
 }
