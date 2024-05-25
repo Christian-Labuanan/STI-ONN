@@ -11,7 +11,7 @@
         ResizeMode="NoResize">
 
     <Grid Background="#FFEAF2FF">
-        <DataGrid x:Name="excelDataGrid" AutoGenerateColumns="True" Margin="49,51,49,51" HeadersVisibility="None" Width="710.8">
+        <DataGrid x:Name="excelDataGrid" AutoGenerateColumns="True" Margin="49,51,49,51" HeadersVisibility="None" Width="710.8" >
             <DataGrid.CellStyle>
                 <Style TargetType="DataGridCell">
                     <Setter Property="Background" Value="#FFF2CC"/>
@@ -39,6 +39,7 @@
             </Style>
         </Button.Resources>
         </Button>
-        <Label Content="Room 301 Schedules" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" FontFamily="Arial"/>
+        <Label x:Name="roomLabel" Content="Room Schedules" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" FontFamily="Arial"/>
+
     </Grid>
 </Window>

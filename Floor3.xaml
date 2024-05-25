@@ -178,7 +178,7 @@
                             </Rectangle.RenderTransform>
                         </Rectangle>
 
-                        <Rectangle x:Name="clickableSection_Copy" Fill="#FFD63F3F" MouseDown="ClickableSection_Click" Canvas.Left="484" Canvas.Top="319" Height="83" Width="76" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <Rectangle x:Name="clickableSection_Copy" Fill="#FFD63F3F" MouseDown="room302" Canvas.Left="484" Canvas.Top="319" Height="83" Width="76" HorizontalAlignment="Left" VerticalAlignment="Top">
                             <Rectangle.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleX="1.076" ScaleY="1.004"/>

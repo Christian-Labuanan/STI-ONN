@@ -401,7 +401,7 @@ namespace STI_ONN
             interactionTimer.Start();
         }
 
-        private void InteractionTimer_Tick(object sender, EventArgs e)
+        private void InteractionTimer_Tick(object? sender, EventArgs e)
         {
             // Timer ticked without any interaction, return to the previous window
             ReturnToPreviousWindow();
@@ -484,7 +484,26 @@ namespace STI_ONN
         private void room301(object sender, RoutedEventArgs e)
         {
             // Create and show the room 301 window
-            room301 rm301 = new room301();
+            room301 rm301 = new room301(1,"Room 301 Schedules");
+            rm301.Owner = this;
+
+            // Show the dimming overlay to dim the window
+            dimmingOverlay.Visibility = Visibility.Visible;
+
+            // Handle the Closed event of the room 301 window to hide the dimming overlay when the window is closed
+            rm301.Closed += (s, args) =>
+            {
+                // Hide the dimming overlay
+                dimmingOverlay.Visibility = Visibility.Collapsed;
+            };
+
+            // Show the room 301 window
+            rm301.ShowDialog();
+        }
+        private void room302(object sender, RoutedEventArgs e)
+        {
+            // Create and show the room 301 window
+            room301 rm301 = new room301(2, "Room 302 Schedules");
             rm301.Owner = this;
 
             // Show the dimming overlay to dim the window

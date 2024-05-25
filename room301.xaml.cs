@@ -21,13 +21,41 @@ namespace STI_ONN
     /// </summary>
     public partial class room301 : System.Windows.Window
     {
-        public room301()
+        private int sheetNumber;
+        private string roomNumber;
+
+        public room301(int sheetNumber,string roomNumber)
         {
             InitializeComponent();
+            this.sheetNumber = sheetNumber;
+            this.roomNumber = roomNumber;
             DisplayExcelContent();
         }
 
-        private void DisplayExcelContent()
+        private async void DisplayExcelContent()
+        {
+            // Show loading window
+            Loading loadingWindow = new Loading();
+            loadingWindow.Topmost = true;
+            loadingWindow.Show();
+
+            // Pause execution for 3 seconds
+            await Task.Delay(3000);
+
+            // Load Excel content asynchronously
+            await Task.Run(() => LoadExcelContent());
+
+            // Update roomLabel on the UI thread
+            Dispatcher.Invoke(() =>
+            {
+                roomLabel.Content = roomNumber;
+            });
+
+            // Close loading window
+            loadingWindow.Close();
+        }
+
+        private void LoadExcelContent()
         {
             // Specify the path to your Excel file
             string excelFilePath = @"D:\FILES\COLLEGE\Thesis Code\STI ONN\assets\Schedules\stiSched.xlsx";
@@ -38,8 +66,8 @@ namespace STI_ONN
             // Open the Excel file
             Workbook workbook = excelApp.Workbooks.Open(excelFilePath);
 
-            // Get the first worksheet
-            Worksheet worksheet = (Worksheet)workbook.Sheets[1];
+            // Get the specified worksheet
+            Worksheet worksheet = (Worksheet)workbook.Sheets[sheetNumber];
 
             // Get the used range of cells
             Microsoft.Office.Interop.Excel.Range range = worksheet.UsedRange;
@@ -54,7 +82,7 @@ namespace STI_ONN
             }
 
             // Loop through the cells and populate the DataTable
-            for (int row = 1; row <=25; row++)
+            for (int row = 1; row <= 25; row++)
             {
                 DataRow dr = dt.NewRow();
                 for (int col = 1; col <= 7; col++)
@@ -64,8 +92,11 @@ namespace STI_ONN
                 dt.Rows.Add(dr);
             }
 
-            // Bind DataTable to DataGrid
-            excelDataGrid.ItemsSource = dt.DefaultView;
+            // Bind DataTable to DataGrid on the UI thread
+            System.Windows.Application.Current.Dispatcher.Invoke(() =>
+            {
+                excelDataGrid.ItemsSource = dt.DefaultView;
+            });
 
             // Close Excel
             workbook.Close(false);
