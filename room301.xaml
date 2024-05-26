@@ -11,7 +11,7 @@
         ResizeMode="NoResize">
 
     <Grid Background="#FFEAF2FF">
-        <DataGrid x:Name="excelDataGrid" AutoGenerateColumns="True" Margin="49,51,49,51" HeadersVisibility="None" Width="710.8" >
+        <DataGrid x:Name="excelDataGrid" Margin="45,49,45,53" HeadersVisibility="None" AutoGenerateColumns="False" Width="719">
             <DataGrid.CellStyle>
                 <Style TargetType="DataGridCell">
                     <Setter Property="Background" Value="#FFF2CC"/>
@@ -31,15 +31,29 @@
                     </Style.Triggers>
                 </Style>
             </DataGrid.CellStyle>
+            <DataGrid.Resources>
+                <Style x:Key="CenteredText" TargetType="TextBlock">
+                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Column1" Binding="{Binding Column1}" Width="100" ElementStyle="{StaticResource CenteredText}" />
+                <DataGridTextColumn Header="Column2" Binding="{Binding Column2}" Width="100" ElementStyle="{StaticResource CenteredText}" />
+                <DataGridTextColumn Header="Column3" Binding="{Binding Column3}" Width="100" ElementStyle="{StaticResource CenteredText}" />
+                <DataGridTextColumn Header="Column4" Binding="{Binding Column4}" Width="100" ElementStyle="{StaticResource CenteredText}" />
+                <DataGridTextColumn Header="Column5" Binding="{Binding Column5}" Width="100" ElementStyle="{StaticResource CenteredText}" />
+                <DataGridTextColumn Header="Column6" Binding="{Binding Column6}" Width="100" ElementStyle="{StaticResource CenteredText}" />
+                <DataGridTextColumn Header="Column7" Binding="{Binding Column7}" Width="100" ElementStyle="{StaticResource CenteredText}" />
+            </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Close" Click="CloseButton_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,414,19,0" Height="44" Width="72" FontSize="18" FontFamily="Arial" FontWeight="Bold" BorderBrush="{x:Null}" Background="#FF305496" Foreground="White">
-        <Button.Resources>
-            <Style TargetType="{x:Type Border}">
-                <Setter Property="CornerRadius" Value="20"/>
-            </Style>
-        </Button.Resources>
+        <Button Content="Close" Click="CloseButton_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,417,19,0" Height="44" Width="72" FontSize="18" FontFamily="Arial" FontWeight="Bold" BorderBrush="{x:Null}" Background="#FF305496" Foreground="White">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="20"/>
+                </Style>
+            </Button.Resources>
         </Button>
         <Label x:Name="roomLabel" Content="Room Schedules" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" FontFamily="Arial"/>
-
     </Grid>
 </Window>
