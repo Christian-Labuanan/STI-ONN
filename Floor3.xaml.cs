@@ -519,5 +519,43 @@ namespace STI_ONN
             // Show the room 301 window
             rm301.ShowDialog();
         }
+        private void room303(object sender, RoutedEventArgs e)
+        {
+            // Create and show the room 301 window
+            room301 rm301 = new room301(3, "Room 303 Schedules");
+            rm301.Owner = this;
+
+            // Show the dimming overlay to dim the window
+            dimmingOverlay.Visibility = Visibility.Visible;
+
+            // Handle the Closed event of the room 301 window to hide the dimming overlay when the window is closed
+            rm301.Closed += (s, args) =>
+            {
+                // Hide the dimming overlay
+                dimmingOverlay.Visibility = Visibility.Collapsed;
+            };
+
+            // Show the room 301 window
+            rm301.ShowDialog();
+        }
+        private void room304(object sender, RoutedEventArgs e)
+        {
+            // Create and show the room 301 window
+            room301 rm301 = new room301(4, "Room 304 Schedules");
+            rm301.Owner = this;
+
+            // Show the dimming overlay to dim the window
+            dimmingOverlay.Visibility = Visibility.Visible;
+
+            // Handle the Closed event of the room 301 window to hide the dimming overlay when the window is closed
+            rm301.Closed += (s, args) =>
+            {
+                // Hide the dimming overlay
+                dimmingOverlay.Visibility = Visibility.Collapsed;
+            };
+
+            // Show the room 301 window
+            rm301.ShowDialog();
+        }
     }
 }

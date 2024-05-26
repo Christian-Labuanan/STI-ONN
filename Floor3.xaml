@@ -188,7 +188,7 @@
                                 </TransformGroup>
                             </Rectangle.RenderTransform>
                         </Rectangle>
-                        <Rectangle x:Name="clickableSection_Copy1" Fill="Red" Canvas.Left="574" Canvas.Top="312" Height="84" Width="114" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <Rectangle x:Name="clickableSection_Copy1" Fill="Red" MouseDown="room303" Canvas.Left="574" Canvas.Top="312" Height="84" Width="114" HorizontalAlignment="Left" VerticalAlignment="Center">
                             <Rectangle.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleX="1.026"/>
@@ -198,7 +198,7 @@
                                 </TransformGroup>
                             </Rectangle.RenderTransform>
                         </Rectangle>
-                        <Rectangle x:Name="clickableSection_Copy2" Fill="Red" Canvas.Left="700" Canvas.Top="312" Height="84" Width="102" HorizontalAlignment="Center" VerticalAlignment="Top">
+                        <Rectangle x:Name="clickableSection_Copy2" Fill="Red" MouseDown="room304" Canvas.Left="700" Canvas.Top="312" Height="84" Width="102" HorizontalAlignment="Center" VerticalAlignment="Top">
                             <Rectangle.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleX="0.985"/>
