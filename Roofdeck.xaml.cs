@@ -15,7 +15,15 @@ namespace STI_ONN
         private double originalHeight;
         private double squareWidth;
         private double squareHeight;
+        private double originalImageLeft;
+        private double originalImageTop;
+
         private double originalScale = 1.0;
+
+        private double originalClickableSectionLeft;
+        private double originalClickableSectionTop;
+        private double originalClickableSectionWidth;
+        private double originalClickableSectionHeight;
 
         private bool isDragging = false;
         private Point lastPosition;
@@ -32,13 +40,22 @@ namespace STI_ONN
             squareWidth = clickableSection.Width;
             squareHeight = clickableSection.Height;
 
+            // Store the original position of the image
+            originalImageLeft = Canvas.GetLeft(image);
+            originalImageTop = Canvas.GetTop(image);
+
+            // Store the original position and size of the clickable section
+            originalClickableSectionLeft = Canvas.GetLeft(clickableSection);
+            originalClickableSectionTop = Canvas.GetTop(clickableSection);
+            originalClickableSectionWidth = clickableSection.Width;
+            originalClickableSectionHeight = clickableSection.Height;
+
             // Initialize and start the interaction timer
             interactionTimer = new DispatcherTimer();
             interactionTimer.Interval = TimeSpan.FromMinutes(30);//set the time limit here
             interactionTimer.Tick += InteractionTimer_Tick;
             ResetInteractionTimer();
         }
-
         // Zoom in and out 
         // Drag left and right
         private void Image_MouseWheel(object sender, MouseWheelEventArgs e)
@@ -46,27 +63,42 @@ namespace STI_ONN
             var delta = e.Delta;
             var scale = delta > 0 ? 1.1 : 0.9; // Increase or decrease zoom factor
 
-            // Calculate the zooming center point
+            // Calculate the zooming center point relative to the image
             Point zoomCenter = e.GetPosition(image);
 
             // Calculate the new width and height after zooming
             double newWidth = image.Width * scale;
             double newHeight = image.Height * scale;
 
-            // Calculate the adjustment for the left and top offsets to maintain the center position
-            double deltaX = (newWidth - image.Width) * zoomCenter.X / image.Width;
-            double deltaY = (newHeight - image.Height) * zoomCenter.Y / image.Height;
+            // Calculate the adjustment for the clickable section size and position
+            //room301
+            double sectionWidthAdjustment = clickableSection.Width * (scale - 1);
+            double sectionHeightAdjustment = clickableSection.Height * (scale - 1);
 
             // Apply the new width and height to the image
             image.Width = newWidth;
             image.Height = newHeight;
 
-            // Adjust the left and top offsets to maintain the center position
-            Canvas.SetLeft(image, Canvas.GetLeft(image) - deltaX);
-            Canvas.SetTop(image, Canvas.GetTop(image) - deltaY);
+            // Adjust the size of the clickable section
+            //301
+            clickableSection.Width += sectionWidthAdjustment;
+            clickableSection.Height += sectionHeightAdjustment;
 
+            // Calculate the new position of the clickable section relative to the image
+            //301
+            double sectionLeftRelativeToImage = Canvas.GetLeft(clickableSection) - Canvas.GetLeft(image);
+            double sectionTopRelativeToImage = Canvas.GetTop(clickableSection) - Canvas.GetTop(image);
+
+            // Calculate the new position of the clickable section
+            //301
+            double newSectionLeftRelativeToImage = sectionLeftRelativeToImage * scale;
+            double newSectionTopRelativeToImage = sectionTopRelativeToImage * scale;
+            // Apply the new position of the clickable section
+            Canvas.SetLeft(clickableSection, Canvas.GetLeft(image) + newSectionLeftRelativeToImage);
+            Canvas.SetTop(clickableSection, Canvas.GetTop(image) + newSectionTopRelativeToImage);
             ResetInteractionTimer();
         }
+
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -96,8 +128,10 @@ namespace STI_ONN
                 Canvas.SetLeft(image, Canvas.GetLeft(image) + deltaX);
                 Canvas.SetTop(image, Canvas.GetTop(image) + deltaY);
 
+                //301
                 Canvas.SetLeft(clickableSection, Canvas.GetLeft(clickableSection) + deltaX);
                 Canvas.SetTop(clickableSection, Canvas.GetTop(clickableSection) + deltaY);
+
                 ResetInteractionTimer();
             }
         }
@@ -121,84 +155,42 @@ namespace STI_ONN
             // Reset the image transformation
             image.LayoutTransform = Transform.Identity;
 
-            // Get the size of the Canvas
-            double canvasWidth = canvas.ActualWidth;
-            double canvasHeight = canvas.ActualHeight;
+            // Reset the position of the image to its original position
+            Canvas.SetLeft(image, originalImageLeft);
+            Canvas.SetTop(image, originalImageTop);
 
-            // Calculate the new position to center the image within the Canvas
-            double leftOffset = (canvasWidth - originalWidth) / 2;
-            double topOffset = (canvasHeight - originalHeight) / 2;
-
-            // Limit the offset to keep the image within the bounds
-            leftOffset = Math.Max(0, leftOffset);
-            topOffset = Math.Max(0, topOffset);
-
-            // Set the new position of the image
-            Canvas.SetLeft(image, leftOffset);
-            Canvas.SetTop(image, topOffset);
+            // Reset the position and size of the clickable section to its original values
+            Canvas.SetLeft(clickableSection, originalClickableSectionLeft);
+            Canvas.SetTop(clickableSection, originalClickableSectionTop);
+            clickableSection.Width = originalClickableSectionWidth;
+            clickableSection.Height = originalClickableSectionHeight;
 
             // Reset the screensaver timer
             ResetInteractionTimer();
         }
 
+        private void ApplyZoom(double scale)
+        {
+            image.Width = originalWidth * scale;
+            image.Height = originalHeight * scale;
+            //301
+            Canvas.SetLeft(clickableSection, originalClickableSectionLeft * scale);
+            Canvas.SetTop(clickableSection, originalClickableSectionTop * scale);
+            clickableSection.Width = originalClickableSectionWidth * scale;
+            clickableSection.Height = originalClickableSectionHeight * scale;
+        }
+
         private void ZoomInButton_Click(object sender, RoutedEventArgs e)
         {
-            // Zoom in by increasing the scale factor
             originalScale += 0.1;
-            ApplyZoom();
-
+            ApplyZoom(originalScale);
             ResetInteractionTimer();
         }
 
         private void ZoomOutButton_Click(object sender, RoutedEventArgs e)
         {
-            // Zoom out by decreasing the scale factor
             originalScale -= 0.1;
-            ApplyZoom();
-
-            ResetInteractionTimer();
-        }
-
-        private void ApplyZoom()
-        {
-            // Limit the scale factor to avoid extreme zoom levels
-            originalScale = Math.Max(0.1, Math.Min(10.0, originalScale));
-
-            // Calculate the new width and height after zooming
-            double newWidth = originalWidth * originalScale;
-            double newHeight = originalHeight * originalScale;
-
-            // Calculate the new width and height for the clickable section
-            double newSquareWidth = squareWidth * originalScale;
-            double newSquareHeight = squareHeight * originalScale;
-
-            // Calculate the zooming center point
-            Point zoomCenter = new Point(canvas.ActualWidth / 2, canvas.ActualHeight / 2);
-
-            // Calculate the current position of the clickable section relative to the image
-            double sectionLeftRelativeToImage = Canvas.GetLeft(clickableSection) - Canvas.GetLeft(image);
-            double sectionTopRelativeToImage = Canvas.GetTop(clickableSection) - Canvas.GetTop(image);
-
-            // Calculate the new position of the clickable section relative to the image after zooming
-            double newSectionLeftRelativeToImage = (sectionLeftRelativeToImage / image.Width) * newWidth;
-            double newSectionTopRelativeToImage = (sectionTopRelativeToImage / image.Height) * newHeight;
-
-            // Apply the scale transformation to the image
-            image.Width = newWidth;
-            image.Height = newHeight;
-
-            // Apply the new size to the clickable section
-            clickableSection.Width = newSquareWidth;
-            clickableSection.Height = newSquareHeight;
-
-            // Calculate the new position of the clickable section relative to the image
-            double newSectionLeft = Canvas.GetLeft(image) + newSectionLeftRelativeToImage;
-            double newSectionTop = Canvas.GetTop(image) + newSectionTopRelativeToImage;
-
-            // Set the new position of the clickable section
-            Canvas.SetLeft(clickableSection, newSectionLeft);
-            Canvas.SetTop(clickableSection, newSectionTop);
-
+            ApplyZoom(originalScale);
             ResetInteractionTimer();
         }
 

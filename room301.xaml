@@ -11,7 +11,7 @@
         ResizeMode="NoResize">
 
     <Grid Background="#FFEAF2FF">
-        <DataGrid x:Name="excelDataGrid" Margin="45,49,45,53" HeadersVisibility="None" AutoGenerateColumns="False" Width="719">
+        <DataGrid x:Name="excelDataGrid" Margin="45,49,45,53" HeadersVisibility="None" AutoGenerateColumns="False" Width="719" IsReadOnly="True">
             <DataGrid.CellStyle>
                 <Style TargetType="DataGridCell">
                     <Setter Property="Background" Value="#FFF2CC"/>
