@@ -228,6 +228,36 @@
                                 </TransformGroup>
                             </Rectangle.RenderTransform>
                         </Rectangle>
+                        <Rectangle x:Name="clickableSection_Copy5" Fill="Red" MouseDown="room307" Canvas.Left="454" Canvas.Top="433" Height="163" Width="100" HorizontalAlignment="Center" VerticalAlignment="Top">
+                            <Rectangle.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="1.027"/>
+                                    <SkewTransform AngleX="-25" AngleY="11.867"/>
+                                    <RotateTransform Angle="-11.648"/>
+                                    <TranslateTransform X="-3.489" Y="15.186"/>
+                                </TransformGroup>
+                            </Rectangle.RenderTransform>
+                        </Rectangle>
+                        <Rectangle x:Name="clickableSection_Copy6" Fill="Red" MouseDown="room3072" Canvas.Left="458" Canvas.Top="521" Height="219" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <Rectangle.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.896" ScaleY="1.207"/>
+                                    <SkewTransform AngleX="-4.428" AngleY="28.981"/>
+                                    <RotateTransform Angle="85.141"/>
+                                    <TranslateTransform X="8.205" Y="-10.928"/>
+                                </TransformGroup>
+                            </Rectangle.RenderTransform>
+                        </Rectangle>
+                        <Rectangle x:Name="clickableSection_Copy7" Fill="Red" MouseDown="room308" Canvas.Left="592" Canvas.Top="413" Height="181" Width="112" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Rectangle.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="1.011" ScaleY="1.002"/>
+                                    <SkewTransform AngleX="-24.519" AngleY="13.861"/>
+                                    <RotateTransform Angle="-14.085"/>
+                                    <TranslateTransform X="-5.713" Y="35.856"/>
+                                </TransformGroup>
+                            </Rectangle.RenderTransform>
+                        </Rectangle>
                     </Canvas>
                 </ScrollViewer>
 
