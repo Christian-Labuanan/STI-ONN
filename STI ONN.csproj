@@ -11,14 +11,24 @@
 
   <ItemGroup>
     <None Remove="assets\back.png" />
+    <None Remove="assets\Icons\2nd-white.png" />
     <None Remove="assets\Icons\2nd.png" />
+    <None Remove="assets\Icons\3rd-white.png" />
     <None Remove="assets\Icons\3rd.png" />
+    <None Remove="assets\Icons\4th-white.png" />
     <None Remove="assets\Icons\4th.png" />
+    <None Remove="assets\Icons\announcement.png" />
+    <None Remove="assets\Icons\building.png" />
+    <None Remove="assets\Icons\ground-white.png" />
     <None Remove="assets\Icons\ground.png" />
     <None Remove="assets\Icons\home.png" />
     <None Remove="assets\Icons\megaphone.png" />
+    <None Remove="assets\Icons\mezanine-white.png" />
     <None Remove="assets\Icons\mezanine.png" />
+    <None Remove="assets\Icons\roofdeck-white.png" />
     <None Remove="assets\Icons\roofdeck.png" />
+    <None Remove="assets\Icons\sti models.png" />
+    <None Remove="assets\Icons\STIcalamba.png" />
     <None Remove="assets\Maps\2ndFloor.png" />
     <None Remove="assets\Maps\3dlast.png" />
     <None Remove="assets\Maps\3rdFloor.png" />
@@ -47,9 +57,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="assets\Icons\2nd-white.png" />
     <Resource Include="assets\Icons\2nd.png" />
+    <Resource Include="assets\Icons\3rd-white.png" />
     <Resource Include="assets\Icons\3rd.png" />
+    <Resource Include="assets\Icons\4th-white.png" />
     <Resource Include="assets\Icons\4th.png" />
+    <Resource Include="assets\Icons\announcement.png" />
+    <Resource Include="assets\Icons\building.png" />
+    <Resource Include="assets\Icons\ground-white.png" />
     <Resource Include="assets\Icons\ground.png" />
     <Resource Include="assets\Icons\megaphone.png" />
   </ItemGroup>
@@ -57,8 +73,12 @@
   <ItemGroup>
     <Resource Include="assets\Icons\back.png" />
     <Resource Include="assets\Icons\home.png" />
+    <Resource Include="assets\Icons\mezanine-white.png" />
     <Resource Include="assets\Icons\mezanine.png" />
+    <Resource Include="assets\Icons\roofdeck-white.png" />
     <Resource Include="assets\Icons\roofdeck.png" />
+    <Resource Include="assets\Icons\sti models.png" />
+    <Resource Include="assets\Icons\STIcalamba.png" />
     <Resource Include="assets\Maps\2ndFloor.png" />
     <Resource Include="assets\Maps\3rdFloor.png" />
     <Resource Include="assets\Maps\4thFloor.png" />

@@ -11,7 +11,8 @@
     <Viewbox  StretchDirection="Both">
         <Grid Background="#FFEAF2FF" >
             <Rectangle Height="130" Margin="0,952,0,0" Stroke="#0B5793" Fill="#0B5793" Width="1920"/>
-            <Image x:Name="STI_ONN" Source="assets/STI ONN Logo transparent 3.png" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,-24,0,0"/>
+            <Image Margin="0,0,167,131" Source="/assets/Icons/sti models.png" Stretch="Fill"/>
+            <Image x:Name="STI_ONN" Source="assets/STI ONN Logo transparent 3.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="924,-214,0,0" Height="666" Width="995"/>
             <Button x:Name="touch" Content="Touch to Start" HorizontalAlignment="Center" Margin="0,883,0,0" VerticalAlignment="Top" Height="120" Width="494" FontSize="60" FontFamily="Tw Cen MT" FontWeight="Bold" Foreground="White" BorderBrush="{x:Null}" Background="#FFD4D4D4" Opacity="0.85" Click="touch_Click_1">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
@@ -22,6 +23,8 @@
                     <DropShadowEffect BlurRadius="1" Opacity="0.75" Color="#FF656464"/>
                 </Button.Effect>
             </Button>
+            <Label x:Name="greet" Content="WELCOME STIERS!" HorizontalAlignment="Left" Margin="1053,457,0,0" VerticalAlignment="Top" FontSize="90" FontFamily="Tw Cen MT Condensed Extra Bold" FontWeight="Bold"/>
+            <Label Content="Be Future-Ready. Be STI." HorizontalAlignment="Left" Margin="1037,581,0,0" VerticalAlignment="Top" Height="92" Width="716" FontSize="62" FontFamily="Tw Cen MT" Foreground="#FF676767"/>
         </Grid>
     </Viewbox>
 </Window>

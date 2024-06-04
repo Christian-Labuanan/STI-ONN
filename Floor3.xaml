@@ -44,14 +44,14 @@
                     </Menu.ItemsPanel>
 
                     <!-- Home Button -->
-                    <MenuItem Margin="0,9,0,-47" FontSize="40" FontWeight="Bold" Click="home_btn">
+                    <MenuItem Margin="0,9,0,-47" FontSize="40" FontWeight="Bold" Click="home_btn" FontFamily="Franklin Gothic Book">
                         <MenuItem.Header>
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition/>
                                     <RowDefinition Height="0*"/>
                                 </Grid.RowDefinitions>
-                                <TextBlock Text="Home" Margin="85,0,-86,0"/>
+                                <TextBlock Text="Home" Margin="85,0,-86,0" FontFamily="Leelawadee"/>
                             </Grid>
                         </MenuItem.Header>
                         <MenuItem.Icon>
@@ -63,7 +63,7 @@
                     <MenuItem Margin="-1,79,1,-141" FontSize="40" FontWeight="Bold" Click="announcement_btn">
                         <MenuItem.Header>
                             <Grid>
-                                <TextBlock Text="Announcement" Margin="85,0,-86,0"/>
+                                <TextBlock Text="Announcement" Margin="85,0,-86,0" FontFamily="Leelawadee"/>
                             </Grid>
                         </MenuItem.Header>
                         <MenuItem.Icon>
@@ -75,7 +75,7 @@
                     <MenuItem Margin="-1,237,1,-299" FontSize="40" FontWeight="Bold" Click="ground_btn">
                         <MenuItem.Header>
                             <Grid>
-                                <TextBlock Text="Ground" Margin="85,0,-86,0"/>
+                                <TextBlock Text="Ground" Margin="85,0,-86,0" FontFamily="Leelawadee"/>
                             </Grid>
                         </MenuItem.Header>
                         <MenuItem.Icon>
@@ -87,7 +87,7 @@
                     <MenuItem Margin="0,317,0,-379" FontSize="40" FontWeight="Bold" Click="mezzanine_btn">
                         <MenuItem.Header>
                             <Grid>
-                                <TextBlock Text="Mezzanine" Margin="85,0,-86,0"/>
+                                <TextBlock Text="Mezzanine" Margin="85,0,-86,0" FontFamily="Leelawadee"/>
                             </Grid>
                         </MenuItem.Header>
                         <MenuItem.Icon>
@@ -99,7 +99,7 @@
                     <MenuItem Margin="1,398,-1,-460" FontSize="40" FontWeight="Bold" Click="floor2_btn">
                         <MenuItem.Header>
                             <Grid>
-                                <TextBlock Text="2nd Floor" Margin="85,0,-86,0"/>
+                                <TextBlock Text="2nd Floor" Margin="85,0,-86,0" FontFamily="Leelawadee"/>
                             </Grid>
                         </MenuItem.Header>
                         <MenuItem.Icon>
@@ -108,14 +108,14 @@
                     </MenuItem>
 
                     <!-- Third Floor Button -->
-                    <MenuItem Margin="-1,478,1,-540" FontSize="40" FontWeight="Bold" Background="#FF0B5793">
+                    <MenuItem Margin="-1,478,1,-540" FontSize="40" FontWeight="Bold" Background="#FF0B5793" FontFamily="Leelawadee">
                         <MenuItem.Header>
                             <Grid>
-                                <TextBlock Text="3rd Floor" Margin="85,0,-86,0" Foreground="White"/>
+                                <TextBlock Text="3rd Floor" Margin="85,0,-86,0" Foreground="White" FontFamily="Leelawadee"/>
                             </Grid>
                         </MenuItem.Header>
                         <MenuItem.Icon>
-                            <Image Source="/assets/Icons/3rd.png" Margin="45,-19,-81,-17"/>
+                            <Image Source="/assets/Icons/3rd-white.png" Margin="45,-19,-81,-17"/>
                         </MenuItem.Icon>
                     </MenuItem>
 
@@ -123,7 +123,7 @@
                     <MenuItem Margin="1,558,-1,-620" FontSize="40" FontWeight="Bold" Click="floor4_btn">
                         <MenuItem.Header>
                             <Grid>
-                                <TextBlock Text="4th Floor" Margin="85,0,-86,0"/>
+                                <TextBlock Text="4th Floor" Margin="85,0,-86,0" FontFamily="Leelawadee"/>
                             </Grid>
                         </MenuItem.Header>
                         <MenuItem.Icon>
@@ -135,7 +135,7 @@
                     <MenuItem Margin="-1,637,1,-699" FontSize="40" FontWeight="Bold" Click="roofdeck_btn">
                         <MenuItem.Header>
                             <Grid>
-                                <TextBlock Text="Roof Deck" Margin="85,0,-86,0"/>
+                                <TextBlock Text="Roof Deck" Margin="85,0,-86,0" FontFamily="Leelawadee"/>
                             </Grid>
                         </MenuItem.Header>
                         <MenuItem.Icon>
@@ -167,7 +167,7 @@
                         </Image>
 
                         <!-- Clickable Sections -->
-                        <Rectangle Name="clickableSection" Fill="Red" MouseDown="room301" Canvas.Left="386" Canvas.Top="311" Height="91" Width="88" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <Rectangle Name="clickableSection" Fill="Transparent" MouseDown="room301" Canvas.Left="386" Canvas.Top="311" Height="91" Width="88" HorizontalAlignment="Left" VerticalAlignment="Center">
                             <Rectangle.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleX="1.068"/>
@@ -178,7 +178,7 @@
                             </Rectangle.RenderTransform>
                         </Rectangle>
 
-                        <Rectangle x:Name="clickableSection_Copy" Fill="#FFD63F3F" MouseDown="room302" Canvas.Left="484" Canvas.Top="319" Height="83" Width="76" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <Rectangle x:Name="clickableSection_Copy" Fill="Transparent" MouseDown="room302" Canvas.Left="484" Canvas.Top="319" Height="83" Width="76" HorizontalAlignment="Left" VerticalAlignment="Top">
                             <Rectangle.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleX="1.076" ScaleY="1.004"/>
@@ -188,7 +188,7 @@
                                 </TransformGroup>
                             </Rectangle.RenderTransform>
                         </Rectangle>
-                        <Rectangle x:Name="clickableSection_Copy1" Fill="Red" MouseDown="room303" Canvas.Left="574" Canvas.Top="312" Height="84" Width="114" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <Rectangle x:Name="clickableSection_Copy1" Fill="Transparent" MouseDown="room303" Canvas.Left="574" Canvas.Top="312" Height="84" Width="114" HorizontalAlignment="Left" VerticalAlignment="Center">
                             <Rectangle.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleX="1.026"/>
@@ -198,7 +198,7 @@
                                 </TransformGroup>
                             </Rectangle.RenderTransform>
                         </Rectangle>
-                        <Rectangle x:Name="clickableSection_Copy2" Fill="Red" MouseDown="room304" Canvas.Left="700" Canvas.Top="312" Height="84" Width="102" HorizontalAlignment="Center" VerticalAlignment="Top">
+                        <Rectangle x:Name="clickableSection_Copy2" Fill="Transparent" MouseDown="room304" Canvas.Left="700" Canvas.Top="312" Height="84" Width="102" HorizontalAlignment="Center" VerticalAlignment="Top">
                             <Rectangle.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleX="0.985"/>
@@ -208,7 +208,7 @@
                                 </TransformGroup>
                             </Rectangle.RenderTransform>
                         </Rectangle>
-                        <Rectangle x:Name="clickableSection_Copy3" Fill="Red" MouseDown="room305" Canvas.Left="810" Canvas.Top="312" Height="84" Width="130" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <Rectangle x:Name="clickableSection_Copy3" Fill="Transparent" MouseDown="room305" Canvas.Left="810" Canvas.Top="312" Height="84" Width="130" HorizontalAlignment="Left" VerticalAlignment="Center">
                             <Rectangle.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleX="0.913"/>
@@ -218,7 +218,7 @@
                                 </TransformGroup>
                             </Rectangle.RenderTransform>
                         </Rectangle>
-                        <Rectangle x:Name="clickableSection_Copy4" Fill="Red" MouseDown="room306" Canvas.Left="994" Canvas.Top="313" Height="84" Width="129" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <Rectangle x:Name="clickableSection_Copy4" Fill="Transparent" MouseDown="room306" Canvas.Left="994" Canvas.Top="313" Height="84" Width="129" HorizontalAlignment="Left" VerticalAlignment="Top">
                             <Rectangle.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleX="0.866"/>
@@ -228,7 +228,7 @@
                                 </TransformGroup>
                             </Rectangle.RenderTransform>
                         </Rectangle>
-                        <Rectangle x:Name="clickableSection_Copy5" Fill="Red" MouseDown="room307" Canvas.Left="454" Canvas.Top="433" Height="163" Width="100" HorizontalAlignment="Center" VerticalAlignment="Top">
+                        <Rectangle x:Name="clickableSection_Copy5" Fill="Transparent" MouseDown="room307" Canvas.Left="454" Canvas.Top="433" Height="163" Width="100" HorizontalAlignment="Center" VerticalAlignment="Top">
                             <Rectangle.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleX="1.027"/>
@@ -238,7 +238,7 @@
                                 </TransformGroup>
                             </Rectangle.RenderTransform>
                         </Rectangle>
-                        <Rectangle x:Name="clickableSection_Copy6" Fill="Red" MouseDown="room3072" Canvas.Left="458" Canvas.Top="521" Height="219" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <Rectangle x:Name="clickableSection_Copy6" Fill="Transparent" MouseDown="room3072" Canvas.Left="458" Canvas.Top="521" Height="219" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top">
                             <Rectangle.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleX="0.896" ScaleY="1.207"/>
@@ -248,7 +248,7 @@
                                 </TransformGroup>
                             </Rectangle.RenderTransform>
                         </Rectangle>
-                        <Rectangle x:Name="clickableSection_Copy7" Fill="Red" MouseDown="room308" Canvas.Left="592" Canvas.Top="413" Height="181" Width="112" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <Rectangle x:Name="clickableSection_Copy7" Fill="Transparent" MouseDown="room308" Canvas.Left="592" Canvas.Top="413" Height="181" Width="112" HorizontalAlignment="Left" VerticalAlignment="Center">
                             <Rectangle.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleX="1.011" ScaleY="1.002"/>
@@ -288,6 +288,7 @@
                         <Image Source="/assets/Icons/zoom-out.png" Stretch="Fill" Height="80" Width="83"/>
                     </Button>
                 </StackPanel>
+                
             </Grid>
 
             <!-- Dimming Overlay -->

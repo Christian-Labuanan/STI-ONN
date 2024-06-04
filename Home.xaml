@@ -10,7 +10,7 @@
         WindowState="Maximized"
         WindowStyle="None"
         Background="#FFEAF2FF">
-    
+
     <Viewbox  StretchDirection="Both">
         <Grid Background="#FFEAF2FF" HorizontalAlignment="Center" VerticalAlignment="Center" Height="1080" Width="1920">
             <Rectangle HorizontalAlignment="Center" Height="130" Margin="0,955,0,0" Stroke="#0B5793" Fill="#0B5793" VerticalAlignment="Top" Width="1920"/>
@@ -23,16 +23,9 @@
                 </Button.Resources>
                 <Image Source="/assets/Icons/back.png" Stretch="Fill" Height="42" Width="30"/>
             </Button>
-            <Rectangle HorizontalAlignment="Center" Height="115" Margin="0,905,0,0" Stroke="#FFE4E4E4" VerticalAlignment="Top" Width="938" Opacity="1" RadiusX="50" RadiusY="50">
-                <Rectangle.Fill>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.95">
-                        <GradientStop Color="#FFB5B4B4" Offset="1"/>
-                        <GradientStop Color="#FFF1F1F1" Offset="0"/>
-                    </LinearGradientBrush>
-                </Rectangle.Fill>
-            </Rectangle>
-            <Label x:Name="greet" Content="WELCOME STIERS!" HorizontalAlignment="Center" Margin="0,421,0,0" VerticalAlignment="Top" FontSize="100" FontFamily="Tw Cen MT Condensed Extra Bold" FontWeight="Bold"/>
-            <Button Content="Building" Margin="523,909,1086,0" VerticalAlignment="Top" Height="100" FontSize="55" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" Click="Button_Click" Foreground="White" BorderBrush="{x:Null}">
+            <Rectangle HorizontalAlignment="Left" Height="684" Margin="168,271,0,0" Stroke="#FFE4E4E4" VerticalAlignment="Top" Width="752" Opacity="1" RadiusX="50" RadiusY="50" Fill="White"/>
+            <Rectangle HorizontalAlignment="Left" Height="678" Margin="1027,277,0,0" Stroke="#FFE4E4E4" VerticalAlignment="Top" Width="736" Opacity="1" RadiusX="50" RadiusY="50" Fill="White"/>
+            <Button Margin="1054,281,169,0" VerticalAlignment="Top" Height="668" FontSize="55" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" Click="Button_Click2" Foreground="Black" BorderBrush="{x:Null}">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="50"/>
@@ -41,14 +34,15 @@
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="0.105"/>
+                        <SkewTransform AngleY="0.029"/>
+                        <RotateTransform Angle="0.092"/>
                         <TranslateTransform/>
                     </TransformGroup>
                 </Button.RenderTransform>
+                <Image Source="/assets/Icons/announcement.png" Stretch="Fill" RenderTransformOrigin="0.23,0.141" Height="512" Width="512"/>
             </Button>
-
-            <Button Content="Announcement" Margin="967,912,526,0" VerticalAlignment="Top" Height="100" FontSize="55" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" Click="Button_Click2" Foreground="White" BorderBrush="{x:Null}">
+            <Label Content="Check Announcement" HorizontalAlignment="Left" Margin="1121,859,0,0" VerticalAlignment="Top" Height="108" Width="586" FontSize="55" FontFamily="Leelawadee" FontWeight="Bold"/>
+            <Button Margin="180,269,1012,0" VerticalAlignment="Top" Height="680" FontSize="55" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" Click="Button_Click" Foreground="Black" BorderBrush="{x:Null}">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="50"/>
@@ -57,13 +51,16 @@
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="0.105"/>
+                        <SkewTransform AngleY="0.026"/>
+                        <RotateTransform Angle="0.093"/>
                         <TranslateTransform/>
                     </TransformGroup>
                 </Button.RenderTransform>
+                <Image Source="/assets/Icons/building.png" Stretch="Fill" Height="450" Width="450"/>
             </Button>
-            <Label Content="Be Future-Ready. Be STI." HorizontalAlignment="Center" Margin="0,545,0,0" VerticalAlignment="Top" Height="92" Width="716" FontSize="72" FontFamily="Tw Cen MT" Foreground="#FF676767"/>
+            <Label Content="Navigate Building" HorizontalAlignment="Left" Margin="312,859,0,0" VerticalAlignment="Top" Height="108" Width="488" FontSize="55" FontFamily="Leelawadee" FontWeight="Bold"/>
+            <Label Content="What will you be doing today?" HorizontalAlignment="Left" Margin="618,196,0,0" VerticalAlignment="Top" FontSize="50" FontFamily="Dutch801 XBd BT" Foreground="Black"/>
+            
         </Grid>
     </Viewbox>
 </Window>
