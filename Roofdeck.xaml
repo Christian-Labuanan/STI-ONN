@@ -187,7 +187,7 @@
                                 </TransformGroup>
                             </Image.RenderTransform>
                         </Image>
-                        <Rectangle Name="clickableSection" Fill="#FFD63F3F"
+                        <Rectangle Name="clickableSection" Fill="Transparent"
                     MouseDown="ClickableSection_Click" Canvas.Left="1136" Canvas.Top="334" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Height="38" Width="100">
                             <Rectangle.RenderTransform>
                                 <TransformGroup>
