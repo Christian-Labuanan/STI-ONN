@@ -138,7 +138,7 @@ namespace STI_ONN
             originalClickableSectionCopyTop307 = Canvas.GetTop(clickableSection_Copy5);
             originalClickableSectionCopyWidth307 = clickableSection_Copy5.Width;
             originalClickableSectionCopyHeight307 = clickableSection_Copy5.Height;
-            
+
             originalClickableSectionCopyLeft3072 = Canvas.GetLeft(clickableSection_Copy6);
             originalClickableSectionCopyTop3072 = Canvas.GetTop(clickableSection_Copy6);
             originalClickableSectionCopyWidth3072 = clickableSection_Copy6.Width;
@@ -571,7 +571,7 @@ namespace STI_ONN
             Canvas.SetTop(clickableSection_Copy5, originalClickableSectionCopyTop307 * scale);
             clickableSection_Copy5.Width = originalClickableSectionCopyWidth307 * scale;
             clickableSection_Copy5.Height = originalClickableSectionCopyHeight307 * scale;
-            
+
             Canvas.SetLeft(clickableSection_Copy6, originalClickableSectionCopyLeft3072 * scale);
             Canvas.SetTop(clickableSection_Copy6, originalClickableSectionCopyTop3072 * scale);
             clickableSection_Copy6.Width = originalClickableSectionCopyWidth3072 * scale;
@@ -701,10 +701,11 @@ namespace STI_ONN
         }
         #endregion
 
+        #region room schedules
         private void room301(object sender, RoutedEventArgs e)
         {
             // Create and show the room 301 window
-            room301 rm301 = new room301(1,"Room 301 Schedules");
+            room301 rm301 = new room301(1, "Room 301 Schedules");
             rm301.Owner = this;
 
             // Show the dimming overlay to dim the window
@@ -872,7 +873,7 @@ namespace STI_ONN
             // Show the room 301 window
             rm301.ShowDialog();
         }
-        
+
         private void room309(object sender, RoutedEventArgs e)
         {
             // Create and show the room 301 window
@@ -930,5 +931,6 @@ namespace STI_ONN
             // Show the room 301 window
             rm301.ShowDialog();
         }
+        #endregion
     }
 }

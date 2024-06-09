@@ -187,14 +187,146 @@
                                 </TransformGroup>
                             </Image.RenderTransform>
                         </Image>
-                        <Rectangle Name="clickableSection" Fill="Transparent"
-                    MouseDown="ClickableSection_Click" Canvas.Left="462" Canvas.Top="320" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="85" Width="119">
+                        <Rectangle Name="clickableSection" Fill="Red"
+                    MouseDown="room201" Canvas.Left="373" Canvas.Top="326" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Height="93" Width="87">
                             <Rectangle.RenderTransform>
                                 <TransformGroup>
-                                    <ScaleTransform ScaleX="0.997"/>
-                                    <SkewTransform AngleX="-25" AngleY="15.516"/>
-                                    <RotateTransform Angle="-14.6"/>
-                                    <TranslateTransform X="0.486" Y="-2.401"/>
+                                    <ScaleTransform ScaleX="1.089"/>
+                                    <SkewTransform AngleX="-25" AngleY="4.204"/>
+                                    <RotateTransform Angle="-4.262"/>
+                                    <TranslateTransform X="5.06" Y="-14.482"/>
+                                </TransformGroup>
+                            </Rectangle.RenderTransform>
+                        </Rectangle>
+                        <Rectangle x:Name="clickableSection_Copy" Fill="Red"
+                            MouseDown="room202" Canvas.Left="474" Canvas.Top="326" RenderTransformOrigin="0.5,0.5" Height="93" Width="73" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Rectangle.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="1.08"/>
+                                    <SkewTransform AngleX="-25" AngleY="5.257"/>
+                                    <RotateTransform Angle="-6.576"/>
+                                    <TranslateTransform X="4.767" Y="-13.602"/>
+                                </TransformGroup>
+                            </Rectangle.RenderTransform>
+                        </Rectangle>
+                        <Rectangle x:Name="clickableSection_Copy1" Fill="Red"
+                            MouseDown="room203" Canvas.Left="564" Canvas.Top="324" RenderTransformOrigin="0.5,0.5" Height="88" Width="113" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <Rectangle.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="1.025"/>
+                                    <SkewTransform AngleX="-25" AngleY="11.95"/>
+                                    <RotateTransform Angle="-11.696"/>
+                                    <TranslateTransform X="3.677" Y="-8.993"/>
+                                </TransformGroup>
+                            </Rectangle.RenderTransform>
+                        </Rectangle>
+                        <Rectangle x:Name="clickableSection_Copy2" Fill="Red"
+                            MouseDown="room204" Canvas.Left="693" Canvas.Top="319" RenderTransformOrigin="0.5,0.5" Height="87" Width="102" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Rectangle.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.974" ScaleY="0.996"/>
+                                    <SkewTransform AngleX="-25.764" AngleY="18.505"/>
+                                    <RotateTransform Angle="-17.987"/>
+                                    <TranslateTransform X="2.039" Y="-2.33"/>
+                                </TransformGroup>
+                            </Rectangle.RenderTransform>
+                        </Rectangle>
+                        <Rectangle x:Name="clickableSection_Copy3" Fill="Red"
+                            MouseDown="room205" Canvas.Left="809" Canvas.Top="312" RenderTransformOrigin="0.5,0.5" Height="87" Width="109" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Rectangle.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.917" ScaleY="0.996"/>
+                                    <SkewTransform AngleX="-25.764" AngleY="25.825"/>
+                                    <RotateTransform Angle="-25.581"/>
+                                    <TranslateTransform X="2.017" Y="4.54"/>
+                                </TransformGroup>
+                            </Rectangle.RenderTransform>
+                        </Rectangle>
+                        <Rectangle x:Name="clickableSection_Copy4" Fill="Red"
+                            MouseDown="room206" Canvas.Left="927" Canvas.Top="306" RenderTransformOrigin="0.5,0.5" Height="87" Width="94" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Rectangle.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.878" ScaleY="0.996"/>
+                                    <SkewTransform AngleX="-25.764" AngleY="30.829"/>
+                                    <RotateTransform Angle="-30.816"/>
+                                    <TranslateTransform X="2.445" Y="9.383"/>
+                                </TransformGroup>
+                            </Rectangle.RenderTransform>
+                        </Rectangle>
+                        <Rectangle x:Name="clickableSection_Copy5" Fill="Red"
+                            MouseDown="room207" Canvas.Left="1032" Canvas.Top="306" RenderTransformOrigin="0.5,0.5" Height="87" Width="99" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Rectangle.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.866" ScaleY="0.996"/>
+                                    <SkewTransform AngleX="-25.764" AngleY="32.362"/>
+                                    <RotateTransform Angle="-33.41"/>
+                                    <TranslateTransform X="2.617" Y="10.665"/>
+                                </TransformGroup>
+                            </Rectangle.RenderTransform>
+                        </Rectangle>
+                        <Rectangle x:Name="clickableSection_Copy6" Fill="Red"
+                            MouseDown="room208" Canvas.Left="194" Canvas.Top="516" RenderTransformOrigin="0.5,0.5" Height="116" Width="232" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <Rectangle.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="1.127"/>
+                                    <SkewTransform AngleX="-25" AngleY="-0.155"/>
+                                    <RotateTransform Angle="-0.354"/>
+                                    <TranslateTransform X="3.499" Y="-11.079"/>
+                                </TransformGroup>
+                            </Rectangle.RenderTransform>
+                        </Rectangle>
+                        <Rectangle x:Name="clickableSection_Copy7" Fill="Red"
+                            MouseDown="room209" Canvas.Left="471" Canvas.Top="455" RenderTransformOrigin="0.5,0.5" Height="164" Width="118" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Rectangle.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="1.041" ScaleY="1.006"/>
+                                    <SkewTransform AngleX="-23.374" AngleY="9.931"/>
+                                    <RotateTransform Angle="-9.529"/>
+                                    <TranslateTransform X="3.479" Y="-0.137"/>
+                                </TransformGroup>
+                            </Rectangle.RenderTransform>
+                        </Rectangle>
+                        <Rectangle x:Name="clickableSection_Copy8" Fill="Red"
+                            MouseDown="room210" Canvas.Left="603" Canvas.Top="454" RenderTransformOrigin="0.5,0.5" Height="181" Width="124" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Rectangle.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="1.017" ScaleY="1.013"/>
+                                    <SkewTransform AngleX="-21.69" AngleY="13.103"/>
+                                    <RotateTransform Angle="-13.96"/>
+                                    <TranslateTransform X="5.801" Y="3.365"/>
+                                </TransformGroup>
+                            </Rectangle.RenderTransform>
+                        </Rectangle>
+                        <Rectangle x:Name="clickableSection_Copy9" Fill="Red"
+                            MouseDown="room211" Canvas.Left="742" Canvas.Top="448" RenderTransformOrigin="0.5,0.5" Height="181" Width="126" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Rectangle.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.988" ScaleY="1.026"/>
+                                    <SkewTransform AngleX="-19.393" AngleY="17.418"/>
+                                    <RotateTransform Angle="-17.634"/>
+                                    <TranslateTransform X="9.412" Y="8.223"/>
+                                </TransformGroup>
+                            </Rectangle.RenderTransform>
+                        </Rectangle>
+                        <Rectangle x:Name="clickableSection_Copy10" Fill="Red"
+                            MouseDown="room212" Canvas.Left="882" Canvas.Top="440" RenderTransformOrigin="0.5,0.5" Height="181" Width="119" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Rectangle.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.954" ScaleY="1.026"/>
+                                    <SkewTransform AngleX="-19.393" AngleY="23.061"/>
+                                    <RotateTransform Angle="-23.296"/>
+                                    <TranslateTransform X="9.85" Y="14.636"/>
+                                </TransformGroup>
+                            </Rectangle.RenderTransform>
+                        </Rectangle>
+                        <Rectangle x:Name="clickableSection_Copy11" Fill="Red"
+                            MouseDown="room213" Canvas.Left="1090" Canvas.Top="411" RenderTransformOrigin="0.5,0.5" Height="239" Width="116" HorizontalAlignment="Center" VerticalAlignment="Top">
+                            <Rectangle.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.954" ScaleY="0.952"/>
+                                    <SkewTransform AngleX="-29.301" AngleY="23.061"/>
+                                    <RotateTransform Angle="60.6"/>
+                                    <TranslateTransform X="11.731" Y="31.571"/>
                                 </TransformGroup>
                             </Rectangle.RenderTransform>
                         </Rectangle>
@@ -229,6 +361,8 @@
                     </Button>
                 </StackPanel>
             </Grid>
+            <!-- Dimming Overlay -->
+            <Rectangle Fill="#80000000" Visibility="Collapsed" Name="dimmingOverlay"/>
         </Grid>
     </Viewbox>
 </Window>
