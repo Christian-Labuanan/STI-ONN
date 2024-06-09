@@ -57,6 +57,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Google.Apis.Auth" Version="1.68.0" />
+    <PackageReference Include="Google.Cloud.Storage.V1" Version="4.10.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="assets\Icons\2nd-white.png" />
     <Resource Include="assets\Icons\2nd.png" />
     <Resource Include="assets\Icons\3rd-white.png" />

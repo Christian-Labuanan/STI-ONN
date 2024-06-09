@@ -183,6 +183,7 @@ namespace STI_ONN
             interactionTimer.Tick += InteractionTimer_Tick;
             ResetInteractionTimer();
         }
+
         // Zoom in and out 
         // Drag left and right
         private void Image_MouseWheel(object sender, MouseWheelEventArgs e)

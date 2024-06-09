@@ -11,6 +11,9 @@
         Background="#FFEAF2FF">
     <Viewbox StretchDirection="Both">
         <Grid Background="#FFEAF2FF" HorizontalAlignment="Center" VerticalAlignment="Center" Height="1080" Width="1920">
+            <Grid>
+                <Image Name="MyImage" />
+            </Grid>
             <Button x:Name="touch" HorizontalAlignment="Left" Margin="57,28,0,0" VerticalAlignment="Top" Height="68" Width="72" FontSize="60" FontFamily="Tw Cen MT" FontWeight="Bold" Foreground="Black" BorderBrush="{x:Null}" Background="#FFD4D4D4" Opacity="0.85" Click="touch_Click_1">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
