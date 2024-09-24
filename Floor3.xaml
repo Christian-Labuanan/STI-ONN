@@ -142,6 +142,19 @@
                             <Image Source="/assets/Icons/roofdeck.png" Margin="45,-19,-81,-17"/>
                         </MenuItem.Icon>
                     </MenuItem>
+                    <MenuItem Margin="0,716,0,-778" FontSize="40" FontWeight="Bold" Click="court_btn">
+                        <MenuItem.Header>
+                            <Grid>
+                                <TextBlock Text="Court" Margin="85,0,-86,0" FontFamily="Leelawadee"/>
+                            </Grid>
+                        </MenuItem.Header>
+
+                        <MenuItem.Icon>
+
+                            <Image Source="/assets/Icons/Court.png" Margin="45,-15,-81,-15" />
+
+                        </MenuItem.Icon>
+                    </MenuItem>
                 </Menu>
             </Grid>
 
@@ -150,7 +163,7 @@
                 <Image x:Name="mapImage" Stretch="Uniform" Margin="-64,0,0,0"/>
                 <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="-62,154,0,0">
                     <Canvas Name="canvas" Background="White" Height="900" VerticalAlignment="Bottom">
-                        <Image Height="844" Source="/assets/Maps/3rdFloor.png" Width="1469" Canvas.Top="25"
+                        <Image Height="844" Source="/assets/Maps/04ThirdFloor.png" Width="1469" Canvas.Top="25"
                                Name="image"
                                MouseWheel="Image_MouseWheel"
                                MouseLeftButtonDown="Image_MouseLeftButtonDown"

@@ -748,6 +748,12 @@ namespace STI_ONN
             roofdeck.Show();
             this.Close();
         }
+        private void court_btn(object sender, RoutedEventArgs e)
+        {
+            Court court = new Court();
+            court.Show();
+            this.Close();
+        }
 
         #endregion
 

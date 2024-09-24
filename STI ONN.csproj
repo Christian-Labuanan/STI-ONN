@@ -19,6 +19,8 @@
     <None Remove="assets\Icons\4th.png" />
     <None Remove="assets\Icons\announcement.png" />
     <None Remove="assets\Icons\building.png" />
+    <None Remove="assets\Icons\court-white.png" />
+    <None Remove="assets\Icons\court.png" />
     <None Remove="assets\Icons\ground-white.png" />
     <None Remove="assets\Icons\ground.png" />
     <None Remove="assets\Icons\home.png" />
@@ -29,6 +31,13 @@
     <None Remove="assets\Icons\roofdeck.png" />
     <None Remove="assets\Icons\sti models.png" />
     <None Remove="assets\Icons\STIcalamba.png" />
+    <None Remove="assets\Maps\01GroundFloor.png" />
+    <None Remove="assets\Maps\02MezzanineFloor.png" />
+    <None Remove="assets\Maps\03SecondFloor.png" />
+    <None Remove="assets\Maps\04ThirdFloor.png" />
+    <None Remove="assets\Maps\05ForthFloor.png" />
+    <None Remove="assets\Maps\06RoofDeckFloor.png" />
+    <None Remove="assets\Maps\07Court.png" />
     <None Remove="assets\Maps\2ndFloor.png" />
     <None Remove="assets\Maps\3dlast.png" />
     <None Remove="assets\Maps\3rdFloor.png" />
@@ -71,6 +80,8 @@
     <Resource Include="assets\Icons\4th.png" />
     <Resource Include="assets\Icons\announcement.png" />
     <Resource Include="assets\Icons\building.png" />
+    <Resource Include="assets\Icons\court-white.png" />
+    <Resource Include="assets\Icons\court.png" />
     <Resource Include="assets\Icons\ground-white.png" />
     <Resource Include="assets\Icons\ground.png" />
     <Resource Include="assets\Icons\megaphone.png" />
@@ -85,6 +96,13 @@
     <Resource Include="assets\Icons\roofdeck.png" />
     <Resource Include="assets\Icons\sti models.png" />
     <Resource Include="assets\Icons\STIcalamba.png" />
+    <Resource Include="assets\Maps\01GroundFloor.png" />
+    <Resource Include="assets\Maps\02MezzanineFloor.png" />
+    <Resource Include="assets\Maps\03SecondFloor.png" />
+    <Resource Include="assets\Maps\04ThirdFloor.png" />
+    <Resource Include="assets\Maps\05ForthFloor.png" />
+    <Resource Include="assets\Maps\06RoofDeckFloor.png" />
+    <Resource Include="assets\Maps\07Court.png" />
     <Resource Include="assets\Maps\2ndFloor.png" />
     <Resource Include="assets\Maps\3rdFloor.png" />
     <Resource Include="assets\Maps\4thFloor.png" />
