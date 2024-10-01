@@ -13,8 +13,6 @@ namespace STI_ONN
     {
         private double originalWidth;
         private double originalHeight;
-        private double squareWidth;
-        private double squareHeight;
         private double originalImageLeft;
         private double originalImageTop;
 

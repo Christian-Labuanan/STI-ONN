@@ -21,6 +21,7 @@
     <None Remove="assets\Icons\building.png" />
     <None Remove="assets\Icons\court-white.png" />
     <None Remove="assets\Icons\court.png" />
+    <None Remove="assets\Icons\default-image.png" />
     <None Remove="assets\Icons\ground-white.png" />
     <None Remove="assets\Icons\ground.png" />
     <None Remove="assets\Icons\home.png" />
@@ -83,6 +84,7 @@
     <Resource Include="assets\Icons\building.png" />
     <Resource Include="assets\Icons\court-white.png" />
     <Resource Include="assets\Icons\court.png" />
+    <Resource Include="assets\Icons\default-image.png" />
     <Resource Include="assets\Icons\ground-white.png" />
     <Resource Include="assets\Icons\ground.png" />
     <Resource Include="assets\Icons\megaphone.png" />
