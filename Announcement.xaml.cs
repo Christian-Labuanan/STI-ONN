@@ -21,8 +21,9 @@ namespace STI_ONN
     {
         private readonly DispatcherTimer _refreshTimer;
         private readonly DispatcherTimer _inactivityTimer; // New inactivity timer
-        private const double InactivityTimeout = .5; // Inactivity timeout in minutes
-        private DispatcherTimer interactionTimer;
+        private readonly DispatcherTimer interactionTimer; // Timer for user interaction
+        private const double InactivityTimeout = 0.5; // Inactivity timeout in minutes
+        private const double InteractionTimeout = 0.5; // Interaction timeout in minutes
 
         public Announcement()
         {
@@ -44,8 +45,21 @@ namespace STI_ONN
             _inactivityTimer.Tick += (sender, args) => Close(); // Close window after inactivity
             _inactivityTimer.Start();
 
+            // Initialize the interaction timer
+            interactionTimer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromMinutes(InteractionTimeout) // Set interaction timeout duration
+            };
+            interactionTimer.Tick += InteractionTimer_Tick; // Handle interaction timer ticks
+            interactionTimer.Start();
+
             // Load initial announcements on startup
             LoadAnnouncements();
+
+            // Reset timers on user interaction
+            this.MouseMove += ResetInteractionTimer; // Track mouse movement
+            this.KeyDown += ResetInteractionTimer; // Track key presses
+            this.Loaded += Window_Loaded; // Track when the window is loaded
 
         }
 
@@ -232,10 +246,9 @@ namespace STI_ONN
         }
 
         #region timer
-        // Timer of screensaver
-        private void ResetInteractionTimer()
+        // Resets the interaction timer
+        private void ResetInteractionTimer(object sender, EventArgs e) // Updated signature
         {
-            // Reset the timer
             interactionTimer.Stop();
             interactionTimer.Start();
         }
@@ -249,17 +262,16 @@ namespace STI_ONN
         private void ReturnToPreviousWindow()
         {
             // Close the current window and show the previous window
-            
+            this.Close();
             MainWindow main = new MainWindow();
             main.Show();
             interactionTimer.Stop();
-            this.Hide();
         }
 
-        // Event handlers to track user interaction
+        // Event handler to reset the timer on window load
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            ResetInteractionTimer();
+            ResetInteractionTimer(null, null); // Call with null arguments
         }
 
         #endregion
