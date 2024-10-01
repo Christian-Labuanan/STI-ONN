@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Announcement Details" Height="600" Width="800"
         WindowStartupLocation="CenterScreen"
-        WindowStyle="ToolWindow" 
         AllowsTransparency="False" 
         Background="#FFEAF2FF">
     <Grid Background="#FFEAF2FF">

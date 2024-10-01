@@ -17,7 +17,7 @@
             <Rectangle x:Name="Overlay" Fill="Black" Opacity="0.5" Visibility="Collapsed" MouseDown="Overlay_MouseDown" />
 
             <!-- Scrollable area for Announcement Cards -->
-            <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="50,150,50,50">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="50,150,50,150">
                 <WrapPanel x:Name="AnnouncementWrapPanel" Orientation="Horizontal" HorizontalAlignment="Center">
                     <!-- Announcement Cards dynamically loaded here -->
                 </WrapPanel>
