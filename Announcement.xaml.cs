@@ -22,8 +22,8 @@ namespace STI_ONN
         private readonly DispatcherTimer _refreshTimer;
         private readonly DispatcherTimer _inactivityTimer; // New inactivity timer
         private readonly DispatcherTimer interactionTimer; // Timer for user interaction
-        private const double InactivityTimeout = 0.5; // Inactivity timeout in minutes
-        private const double InteractionTimeout = 0.5; // Interaction timeout in minutes
+        private const double InactivityTimeout = 0.2; // Inactivity timeout in minutes
+        private const double InteractionTimeout = 0.2; // Interaction timeout in minutes
 
         public Announcement()
         {
@@ -265,6 +265,8 @@ namespace STI_ONN
             this.Close();
             MainWindow main = new MainWindow();
             main.Show();
+           
+            // Stop the interaction timer
             interactionTimer.Stop();
         }
 

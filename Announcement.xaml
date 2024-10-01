@@ -3,18 +3,28 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:STI_ONN"
         mc:Ignorable="d"
-        Title="Announcement" Height="auto" Width="auto"
+        Title="Announcement"
         WindowState="Maximized"
         WindowStyle="None"
         Background="#FFEAF2FF">
+
+    <!-- Main container for scaling content within the window -->
     <Viewbox StretchDirection="Both">
-        <Grid Background="#FFEAF2FF" HorizontalAlignment="Center" VerticalAlignment="Center" Height="1080" Width="1920">
-            <Grid>
-                <Image Name="MyImage" Margin="147,192,102,150" />
-            </Grid>
-            <Button x:Name="touch" HorizontalAlignment="Left" Margin="57,28,0,0" VerticalAlignment="Top" Height="68" Width="72" FontSize="60" FontFamily="Tw Cen MT" FontWeight="Bold" Foreground="Black" BorderBrush="{x:Null}" Background="#FFD4D4D4" Opacity="0.85" Click="touch_Click_1">
+        <Grid Background="#FFEAF2FF" Height="1080" Width="1920">
+
+            <!-- Dimmed background overlay -->
+            <Rectangle x:Name="Overlay" Fill="Black" Opacity="0.5" Visibility="Collapsed" MouseDown="Overlay_MouseDown" />
+
+            <!-- Scrollable area for Announcement Cards -->
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="50,150,50,50">
+                <WrapPanel x:Name="AnnouncementWrapPanel" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <!-- Announcement Cards dynamically loaded here -->
+                </WrapPanel>
+            </ScrollViewer>
+
+            <!-- Back Button -->
+            <Button x:Name="touch" HorizontalAlignment="Left" Margin="57,28,0,0" VerticalAlignment="Top" Height="68" Width="72" Click="touch_Click_1" Opacity="0.85" Background="#FFD4D4D4" BorderBrush="{x:Null}">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="50"/>
@@ -22,30 +32,13 @@
                 </Button.Resources>
                 <Image Source="/assets/Icons/back.png" Stretch="Fill" Height="43" Width="31"/>
             </Button>
-            
-            <TextBlock Name="AnnouncementDetails" Margin="10,300,10,10" FontSize="18" Visibility="Collapsed"/>
-            <Rectangle HorizontalAlignment="Center" Height="130" Margin="0,955,0,0" Stroke="#0B5793" Fill="#0B5793" VerticalAlignment="Top" Width="1920"/>
-            <Image x:Name="STI_ONN" Height="472" Width="684" Source="/assets/STI ONN Logo transparent 3.png" Stretch="Fill" Margin="0,-144,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-            <!-- ListView for Announcements -->
-            <ListView x:Name="AnnouncementList" SelectionChanged="AnnouncementList_SelectionChanged" Margin="50,200,50,100" ItemsSource="{Binding Announcements}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="10" Margin="5" Padding="5" Background="White" Cursor="Hand">
-                            <StackPanel>
-                                <Image Source="{Binding ImageUrl}" Width="150" Height="150" MouseDown="Image_MouseDown"/>
-                                <TextBlock Text="{Binding Title}" FontWeight="Bold" FontSize="16" TextAlignment="Center"/>
-                            </StackPanel>
-                        </Border>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
 
-            <!-- Details area -->
-            <StackPanel x:Name="DetailsPanel" Margin="50,400,50,100" Visibility="Collapsed">
-                <TextBlock x:Name="DetailTitle" FontWeight="Bold" FontSize="20"/>
-                <Image x:Name="DetailImage" Width="300" Height="300"/>
-                <TextBlock x:Name="DetailText" TextWrapping="Wrap" FontSize="16"/>
-            </StackPanel>
+            <!-- STI ONN Logo -->
+            <Image x:Name="STI_ONN" Height="472" Width="684" Source="/assets/STI ONN Logo transparent 3.png" Stretch="Fill" Margin="0,-144,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+            <!-- Decorative Bottom Border -->
+            <Rectangle Height="130" Margin="0,955,0,0" Stroke="#0B5793" Fill="#0B5793" VerticalAlignment="Top" Width="1920"/>
+
         </Grid>
     </Viewbox>
 </Window>
