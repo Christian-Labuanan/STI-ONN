@@ -30,6 +30,7 @@
     <None Remove="assets\Icons\mezanine.png" />
     <None Remove="assets\Icons\roofdeck-white.png" />
     <None Remove="assets\Icons\roofdeck.png" />
+    <None Remove="assets\Icons\schedule.png" />
     <None Remove="assets\Icons\sti models.png" />
     <None Remove="assets\Icons\STIcalamba.png" />
     <None Remove="assets\Maps\01GroundFloor.png" />
@@ -97,6 +98,7 @@
     <Resource Include="assets\Icons\mezanine.png" />
     <Resource Include="assets\Icons\roofdeck-white.png" />
     <Resource Include="assets\Icons\roofdeck.png" />
+    <Resource Include="assets\Icons\schedule.png" />
     <Resource Include="assets\Icons\sti models.png" />
     <Resource Include="assets\Icons\STIcalamba.png" />
     <Resource Include="assets\Maps\01GroundFloor.png" />
