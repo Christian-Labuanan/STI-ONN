@@ -5,15 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:STI_ONN"
         mc:Ignorable="d"
-        Title="STI ONN" Height="auto" Width="auto"
+        Title="STI ONN" 
+        Height="auto" Width="auto"
         WindowState="Maximized"
         WindowStyle="None" Background="#FFEAF2FF">
     <Viewbox  StretchDirection="Both">
-        <Grid Background="#FFEAF2FF" >
+        <Grid Background="#FFEAF2FF" HorizontalAlignment="Center" VerticalAlignment="Center" Height="1080" Width="1920">
             <Rectangle Height="130" Margin="0,952,0,0" Stroke="#0B5793" Fill="#0B5793" Width="1920"/>
-            <Image Margin="0,0,167,131" Source="/assets/Icons/sti models.png" Stretch="Fill"/>
+            <Image Margin="0,0,167,130" Source="/assets/Icons/sti models.png" Stretch="Fill"/>
             <Image x:Name="STI_ONN" Source="assets/STI ONN Logo transparent 3.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="924,-214,0,0" Height="666" Width="995"/>
-            <Button x:Name="touch" Content="Touch to Start" HorizontalAlignment="Center" Margin="0,883,0,0" VerticalAlignment="Top" Height="120" Width="494" FontSize="60" FontFamily="Tw Cen MT" FontWeight="Bold" Foreground="White" BorderBrush="{x:Null}" Background="#FFD4D4D4" Opacity="0.85" Click="touch_Click_1">
+            <Button x:Name="touch" Content="Touch to Start" HorizontalAlignment="Center" Margin="0,883,0,0" VerticalAlignment="Top" Height="120" Width="494" FontSize="60" FontFamily="Tw Cen MT" FontWeight="Bold" Foreground="black" BorderBrush="{x:Null}" Background="#FFD4D4D4" Opacity="0.85" Click="touch_Click_1">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="50"/>

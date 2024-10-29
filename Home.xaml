@@ -25,13 +25,13 @@
             </Button>
 
             <!-- Use a Grid to distribute the buttons evenly -->
-            <Grid Margin="0,250,0,0">
+            <Grid Margin="20,250,20,0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width=".7*"/>
                     <!-- First button -->
-                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width=".7*"/>
                     <!-- Second button -->
-                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width=".7*"/>
                     <!-- Third button -->
                 </Grid.ColumnDefinitions>
 
@@ -93,10 +93,10 @@
                     </Button.RenderTransform>
                     <Image Source="/assets/Icons/schedule.png" Stretch="Fill" RenderTransformOrigin="0.23,0.141" Height="512" Width="512"/>
                 </Button>
-                <Label Content="Professor's Schedule" Grid.Column="2" HorizontalAlignment="Center" Margin="0,580,0,0" VerticalAlignment="Top" Height="108" Width="586" FontSize="55" FontFamily="Leelawadee" FontWeight="Bold"/>
+                <Label Content="Instructor's Schedule" Grid.Column="2" HorizontalAlignment="Center" Margin="0,580,0,0" VerticalAlignment="Top" Height="108" Width="586" FontSize="55" FontFamily="Leelawadee" FontWeight="Bold"/>
             </Grid>
             <!--Main Title -->
-            <Label Content="What will you be doing today?" HorizontalAlignment="Left" Margin="618,196,0,0" VerticalAlignment="Top" FontSize="50" FontFamily="Dutch801 XBd BT" Foreground="Black"/>
+            <Label Content="What will you be doing today?" HorizontalAlignment="Left" Margin="618,166,0,0" VerticalAlignment="Top" FontSize="50" FontFamily="Dutch801 XBd BT" Foreground="Black"/>
             
         </Grid>
     </Viewbox>

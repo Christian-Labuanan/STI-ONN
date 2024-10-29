@@ -21,15 +21,18 @@ namespace STI_ONN
     {
         private DispatcherTimer _refreshTimer;
         private DispatcherTimer _inactivityTimer;
-        private readonly DispatcherTimer interactionTimer;
+        private readonly DispatcherTimer _interactionTimer;
 
         public Announcement()
         {
             InitializeComponent();
-            // Initialize and start the interaction timer
-            interactionTimer = new DispatcherTimer();
-            interactionTimer.Interval = TimeSpan.FromMinutes(0.5); // Set the timeout duration here
-            ResetInteractionTimer();
+            // Initialize the interaction timer
+            _interactionTimer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromMinutes(0.5) // Set the timeout duration here
+            };
+            _interactionTimer.Tick += OnInteractionTimerTick;
+            _interactionTimer.Start();
 
             // Initialize the inactivity timer
             _inactivityTimer = new DispatcherTimer
@@ -51,45 +54,85 @@ namespace STI_ONN
             LoadAnnouncements();
 
             // Handle user interaction events to reset the inactivity timer
+            RegisterInteractionHandlers();
+        }
+
+
+        private void RegisterInteractionHandlers()
+        {
             this.MouseMove += ResetInactivityTimer;
             this.KeyDown += ResetInactivityTimer;
             this.MouseDown += ResetInactivityTimer;
             this.GotFocus += ResetInactivityTimer;
-            this.MouseLeftButtonDown += ResetInactivityTimer;
-            this.MouseLeftButtonUp += ResetInactivityTimer;
-            this.MouseEnter += ResetInactivityTimer; // Reset on mouse entering the window
+            this.MouseEnter += ResetInactivityTimer;
         }
 
-
-        // Initializes timers and sets their properties
-        private void InitializeTimers()
+        private async Task LoadAnnouncements()
         {
-            _inactivityTimer = new DispatcherTimer
+            var announcements = await GetAnnouncementsFromFirebase();
+            PopulateAnnouncements(announcements);
+        }
+
+        private void OpenAnnouncementDetail(AnnouncementItem announcement)
+        {
+            Overlay.Visibility = Visibility.Visible;
+
+            var announcementDetailWindow = new AnnouncementDetail(announcement);
+            announcementDetailWindow.Closed += (sender, args) =>
             {
-                Interval = TimeSpan.FromMinutes(0.2)
+                Overlay.Visibility = Visibility.Collapsed;
+                ResetInactivityTimer(null, null); // Reset the inactivity timer when returning
             };
-            _inactivityTimer.Tick += OnInactivityTimerTick;
+
+            announcementDetailWindow.ShowDialog();
+        }
+
+        // Handles the inactivity timer tick event
+        private void OnInactivityTimerTick(object? sender, EventArgs e)
+        {
+            _inactivityTimer.Stop(); // Stop the timer to prevent re-entering this event
+            CloseAnnouncementDetail(); // Close the AnnouncementDetail window
+        }
+
+        // New method to close the AnnouncementDetail window
+        private void CloseAnnouncementDetail()
+        {
+            foreach (var window in Application.Current.Windows)
+            {
+                if (window is AnnouncementDetail detailWindow && detailWindow.IsVisible)
+                {
+                    detailWindow.Close(); // Close the AnnouncementDetail window
+                    break;
+                }
+            }
+        }
+
+        private void OnInteractionTimerTick(object sender, EventArgs e)
+        {
+            _interactionTimer.Stop();
+            ReturnToMainWindow();
+        }
+
+        private void ResetInactivityTimer(object sender, EventArgs e)
+        {
+            _inactivityTimer.Stop();
             _inactivityTimer.Start();
-
-            _refreshTimer = new DispatcherTimer
-            {
-                Interval = TimeSpan.FromMinutes(30)
-            };
-            _refreshTimer.Tick += async (sender, args) => await LoadAnnouncements();
-            _refreshTimer.Start();
+            ResetInteractionTimer();
         }
 
-        // Registers UI interaction events to reset the inactivity timer
-        private void RegisterInteractionHandlers()
+        public void ResetInteractionTimer()
         {
-            MouseMove += ResetInactivityTimer;
-            KeyDown += ResetInactivityTimer;
-            MouseDown += ResetInactivityTimer;
-            GotFocus += ResetInactivityTimer;
-            MouseLeftButtonDown += ResetInactivityTimer;
-            MouseLeftButtonUp += ResetInactivityTimer;
-            MouseRightButtonDown += ResetInactivityTimer;
-            MouseRightButtonUp += ResetInactivityTimer;
+            // Reset the interaction timer
+            _interactionTimer.Stop();
+            _interactionTimer.Start();
+        }
+
+        private void ReturnToMainWindow()
+        {
+            this.Close();
+            var mainWindow = new MainWindow();
+            mainWindow.Show();
+            _interactionTimer.Stop();
         }
 
         // Fetches announcements from Firebase
@@ -122,11 +165,12 @@ namespace STI_ONN
         }
 
         // Loads announcements from Firebase and updates the UI
-        private async Task LoadAnnouncements()
+        /*private async Task LoadAnnouncements()
         {
             var announcements = await GetAnnouncementsFromFirebase();
             PopulateAnnouncements(announcements);
         }
+        */
 
         // Populates the UI with announcement cards
         private void PopulateAnnouncements(List<AnnouncementItem> announcements)
@@ -186,11 +230,35 @@ namespace STI_ONN
                 {
                     CreateTitleTextBlock(announcement.Title),
                     CreateAnnouncementImage(announcement.ImageUrl),
-                    CreateDetailsButton(announcement)
+                    //CreateDetailsButton(announcement)
                 }
             };
 
             cardBorder.Child = cardStackPanel;
+            // Make the entire card clickable to view full details
+            cardBorder.MouseDown += (s, e) => OpenAnnouncementDetail(announcement);
+            // Add hover effect
+            cardBorder.MouseEnter += (s, e) =>
+            {
+                cardBorder.Background = Brushes.LightGray; // Change background on hover
+                cardBorder.Effect = new System.Windows.Media.Effects.DropShadowEffect
+                {
+                    Color = Colors.Black,
+                    BlurRadius = 10,
+                    ShadowDepth = 4
+                };
+            };
+
+            cardBorder.MouseLeave += (s, e) =>
+            {
+                cardBorder.Background = Brushes.White; // Revert background color
+                cardBorder.Effect = new System.Windows.Media.Effects.DropShadowEffect
+                {
+                    Color = Colors.Gray,
+                    BlurRadius = 8,
+                    ShadowDepth = 2
+                };
+            };
             return cardBorder;
         }
 
@@ -236,7 +304,7 @@ namespace STI_ONN
         }
 
         // Creates a button to view details of the announcement
-        private Button CreateDetailsButton(AnnouncementItem announcement)
+        /*private Button CreateDetailsButton(AnnouncementItem announcement)
         {
             var button = new Button
             {
@@ -252,9 +320,10 @@ namespace STI_ONN
             button.Click += (s, e) => OpenAnnouncementDetail(announcement);
             return button;
         }
+        */
 
         // Opens the announcement detail window and shows the overlay
-        private void OpenAnnouncementDetail(AnnouncementItem announcement)
+        /*private void OpenAnnouncementDetail(AnnouncementItem announcement)
         {
             Overlay.Visibility = Visibility.Visible;
 
@@ -294,6 +363,7 @@ namespace STI_ONN
             _inactivityTimer.Start(); // Restart the timer on any interaction
             ResetInteractionTimer(); // Ensure interaction timer is also reset
         }
+        */
         // Handles touch button click event to navigate to the Home window
         private void touch_Click_1(object sender, RoutedEventArgs e)
         {
@@ -311,10 +381,10 @@ namespace STI_ONN
         // Represents an announcement item
         public class AnnouncementItem
         {
-            public string ImageUrl { get; set; }
-            public string Text { get; set; }
-            public string Timestamp { get; set; }
-            public string Title { get; set; }
+            public required string ImageUrl { get; set; } // Mark as required
+            public required string Text { get; set; }      // Mark as required
+            public required string Title { get; set; }     // Mark as required
+            public required DateTime Timestamp { get; set; } // Mark as required
         }
     }
 }
