@@ -23,24 +23,11 @@ namespace STI_ONN
     /// </summary>
     public partial class AnnouncementDetail : Window
     {
-        private DispatcherTimer _inactivityTimer; // Inactivity timer
+        
         public AnnouncementDetail(AnnouncementItem announcement)
         {
             InitializeComponent();
-            // Initialize the inactivity timer
-            _inactivityTimer = new DispatcherTimer
-            {
-                Interval = TimeSpan.FromMinutes(0.5) // Set your inactivity duration
-            };
-            _inactivityTimer.Tick += OnInactivityTimerTick; // Event for inactivity timer
-            _inactivityTimer.Start(); // Start the timer
-
-            // Handle user interaction events to reset the inactivity timer
-            this.MouseMove += ResetInactivityTimer; // Reset timer on mouse move
-            this.MouseDown += ResetInactivityTimer; // Reset timer on mouse down
-            this.KeyDown += ResetInactivityTimer; // Reset timer on key down
-            this.PreviewMouseDown += ResetInactivityTimer; // Reset timer on mouse down (preview event)
-
+            
             // Set announcement details
             DetailTitle.Text = announcement.Title;
             LoadImage(announcement.ImageUrl);
@@ -53,20 +40,14 @@ namespace STI_ONN
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             this.Width = 600; // Adjust as necessary
             this.Height = 450; // Adjust as necessary
-        }
 
-        // Reset the inactivity timer on user interaction
-        private void ResetInactivityTimer(object sender, EventArgs e)
-        {
-            _inactivityTimer.Stop(); // Stop the timer to reset it
-            _inactivityTimer.Start(); // Restart the timer
-        }
-
-        // Handles the inactivity timer tick event
-        private void OnInactivityTimerTick(object sender, EventArgs e)
-        {
-            _inactivityTimer.Stop(); // Stop the timer to prevent re-entering this event
-            this.Close(); // Close the AnnouncementDetail window
+            // Inside the constructor or initialization method
+            ScrollViewer scrollViewer = new ScrollViewer
+            {
+                PanningMode = PanningMode.Both, // Enable touch panning
+                VerticalScrollBarVisibility = ScrollBarVisibility.Hidden,
+                HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden
+            };
         }
 
         private void LoadAnnouncementContent(AnnouncementItem announcement)
@@ -87,17 +68,30 @@ namespace STI_ONN
 
             foreach (Match match in matches)
             {
-                // Create an Image control for each URL found
-                var image = new System.Windows.Controls.Image
+                try
                 {
-                    Source = new BitmapImage(new Uri(match.Value)),
-                    Width = 300, // Set desired width
-                    Height = 200, // Set desired height
-                    Margin = new Thickness(5) // Add some margin
-                };
-
-                // Add the image to the layout (assuming you have a container like a StackPanel in your XAML)
-                ImageContainer.Children.Add(image); // Make sure ImageContainer is the name of your panel in XAML
+                    // Attempt to create and load the image
+                    var image = new System.Windows.Controls.Image
+                    {
+                        Source = new BitmapImage(new Uri(match.Value)),
+                        Width = 300,
+                        Height = 200,
+                        Margin = new Thickness(5)
+                    };
+                    ImageContainer.Children.Add(image);
+                }
+                catch (Exception)
+                {
+                    // If an error occurs, you could add a placeholder image or skip adding the image
+                    var placeholder = new System.Windows.Controls.Image
+                    {
+                        Source = new BitmapImage(new Uri("pack://application:,,,/assets/Icons/default-image.png")),
+                        Width = 300,
+                        Height = 200,
+                        Margin = new Thickness(5)
+                    };
+                    ImageContainer.Children.Add(placeholder);
+                }
             }
         }
 

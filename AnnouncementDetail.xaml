@@ -7,9 +7,9 @@
         AllowsTransparency="False" 
         Background="#FFEAF2FF">
 
-    <Grid Background="#FFEAF2FF">
+    <DockPanel Background="#FFEAF2FF">
         <!-- Fixed Top Overlay for Title and Buttons -->
-        <Grid VerticalAlignment="Top" Height="50" Background="#FFD6E6F2" Panel.ZIndex="1">
+        <Grid VerticalAlignment="Top" Height="50" Background="#FFD6E6F2" Panel.ZIndex="1" DockPanel.Dock="Top">
             <!-- Title Label -->
             <TextBlock Text="Announcement" 
                        HorizontalAlignment="Center" 
@@ -24,7 +24,9 @@
                     Margin="0,3,60,0" 
                     FontSize="18" FontFamily="Arial" FontWeight="Bold" 
                     Background="#FF305496" Foreground="White" BorderBrush="{x:Null}"
-                    Click="FullscreenButton_Click">
+                    Click="FullscreenButton_Click"
+                    Focusable="False"> <!-- Added Focusable="False" --> 
+
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="20"/>
@@ -32,13 +34,14 @@
                 </Button.Resources>
             </Button>
 
-            <!-- Close Button (styled as X) -->
+            <!-- Close Button -->
             <Button Content="X" Width="44" Height="44" 
                     HorizontalAlignment="Right" VerticalAlignment="Top" 
                     Margin="0,3,10,0" 
                     FontSize="18" FontFamily="Arial" FontWeight="Bold" 
                     Background="#FF305496" Foreground="White" BorderBrush="{x:Null}"
-                    Click="CloseButton_Click">
+                    Click="CloseButton_Click"
+                    Focusable="False"> <!-- Added Focusable="False" -->
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="20"/>
@@ -47,9 +50,8 @@
             </Button>
         </Grid>
 
-
         <!-- Main container with scrollable content -->
-        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <ScrollViewer VerticalScrollBarVisibility="hidden" HorizontalScrollBarVisibility="Disabled" DockPanel.Dock="Bottom" PanningMode="VerticalOnly">
             <StackPanel Margin="10">
                 <!-- Announcement title display -->
                 <TextBlock x:Name="DetailTitle" 
@@ -70,7 +72,7 @@
                 <TextBlock x:Name="DetailText" 
                            FontSize="16" 
                            TextWrapping="Wrap" 
-                           Margin="0,10,0,10"/>
+                           Margin="75,10,75,0"/>
                 <!-- Container for additional images -->
                 <StackPanel x:Name="ImageContainer" Orientation="Vertical" Margin="0,10,0,10" />
             </StackPanel>
@@ -84,5 +86,5 @@
                    IsHitTestVisible="True"
                    HorizontalAlignment="Stretch"
                    VerticalAlignment="Stretch"/>
-    </Grid>
+    </DockPanel>
 </Window>

@@ -19,52 +19,14 @@ namespace STI_ONN
     /// </summary>
     public partial class Announcement : Window
     {
-        private DispatcherTimer _refreshTimer;
-        private DispatcherTimer _inactivityTimer;
-        private readonly DispatcherTimer _interactionTimer;
 
         public Announcement()
         {
             InitializeComponent();
-            // Initialize the interaction timer
-            _interactionTimer = new DispatcherTimer
-            {
-                Interval = TimeSpan.FromMinutes(0.5) // Set the timeout duration here
-            };
-            _interactionTimer.Tick += OnInteractionTimerTick;
-            _interactionTimer.Start();
-
-            // Initialize the inactivity timer
-            _inactivityTimer = new DispatcherTimer
-            {
-                Interval = TimeSpan.FromMinutes(0.2) // Set the inactivity duration as needed
-            };
-            _inactivityTimer.Tick += OnInactivityTimerTick;
-            _inactivityTimer.Start();
-
-            // Set up a timer to refresh announcements at regular intervals
-            _refreshTimer = new DispatcherTimer
-            {
-                Interval = TimeSpan.FromMinutes(30) // Adjust the interval as needed
-            };
-            _refreshTimer.Tick += async (sender, args) => await LoadAnnouncements();
-            _refreshTimer.Start();
 
             // Load announcements on startup
             LoadAnnouncements();
 
-            // Handle user interaction events to reset the inactivity timer
-            RegisterInteractionHandlers();
-        }
-
-
-        private void RegisterInteractionHandlers()
-        {
-            this.MouseMove += ResetInactivityTimer;
-            this.KeyDown += ResetInactivityTimer;
-            this.MouseDown += ResetInactivityTimer;
-            this.GotFocus += ResetInactivityTimer;
-            this.MouseEnter += ResetInactivityTimer;
         }
 
         private async Task LoadAnnouncements()
@@ -81,58 +43,10 @@ namespace STI_ONN
             announcementDetailWindow.Closed += (sender, args) =>
             {
                 Overlay.Visibility = Visibility.Collapsed;
-                ResetInactivityTimer(null, null); // Reset the inactivity timer when returning
+                
             };
 
             announcementDetailWindow.ShowDialog();
-        }
-
-        // Handles the inactivity timer tick event
-        private void OnInactivityTimerTick(object? sender, EventArgs e)
-        {
-            _inactivityTimer.Stop(); // Stop the timer to prevent re-entering this event
-            CloseAnnouncementDetail(); // Close the AnnouncementDetail window
-        }
-
-        // New method to close the AnnouncementDetail window
-        private void CloseAnnouncementDetail()
-        {
-            foreach (var window in Application.Current.Windows)
-            {
-                if (window is AnnouncementDetail detailWindow && detailWindow.IsVisible)
-                {
-                    detailWindow.Close(); // Close the AnnouncementDetail window
-                    break;
-                }
-            }
-        }
-
-        private void OnInteractionTimerTick(object sender, EventArgs e)
-        {
-            _interactionTimer.Stop();
-            ReturnToMainWindow();
-        }
-
-        private void ResetInactivityTimer(object sender, EventArgs e)
-        {
-            _inactivityTimer.Stop();
-            _inactivityTimer.Start();
-            ResetInteractionTimer();
-        }
-
-        public void ResetInteractionTimer()
-        {
-            // Reset the interaction timer
-            _interactionTimer.Stop();
-            _interactionTimer.Start();
-        }
-
-        private void ReturnToMainWindow()
-        {
-            this.Close();
-            var mainWindow = new MainWindow();
-            mainWindow.Show();
-            _interactionTimer.Stop();
         }
 
         // Fetches announcements from Firebase
