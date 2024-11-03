@@ -205,7 +205,7 @@
                                 </TransformGroup>
                             </Rectangle.RenderTransform>
                         </Rectangle>
-                        
+
                     </Canvas>
                 </ScrollViewer>
 
@@ -230,7 +230,7 @@
                         <Image Source="/assets/Icons/zoom-reset.png" 
        Stretch="Fill" 
        Height="74" 
-       Width="78" HorizontalAlignment="Left" Canvas.Left="1638" Canvas.Top="959" VerticalAlignment="Top"/>
+       Width="70" HorizontalAlignment="Left" Canvas.Left="1638" Canvas.Top="959" VerticalAlignment="Center"/>
                     </Button>
                 </StackPanel>
             </Grid>
