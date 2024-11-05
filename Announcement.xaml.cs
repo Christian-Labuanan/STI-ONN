@@ -11,6 +11,7 @@ using System.Windows.Threading;
 using Firebase.Database;
 using System.Text.RegularExpressions;
 using System.Windows.Threading;
+using System.Windows.Shapes;
 
 namespace STI_ONN
 {
@@ -36,16 +37,35 @@ namespace STI_ONN
 
         private void OpenAnnouncementDetail(AnnouncementItem announcement)
         {
-            Overlay.Visibility = Visibility.Visible;
+            // Dim the announcement cards
+            DimAnnouncementCards(true);
 
+            Overlay.Visibility = Visibility.Visible;
+            
             var announcementDetailWindow = new AnnouncementDetail(announcement);
             announcementDetailWindow.Closed += (sender, args) =>
             {
                 Overlay.Visibility = Visibility.Collapsed;
-                
+
+                // Restore the announcement cards' opacity
+                DimAnnouncementCards(false);
             };
 
             announcementDetailWindow.ShowDialog();
+
+        }
+        // Method to dim or restore the opacity of announcement cards
+        private void DimAnnouncementCards(bool dim)
+        {
+            double opacityValue = dim ? 0.3 : 1.0; // Dim to 30% opacity or restore to 100%
+
+            foreach (var child in AnnouncementWrapPanel.Children)
+            {
+                if (child is Border card)
+                {
+                    card.Opacity = opacityValue; // Set the opacity for each announcement card
+                }
+            }
         }
 
         // Fetches announcements from Firebase
@@ -95,8 +115,21 @@ namespace STI_ONN
                 DisplayNoAnnouncementsMessage();
                 return;
             }
+            // Determine current time for comparison
+            DateTime now = DateTime.Now;
 
-            foreach (var announcement in announcements)
+            // Mark new announcements and sort all announcements by Timestamp in descending order
+            var sortedAnnouncements = announcements
+                .Select(announcement =>
+                {
+                    announcement.IsNew = (now - announcement.Timestamp).TotalHours < 24; // Mark as new if posted within the last 24 hours
+                    return announcement;
+                })
+                .OrderByDescending(announcement => announcement.Timestamp) // Sort from newest to oldest
+                .ToList();
+
+            // Populate the UI with the sorted announcements
+            foreach (var announcement in sortedAnnouncements)
             {
                 var card = CreateAnnouncementCard(announcement);
                 AnnouncementWrapPanel.Children.Add(card);
@@ -120,12 +153,13 @@ namespace STI_ONN
         // Creates a card UI element for the given announcement
         private Border CreateAnnouncementCard(AnnouncementItem announcement)
         {
+            
             var cardBorder = new Border
             {
                 Width = 350,
-                Height = 300,
+                Height = 250,
                 Margin = new Thickness(15),
-                Background = Brushes.White,
+                Background = Background = announcement.IsNew ? Brushes.LightBlue : Brushes.White, // Change color if new
                 CornerRadius = new CornerRadius(15),
                 BorderBrush = Brushes.LightGray,
                 BorderThickness = new Thickness(1),
@@ -137,20 +171,54 @@ namespace STI_ONN
                 }
             };
 
-            var cardStackPanel = new StackPanel
+            // Create a dot indicator if the announcement is new
+            if (announcement.IsNew)
             {
-                Children =
+                var dotIndicator = new Ellipse
                 {
-                    CreateTitleTextBlock(announcement.Title),
-                    CreateAnnouncementImage(announcement.ImageUrl),
-                    //CreateDetailsButton(announcement)
-                }
-            };
+                    Width = 10,
+                    Height = 10,
+                    Fill = Brushes.Red, // Red dot for new announcements
+                    HorizontalAlignment = HorizontalAlignment.Right,
+                    VerticalAlignment = VerticalAlignment.Top,
+                    Margin = new Thickness(0, 5, 5, 0)
+                };
 
-            cardBorder.Child = cardStackPanel;
+                // Add the dot to the StackPanel
+                var cardStackPanel = new StackPanel
+                {
+                    Children =
+                    {
+                CreateTitleTextBlock(announcement.Title),
+                dotIndicator, // Add dot indicator here
+                CreateAnnouncementImage(announcement.ImageUrl),
+                    }
+                };
+
+                cardBorder.Child = cardStackPanel;
+            }
+            else
+            {
+                // Normal flow for non-new announcements
+                var cardStackPanel = new StackPanel
+                {
+                    Children =
+            {
+                CreateTitleTextBlock(announcement.Title),
+                CreateAnnouncementImage(announcement.ImageUrl),
+            }
+                };
+
+                cardBorder.Child = cardStackPanel;
+            }
             // Make the entire card clickable to view full details
             cardBorder.MouseDown += (s, e) => OpenAnnouncementDetail(announcement);
-            // Add hover effect
+            // Highlighting logic for new announcements
+            if (announcement.IsNew)
+            {
+                cardBorder.Background = Brushes.LightBlue; // Set background to blue for new announcements
+            }
+            // hover effect
             cardBorder.MouseEnter += (s, e) =>
             {
                 cardBorder.Background = Brushes.LightGray; // Change background on hover
@@ -173,6 +241,24 @@ namespace STI_ONN
                 };
             };
             return cardBorder;
+        }
+
+        // Creates a dot indicator for new announcements
+        private UIElement CreateDotIndicator(bool isNew)
+        {
+            if (!isNew) return null;
+
+            var dot = new Ellipse
+            {
+                Fill = Brushes.Red, // Dot color
+                Width = 10,
+                Height = 10,
+                HorizontalAlignment = HorizontalAlignment.Right,
+                VerticalAlignment = VerticalAlignment.Top,
+                Margin = new Thickness(0, 5, 5, 0) // Adjust margin for positioning
+            };
+
+            return dot;
         }
 
         // Creates a TextBlock for the announcement title
@@ -298,6 +384,7 @@ namespace STI_ONN
             public required string Text { get; set; }      // Mark as required
             public required string Title { get; set; }     // Mark as required
             public required DateTime Timestamp { get; set; } // Mark as required
+            public bool IsNew { get; set; } = false;
         }
     }
 }
