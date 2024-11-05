@@ -14,7 +14,7 @@
     <Viewbox  StretchDirection="Both">
         <Grid Background="#FFEAF2FF" HorizontalAlignment="Center" VerticalAlignment="Center" Height="1080" Width="1920">
             <Rectangle HorizontalAlignment="Center" Height="130" Margin="0,955,0,0" Stroke="#0B5793" Fill="#0B5793" VerticalAlignment="Top" Width="1920"/>
-            <Image x:Name="STI_ONN" Height="472" Width="684" Source="assets/STI ONN Logo transparent 3.png" Stretch="Fill" Margin="0,-144,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <Image x:Name="STI_ONN" Height="160" Width="500" Source="assets/STI ONN Logo transparent 3.png" Stretch="uniform" Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
             <Button x:Name="touch" HorizontalAlignment="Left" Margin="57,28,0,0" VerticalAlignment="Top" Height="68" Width="72" FontSize="60" FontFamily="Tw Cen MT" FontWeight="Bold" Foreground="Black" BorderBrush="{x:Null}" Background="#FFD4D4D4" Opacity="0.85" Click="touch_Click_1">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
@@ -109,7 +109,7 @@
             </Grid>
             <!--Main Title -->
             <Label Content="What will you be doing today?" HorizontalAlignment="Left" Margin="618,166,0,0" VerticalAlignment="Top" FontSize="50" FontFamily="Dutch801 XBd BT" Foreground="Black"/>
-            
+
         </Grid>
     </Viewbox>
 </Window>

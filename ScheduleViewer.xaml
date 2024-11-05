@@ -51,6 +51,7 @@
             </Button>
         </Grid>
 
+        <!-- Scrollable Area Excluding Title and Buttons -->
         <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,50,0,0">
             <Grid>
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20">
@@ -60,8 +61,10 @@
                     <!-- Instructor's Name -->
                     <TextBlock x:Name="InstructorNameTextBlock" FontWeight="Bold" FontSize="24" HorizontalAlignment="Center" Margin="10"/>
 
-                    <!-- Schedule DataGrid -->
-                    <DataGrid x:Name="ScheduleDataGrid" AutoGenerateColumns="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsReadOnly="True"/>
+                    <!-- Schedule DataGrid (Read-Only) -->
+                    <DataGrid x:Name="ScheduleDataGrid" AutoGenerateColumns="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                              IsReadOnly="True" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserReorderColumns="False" 
+                              CanUserSortColumns="False" PreviewMouseWheel="DataGrid_PreviewMouseWheel" ManipulationDelta="DataGrid_ManipulationDelta"/>
                 </StackPanel>
             </Grid>
         </ScrollViewer>

@@ -29,6 +29,32 @@ namespace STI_ONN
         public ScheduleViewer()
         {
             InitializeComponent();
+            // Attach PreviewMouseWheel event to pass scroll events to ScrollViewer
+            ScheduleDataGrid.PreviewMouseWheel += DataGrid_PreviewMouseWheel;
+        }
+        private void DataGrid_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            // Find the ScrollViewer that contains the DataGrid
+            var scrollViewer = VisualTreeHelper.GetParent(ScheduleDataGrid) as ScrollViewer;
+
+            // If ScrollViewer exists, adjust its scroll position based on the mouse wheel delta
+            if (scrollViewer != null)
+            {
+                scrollViewer.ScrollToVerticalOffset(scrollViewer.VerticalOffset - e.Delta / 3);
+                e.Handled = true; // Mark event as handled to prevent further processing
+            }
+        }
+        private void DataGrid_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
+        {
+            // Find the ScrollViewer that contains the DataGrid
+            var scrollViewer = VisualTreeHelper.GetParent(ScheduleDataGrid) as ScrollViewer;
+
+            if (scrollViewer != null)
+            {
+                // Scroll the ScrollViewer based on the Y component of the DeltaManipulation
+                scrollViewer.ScrollToVerticalOffset(scrollViewer.VerticalOffset - e.DeltaManipulation.Translation.Y);
+                e.Handled = true; // Mark event as handled to prevent further processing
+            }
         }
         public async Task LoadSchedule(string scheduleUrl, string instructorName, string instructorAvatarUrl)
         {

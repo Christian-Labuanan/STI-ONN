@@ -8,13 +8,18 @@
         Title="STI ONN" 
         Height="auto" Width="auto"
         WindowState="Maximized"
+        WindowStartupLocation="CenterScreen"
         WindowStyle="None" Background="#FFEAF2FF">
     <Viewbox  StretchDirection="Both">
         <Grid Background="#FFEAF2FF" HorizontalAlignment="Center" VerticalAlignment="Center" Height="1080" Width="1920">
-            <Rectangle Height="130" Margin="0,952,0,0" Stroke="#0B5793" Fill="#0B5793" Width="1920"/>
-            <Image Margin="0,0,167,130" Source="/assets/Icons/sti models.png" Stretch="Fill"/>
-            <Image x:Name="STI_ONN" Source="assets/STI ONN Logo transparent 3.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="924,-214,0,0" Height="666" Width="995"/>
-            <Button x:Name="touch" Content="Touch to Start" HorizontalAlignment="Center" Margin="0,883,0,0" VerticalAlignment="Top" Height="120" Width="494" FontSize="60" FontFamily="Tw Cen MT" FontWeight="Bold" Foreground="black" BorderBrush="{x:Null}" Background="#FFD4D4D4" Opacity="0.85" Click="touch_Click_1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="7*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Rectangle Height="130" Margin="0,952,0,-2" Stroke="#0B5793" Fill="#0B5793" Width="1920" Grid.ColumnSpan="2"/>
+            <Image Margin="0,0,167,130" Source="/assets/Icons/sti models.png" Stretch="Fill" Grid.ColumnSpan="2"/>
+            <Image x:Name="STI_ONN" Source="assets/STI ONN Logo transparent 3.png" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,160,0" Height="330" Width="800" Grid.ColumnSpan="2"/>
+            <Button x:Name="touch" Content="Touch to Start" HorizontalAlignment="Left" Margin="713,883,0,0" VerticalAlignment="Top" Height="120" Width="494" FontSize="60" FontFamily="Tw Cen MT" FontWeight="Bold" Foreground="black" BorderBrush="{x:Null}" Background="#FFD4D4D4" Opacity="0.85" Click="touch_Click_1">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="50"/>
@@ -24,8 +29,8 @@
                     <DropShadowEffect BlurRadius="1" Opacity="0.75" Color="#FF656464"/>
                 </Button.Effect>
             </Button>
-            <Label x:Name="greet" Content="WELCOME STIERS!" HorizontalAlignment="Left" Margin="1053,457,0,0" VerticalAlignment="Top" FontSize="90" FontFamily="Tw Cen MT Condensed Extra Bold" FontWeight="Bold"/>
-            <Label Content="Be Future-Ready. Be STI." HorizontalAlignment="Left" Margin="1037,581,0,0" VerticalAlignment="Top" Height="92" Width="716" FontSize="62" FontFamily="Tw Cen MT" Foreground="#FF676767"/>
+            <Label x:Name="greet" Content="WELCOME STIERS!" HorizontalAlignment="Right" Margin="0,420,250,0" VerticalAlignment="Top" FontSize="90" FontFamily="Tw Cen MT Condensed Extra Bold" FontWeight="Bold" Grid.ColumnSpan="2"/>
+            <Label Content="Be Future-Ready. Be STI." HorizontalAlignment="Right" Margin="0,520,250,0" VerticalAlignment="Top" Height="92" Width="620" FontSize="62" FontFamily="Tw Cen MT" Foreground="#FF676767" Grid.ColumnSpan="2"/>
         </Grid>
     </Viewbox>
 </Window>

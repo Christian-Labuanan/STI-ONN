@@ -34,7 +34,7 @@
             </Button>
 
             <!-- STI ONN Logo -->
-            <Image x:Name="STI_ONN" Height="472" Width="684" Source="/assets/STI ONN Logo transparent 3.png" Stretch="Fill" Margin="0,-144,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <Image x:Name="STI_ONN" Height="160" Width="500" Source="/assets/STI ONN Logo transparent 3.png" Stretch="Uniform" Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
             <!-- Decorative Bottom Border -->
             <Rectangle Height="130" Margin="0,955,0,0" Stroke="#0B5793" Fill="#0B5793" VerticalAlignment="Top" Width="1920"/>

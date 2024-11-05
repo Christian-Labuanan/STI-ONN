@@ -12,15 +12,20 @@
         Background="#FFEAF2FF">
     <Viewbox StretchDirection="Both">
         <Grid Background="#FFEAF2FF" HorizontalAlignment="Center" VerticalAlignment="Center" Height="1080" Width="1920">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="209*"/>
+                <ColumnDefinition Width="54*"/>
+                <ColumnDefinition Width="217*"/>
+            </Grid.ColumnDefinitions>
             <!-- Main container for scaling content within the window -->
-            <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="50,150,50,150">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="50,150,50,150" Grid.ColumnSpan="3">
                 <WrapPanel x:Name="InstructorWrapPanel" Orientation="Horizontal" HorizontalAlignment="Center">
                     <!-- Instructor Cards will be dynamically loaded here -->
                 </WrapPanel>
             </ScrollViewer>
 
-            <Rectangle HorizontalAlignment="Center" Height="130" Margin="0,955,0,0" Stroke="#0B5793" Fill="#0B5793" VerticalAlignment="Top" Width="1920"/>
-            <Image x:Name="STI_ONN" Height="472" Width="684" Source="assets/STI ONN Logo transparent 3.png" Stretch="Fill" Margin="0,-144,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <Rectangle HorizontalAlignment="Left" Height="130" Margin="0,955,0,0" Stroke="#0B5793" Fill="#0B5793" VerticalAlignment="Top" Width="1920" Grid.ColumnSpan="3"/>
+            <Image x:Name="STI_ONN" Height="160" Width="500" Source="assets/STI ONN Logo transparent 3.png" Stretch="Uniform" Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.ColumnSpan="3"/>
             <Button x:Name="touch" HorizontalAlignment="Left" Margin="57,28,0,0" VerticalAlignment="Top" Height="68" Width="72" FontSize="60" FontFamily="Tw Cen MT" FontWeight="Bold" Foreground="Black" BorderBrush="{x:Null}" Background="#FFD4D4D4" Opacity="0.85" Click="touch_Click_1">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
