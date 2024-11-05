@@ -138,7 +138,6 @@ namespace STI_ONN
             }
         }
 
-
         // Zoom in and out 
         // Drag left and right
         private void Image_MouseWheel(object sender, MouseWheelEventArgs e)

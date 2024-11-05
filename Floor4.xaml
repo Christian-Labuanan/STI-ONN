@@ -242,6 +242,35 @@
                     </Button>
                 </StackPanel>
             </Grid>
+            <!-- Navigation Animation -->
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Top" Height="63" Canvas.Left="760" Canvas.Top="506" Margin="0,381,291,0">
+                <TextBlock x:Name="desc1" FontSize="18" FontWeight="Bold" FontFamily="Tw Cen MT" Foreground="Black" Height="39">
+                    <Run Text="This way to Canteen"/>
+                </TextBlock>
+
+                <ItemsControl x:Name="ArrowsContainer" HorizontalAlignment="Center">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </StackPanel>
+
+            <StackPanel  Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Height="63" Canvas.Left="494" Canvas.Top="502" Margin="763,381,0,0">
+
+                <TextBlock x:Name="desc2" FontSize="18" FontWeight="Bold" FontFamily="Tw Cen MT" Foreground="Black" Height="39">
+                    <Run Text="This way to Canteen"/>
+                </TextBlock>
+                <ItemsControl x:Name="ArrowsContainer2" HorizontalAlignment="Center">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+
+            </StackPanel>
         </Grid>
     </Viewbox>
 </Window>
