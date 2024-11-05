@@ -23,7 +23,6 @@ namespace STI_ONN
         public Announcement()
         {
             InitializeComponent();
-
             // Load announcements on startup
             LoadAnnouncements();
 

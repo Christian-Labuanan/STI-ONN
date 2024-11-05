@@ -36,7 +36,11 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- Navigate Building Button with White Background -->
-                <Rectangle Grid.Column="0" HorizontalAlignment="Center" Height="680" Stroke="#FFE4E4E4" VerticalAlignment="Top" Width="600" RadiusX="50" RadiusY="50" Fill="White"/>
+                <Rectangle Grid.Column="0" HorizontalAlignment="Center" Height="680" Stroke="#FFE4E4E4" VerticalAlignment="Top" Width="600" RadiusX="50" RadiusY="50" Fill="White">
+                    <Rectangle.Effect>
+                        <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="5" Opacity="0.3"/>
+                    </Rectangle.Effect>
+                </Rectangle>
                 <Button Grid.Column="0" VerticalAlignment="Top" Height="680" FontSize="55" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" Click="Button_Click" Foreground="Black" BorderBrush="{x:Null}">
                     <Button.Resources>
                         <Style TargetType="{x:Type Border}">
@@ -56,7 +60,11 @@
                 <Label Content="Navigate Building" Grid.Column="0" HorizontalAlignment="Center" Margin="0,580,0,0" VerticalAlignment="Top" Height="108" Width="488" FontSize="55" FontFamily="Leelawadee" FontWeight="Bold"/>
 
                 <!-- Check Announcement Button with White Background -->
-                <Rectangle Grid.Column="1" HorizontalAlignment="Center" Height="680" Stroke="#FFE4E4E4" VerticalAlignment="Top" Width="600" RadiusX="50" RadiusY="50" Fill="White"/>
+                <Rectangle Grid.Column="1" HorizontalAlignment="Center" Height="680" Stroke="#FFE4E4E4" VerticalAlignment="Top" Width="600" RadiusX="50" RadiusY="50" Fill="White">
+                    <Rectangle.Effect>
+                        <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="5" Opacity="0.3"/>
+                    </Rectangle.Effect>
+                </Rectangle>
                 <Button Grid.Column="1" VerticalAlignment="Top" Height="680" FontSize="55" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" Click="Button_Click2" Foreground="Black" BorderBrush="{x:Null}">
                     <Button.Resources>
                         <Style TargetType="{x:Type Border}">
@@ -76,7 +84,11 @@
                 <Label Content="Check Announcement" Grid.Column="1" HorizontalAlignment="Center" Margin="0,580,0,0" VerticalAlignment="Top" Height="108" Width="586" FontSize="55" FontFamily="Leelawadee" FontWeight="Bold"/>
 
                 <!-- Professor's Schedule Button with White Background -->
-                <Rectangle Grid.Column="2" HorizontalAlignment="Center" Height="680" Stroke="#FFE4E4E4" VerticalAlignment="Top" Width="600" RadiusX="50" RadiusY="50" Fill="White"/>
+                <Rectangle Grid.Column="2" HorizontalAlignment="Center" Height="680" Stroke="#FFE4E4E4" VerticalAlignment="Top" Width="600" RadiusX="50" RadiusY="50" Fill="White">
+                    <Rectangle.Effect>
+                        <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="5" Opacity="0.3"/>
+                    </Rectangle.Effect>
+                </Rectangle>
                 <Button Grid.Column="2" VerticalAlignment="Top" Height="680" FontSize="55" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" Click="Button_Click_ProfessorSchedule" Foreground="Black" BorderBrush="{x:Null}">
                     <Button.Resources>
                         <Style TargetType="{x:Type Border}">
