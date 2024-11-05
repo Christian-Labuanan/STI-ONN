@@ -15,7 +15,7 @@
         <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="1080" Width="1920">
             <!-- Logo -->
             <Grid Margin="492,0,0,947">
-                <Image Margin="357,-180,357,-179" Source="/assets/STI ONN Logo transparent 3.png" Stretch="Fill"/>
+                <Image Margin="560,25,560,0" Source="/assets/STI ONN Logo transparent 3.png" Stretch="Fill"/>
             </Grid>
 
             <!-- Sidebar Menu -->

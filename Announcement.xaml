@@ -17,7 +17,7 @@
             <Rectangle x:Name="Overlay" Fill="Black" Opacity="0.5" Visibility="Collapsed" MouseDown="Overlay_MouseDown" />
 
             <!-- Scrollable area for Announcement Cards -->
-            <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="50,150,50,150">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="10,150,10,130">
                 <WrapPanel x:Name="AnnouncementWrapPanel" Orientation="Horizontal" HorizontalAlignment="Center">
                     <!-- Announcement Cards dynamically loaded here -->
                 </WrapPanel>
@@ -34,7 +34,7 @@
             </Button>
 
             <!-- STI ONN Logo -->
-            <Image x:Name="STI_ONN" Height="472" Width="684" Source="/assets/STI ONN Logo transparent 3.png" Stretch="Fill" Margin="0,-144,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <Image x:Name="STI_ONN" Height="126" Width="334" Source="/assets/STI ONN Logo transparent 3.png" Stretch="Fill" Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
             <!-- Decorative Bottom Border -->
             <Rectangle Height="130" Margin="0,955,0,0" Stroke="#0B5793" Fill="#0B5793" VerticalAlignment="Top" Width="1920"/>

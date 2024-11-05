@@ -2,6 +2,8 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
+using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace STI_ONN
@@ -30,6 +32,13 @@ namespace STI_ONN
         public Building()
         {
             InitializeComponent();
+            CreateArrows(5); // Number of arrows you want to create
+
+            // Store the original size of the image
+            originalWidth = image.Width;
+            originalHeight = image.Height;
+            squareWidth = clickableSection.Width;
+            squareHeight = clickableSection.Height;
 
             // Store the original position of the image
             originalImageLeft = Canvas.GetLeft(image);
@@ -47,8 +56,88 @@ namespace STI_ONN
             interactionTimer.Tick += InteractionTimer_Tick;
             ResetInteractionTimer();
         }
+        private void CreateArrows(int count)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                var arrow = new Polygon
+                {
+                    // Define points for a right-facing arrow
+                    Points = new PointCollection
+                    {
+                        new Point(0, 5),    // Left point (base of the arrow)
+                        new Point(0, 15),   // Top point (tip of the arrow)
+                        new Point(15, 10)   // Bottom point (tip of the arrow)
+                    },
+                    Fill = Brushes.Green,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    Margin = new Thickness(5, 0, 5, 0) // Spacing between arrows
+                };
+
+                // Add arrow to the ItemsControl
+                ArrowsContainer.Items.Add(arrow);
+
+                // Create animation for each arrow
+                DoubleAnimation animation = new DoubleAnimation
+                {
+                    From = 0,
+                    To = 10, // Adjust how far the arrow moves
+                    Duration = new Duration(TimeSpan.FromSeconds(1)),
+                    AutoReverse = true,
+                    RepeatBehavior = RepeatBehavior.Forever,
+                    BeginTime = TimeSpan.FromSeconds(i * 0.2) // Stagger the start time
+                };
+
+                // Apply the animation to the TranslateTransform of the arrow
+                TranslateTransform translateTransform = new TranslateTransform();
+                arrow.RenderTransform = translateTransform;
+                translateTransform.BeginAnimation(TranslateTransform.XProperty, animation);
+            }
+        }
+
         // Zoom in and out 
         // Drag left and right
+        private void Image_MouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            var delta = e.Delta;
+            var scale = delta > 0 ? 1.1 : 0.9; // Increase or decrease zoom factor
+
+            // Calculate the zooming center point relative to the image
+            Point zoomCenter = e.GetPosition(image);
+
+            // Calculate the new width and height after zooming
+            double newWidth = image.Width * scale;
+            double newHeight = image.Height * scale;
+
+            // Calculate the adjustment for the clickable section size and position
+            //room301
+            double sectionWidthAdjustment = clickableSection.Width * (scale - 1);
+            double sectionHeightAdjustment = clickableSection.Height * (scale - 1);
+
+            // Apply the new width and height to the image
+            image.Width = newWidth;
+            image.Height = newHeight;
+
+            // Adjust the size of the clickable section
+            //301
+            clickableSection.Width += sectionWidthAdjustment;
+            clickableSection.Height += sectionHeightAdjustment;
+
+            // Calculate the new position of the clickable section relative to the image
+            //301
+            double sectionLeftRelativeToImage = Canvas.GetLeft(clickableSection) - Canvas.GetLeft(image);
+            double sectionTopRelativeToImage = Canvas.GetTop(clickableSection) - Canvas.GetTop(image);
+
+            // Calculate the new position of the clickable section
+            //301
+            double newSectionLeftRelativeToImage = sectionLeftRelativeToImage * scale;
+            double newSectionTopRelativeToImage = sectionTopRelativeToImage * scale;
+            // Apply the new position of the clickable section
+            Canvas.SetLeft(clickableSection, Canvas.GetLeft(image) + newSectionLeftRelativeToImage);
+            Canvas.SetTop(clickableSection, Canvas.GetTop(image) + newSectionTopRelativeToImage);
+            ResetInteractionTimer();
+        }
+
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -88,15 +177,59 @@ namespace STI_ONN
 
         private void ZoomResetButton_Click(object sender, RoutedEventArgs e)
         {
-            // Reset the position of the image to its original position without changing its size or zoom level
+            // Check if the image is already at its original size
+            if (image.Width == originalWidth && image.Height == originalHeight)
+            {
+                // Do nothing if the image is already at its original size
+                return;
+            }
+
+            // Reset the image size to its original size
+            image.Width = originalWidth;
+            image.Height = originalHeight;
+
+            // Reset the image scale
+            originalScale = 1.0;
+
+            // Reset the image transformation
+            image.LayoutTransform = Transform.Identity;
+
+            // Reset the position of the image to its original position
             Canvas.SetLeft(image, originalImageLeft);
             Canvas.SetTop(image, originalImageTop);
 
-            // Reset the position of the clickable section to its original position
+            // Reset the position and size of the clickable section to its original values
             Canvas.SetLeft(clickableSection, originalClickableSectionLeft);
             Canvas.SetTop(clickableSection, originalClickableSectionTop);
+            clickableSection.Width = originalClickableSectionWidth;
+            clickableSection.Height = originalClickableSectionHeight;
 
-            // Reset the interaction timer
+            // Reset the screensaver timer
+            ResetInteractionTimer();
+        }
+
+        private void ApplyZoom(double scale)
+        {
+            image.Width = originalWidth * scale;
+            image.Height = originalHeight * scale;
+            //301
+            Canvas.SetLeft(clickableSection, originalClickableSectionLeft * scale);
+            Canvas.SetTop(clickableSection, originalClickableSectionTop * scale);
+            clickableSection.Width = originalClickableSectionWidth * scale;
+            clickableSection.Height = originalClickableSectionHeight * scale;
+        }
+
+        private void ZoomInButton_Click(object sender, RoutedEventArgs e)
+        {
+            originalScale += 0.1;
+            ApplyZoom(originalScale);
+            ResetInteractionTimer();
+        }
+
+        private void ZoomOutButton_Click(object sender, RoutedEventArgs e)
+        {
+            originalScale -= 0.1;
+            ApplyZoom(originalScale);
             ResetInteractionTimer();
         }
 
@@ -177,7 +310,7 @@ namespace STI_ONN
         private void floor4_btn(object sender, RoutedEventArgs e)
         {
             Floor4 floor4 = new Floor4();
-            floor4.Show();  
+            floor4.Show();
             this.Close();
         }
 
@@ -187,7 +320,7 @@ namespace STI_ONN
             roofdeck.Show();
             this.Close();
         }
-    
+
         private void court_btn(object sender, RoutedEventArgs e)
         {
             Court court = new Court();
