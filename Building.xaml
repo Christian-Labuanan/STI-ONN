@@ -14,7 +14,7 @@
     <Viewbox StretchDirection="Both">
         <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="1080" Width="1920">
             <Grid Margin="492,0,0,947">
-                <Image Margin="357,-180,357,-179" Source="/assets/STI ONN Logo transparent 3.png" Stretch="Fill"/>
+                <Image Margin="560,25,560,0" Source="/assets/STI ONN Logo transparent 3.png" Stretch="Fill"/>
             </Grid>
             <Grid Margin="0,0,1488,0" Background="#FFEAF2FF">
                 <Label Content="Floor Map" HorizontalAlignment="Center" Margin="0,24,0,0" VerticalAlignment="Top" FontSize="55" FontWeight="Bold" FontFamily="Tw Cen MT"/>
@@ -162,7 +162,7 @@
 
                         </MenuItem.Icon>
                     </MenuItem>
-                    
+
                     <MenuItem Margin="0,716,0,-778" FontSize="40" FontWeight="Bold" Click="court_btn">
                         <MenuItem.Header>
                             <Grid>
@@ -180,12 +180,11 @@
                 </Menu>
             </Grid>
 
-
             <!-- Map scroll placeholder -->
             <Grid Margin="492,0,0,0">
-                <Image x:Name="mapImage" Stretch="Uniform" Margin="-64,0,0,0"/>
+                <Image x:Name="mapImage" Stretch="Uniform" Margin="-64,114,0,0"/>
 
-                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="-58,154,0,0">
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="-58,136,0,0">
                     <Canvas Name="canvas" Background="White" Height="900" VerticalAlignment="Bottom">
                         <Image Height="844" Source="/assets/Maps/01GroundFloor.png" Width="1469" Canvas.Top="25"
                                Name="image"
@@ -213,6 +212,33 @@
                                 </TransformGroup>
                             </Rectangle.RenderTransform>
                         </Rectangle>
+
+                        <!-- Navigation Animation -->
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Top" Height="63" Canvas.Left="760" Canvas.Top="506">
+
+                            <TextBlock Name="desc1" Text="This way to Faculty/Function hall" FontSize="18" FontWeight="Bold" FontFamily="Tw Cen MT" Foreground="Black"/>
+
+                            <ItemsControl x:Name="ArrowsContainer" HorizontalAlignment="Center">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
+                        </StackPanel>
+
+                        <StackPanel  Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Height="63" Canvas.Left="494" Canvas.Top="502">
+                            
+                            <TextBlock x:Name="desc2" Text="This way to Mezzanine" FontSize="24" FontWeight="Bold" FontFamily="Tw Cen MT" Foreground="Black" Height="34"/>
+
+                            <ItemsControl x:Name="ArrowsContainer2" HorizontalAlignment="Center">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
+                        </StackPanel>
                     </Canvas>
                 </ScrollViewer>
 
@@ -243,6 +269,8 @@
                     </Button>
                 </StackPanel>
             </Grid>
+
+
         </Grid>
     </Viewbox>
 </Window>

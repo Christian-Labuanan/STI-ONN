@@ -25,6 +25,12 @@ namespace STI_ONN
             ancmnt.Show();
             this.Close();
         }
+        private void Button_Click_ProfessorSchedule(object sender, RoutedEventArgs e)
+        {
+            ProfessorSchedule profSchedule = new ProfessorSchedule();
+            profSchedule.Show();
+            this.Close();
+        }
 
         private void touch_Click_1(object sender, RoutedEventArgs e)
         {

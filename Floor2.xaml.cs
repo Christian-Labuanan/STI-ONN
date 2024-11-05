@@ -194,219 +194,37 @@ namespace STI_ONN
             // Calculate the zooming center point relative to the image
             Point zoomCenter = e.GetPosition(image);
 
-            // Calculate the new width and height after zooming
-            double newWidth = image.Width * scale;
-            double newHeight = image.Height * scale;
-
-            // Calculate the adjustment for the clickable section size and position
-            //room201
-            double sectionWidthAdjustment = clickableSection.Width * (scale - 1);
-            double sectionHeightAdjustment = clickableSection.Height * (scale - 1);
-            //room 202
-            double sectionWidthAdjustment302 = clickableSection_Copy.Width * (scale - 1);
-            double sectionHeightAdjustment302 = clickableSection_Copy.Height * (scale - 1);
-            //room 203
-            double sectionWidthAdjustment303 = clickableSection_Copy1.Width * (scale - 1);
-            double sectionHeightAdjustment303 = clickableSection_Copy1.Height * (scale - 1);
-            //room 204
-            double sectionWidthAdjustment304 = clickableSection_Copy2.Width * (scale - 1);
-            double sectionHeightAdjustment304 = clickableSection_Copy2.Height * (scale - 1);
-            //room 205
-            double sectionWidthAdjustment305 = clickableSection_Copy3.Width * (scale - 1);
-            double sectionHeightAdjustment305 = clickableSection_Copy3.Height * (scale - 1);
-            //room 206
-            double sectionWidthAdjustment306 = clickableSection_Copy4.Width * (scale - 1);
-            double sectionHeightAdjustment306 = clickableSection_Copy4.Height * (scale - 1);
-            //room 207
-            double sectionWidthAdjustment307 = clickableSection_Copy5.Width * (scale - 1);
-            double sectionHeightAdjustment307 = clickableSection_Copy5.Height * (scale - 1);
-            //208
-            double sectionWidthAdjustment3072 = clickableSection_Copy6.Width * (scale - 1);
-            double sectionHeightAdjustment3072 = clickableSection_Copy6.Height * (scale - 1);
-            //room 209
-            double sectionWidthAdjustment308 = clickableSection_Copy7.Width * (scale - 1);
-            double sectionHeightAdjustment308 = clickableSection_Copy7.Height * (scale - 1);
-            //room 210
-            double sectionWidthAdjustment309 = clickableSection_Copy8.Width * (scale - 1);
-            double sectionHeightAdjustment309 = clickableSection_Copy8.Height * (scale - 1);
-            //room 211
-            double sectionWidthAdjustment310 = clickableSection_Copy9.Width * (scale - 1);
-            double sectionHeightAdjustment310 = clickableSection_Copy9.Height * (scale - 1);
-            //room 212
-            double sectionWidthAdjustment311 = clickableSection_Copy10.Width * (scale - 1);
-            double sectionHeightAdjustment311 = clickableSection_Copy10.Height * (scale - 1);
-            //room 213
-            double sectionWidthAdjustment312 = clickableSection_Copy10.Width * (scale - 1);
-            double sectionHeightAdjustment312 = clickableSection_Copy10.Height * (scale - 1);
-
             // Apply the new width and height to the image
-            image.Width = newWidth;
-            image.Height = newHeight;
+            image.Width *= scale;
+            image.Height *= scale;
 
-            // Adjust the size of the clickable section
-            //201
-            clickableSection.Width += sectionWidthAdjustment;
-            clickableSection.Height += sectionHeightAdjustment;
-            //202
-            clickableSection_Copy.Width += sectionWidthAdjustment302;
-            clickableSection_Copy.Height += sectionHeightAdjustment302;
-            //203
-            clickableSection_Copy1.Width += sectionWidthAdjustment303;
-            clickableSection_Copy1.Height += sectionHeightAdjustment303;
-            //204
-            clickableSection_Copy2.Width += sectionWidthAdjustment304;
-            clickableSection_Copy2.Height += sectionHeightAdjustment304;
-            //205
-            clickableSection_Copy3.Width += sectionWidthAdjustment305;
-            clickableSection_Copy3.Height += sectionHeightAdjustment305;
-            //206
-            clickableSection_Copy4.Width += sectionWidthAdjustment306;
-            clickableSection_Copy4.Height += sectionHeightAdjustment306;
-            //207
-            clickableSection_Copy5.Width += sectionWidthAdjustment307;
-            clickableSection_Copy5.Height += sectionHeightAdjustment307;
-            //208
-            clickableSection_Copy6.Width += sectionWidthAdjustment3072;
-            clickableSection_Copy6.Height += sectionHeightAdjustment3072;
-            //209
-            clickableSection_Copy7.Width += sectionWidthAdjustment308;
-            clickableSection_Copy7.Height += sectionHeightAdjustment308;
-            //210
-            clickableSection_Copy8.Width += sectionWidthAdjustment309;
-            clickableSection_Copy8.Height += sectionHeightAdjustment309;
-            //211
-            clickableSection_Copy9.Width += sectionWidthAdjustment310;
-            clickableSection_Copy9.Height += sectionHeightAdjustment310;
-            //212
-            clickableSection_Copy10.Width += sectionWidthAdjustment311;
-            clickableSection_Copy10.Height += sectionHeightAdjustment311;
-            //213
-            clickableSection_Copy11.Width += sectionWidthAdjustment312;
-            clickableSection_Copy11.Height += sectionHeightAdjustment312;
+            // List of clickable sections
+            var clickableSections = new List<FrameworkElement>
+                {
+                    clickableSection, clickableSection_Copy, clickableSection_Copy1, clickableSection_Copy2,
+                    clickableSection_Copy3, clickableSection_Copy4, clickableSection_Copy5, clickableSection_Copy6,
+                    clickableSection_Copy7, clickableSection_Copy8, clickableSection_Copy9, clickableSection_Copy10,
+                    clickableSection_Copy11
+                };
 
-            // Calculate the new position of the clickable section relative to the image
-            //201
-            double sectionLeftRelativeToImage = Canvas.GetLeft(clickableSection) - Canvas.GetLeft(image);
-            double sectionTopRelativeToImage = Canvas.GetTop(clickableSection) - Canvas.GetTop(image);
-            //202
-            double sectionLeftRelativeToImage302 = Canvas.GetLeft(clickableSection_Copy) - Canvas.GetLeft(image);
-            double sectionTopRelativeToImage302 = Canvas.GetTop(clickableSection_Copy) - Canvas.GetTop(image);
-            //203
-            double sectionLeftRelativeToImage303 = Canvas.GetLeft(clickableSection_Copy1) - Canvas.GetLeft(image);
-            double sectionTopRelativeToImage303 = Canvas.GetTop(clickableSection_Copy1) - Canvas.GetTop(image);
-            //204
-            double sectionLeftRelativeToImage304 = Canvas.GetLeft(clickableSection_Copy2) - Canvas.GetLeft(image);
-            double sectionTopRelativeToImage304 = Canvas.GetTop(clickableSection_Copy2) - Canvas.GetTop(image);
-            //205
-            double sectionLeftRelativeToImage305 = Canvas.GetLeft(clickableSection_Copy3) - Canvas.GetLeft(image);
-            double sectionTopRelativeToImage305 = Canvas.GetTop(clickableSection_Copy3) - Canvas.GetTop(image);
-            //206
-            double sectionLeftRelativeToImage306 = Canvas.GetLeft(clickableSection_Copy4) - Canvas.GetLeft(image);
-            double sectionTopRelativeToImage306 = Canvas.GetTop(clickableSection_Copy4) - Canvas.GetTop(image);
-            //207
-            double sectionLeftRelativeToImage307 = Canvas.GetLeft(clickableSection_Copy5) - Canvas.GetLeft(image);
-            double sectionTopRelativeToImage307 = Canvas.GetTop(clickableSection_Copy5) - Canvas.GetTop(image);
-            //208
-            double sectionLeftRelativeToImage3072 = Canvas.GetLeft(clickableSection_Copy6) - Canvas.GetLeft(image);
-            double sectionTopRelativeToImage3072 = Canvas.GetTop(clickableSection_Copy6) - Canvas.GetTop(image);
-            //209
-            double sectionLeftRelativeToImage308 = Canvas.GetLeft(clickableSection_Copy7) - Canvas.GetLeft(image);
-            double sectionTopRelativeToImage308 = Canvas.GetTop(clickableSection_Copy7) - Canvas.GetTop(image);
-            //210
-            double sectionLeftRelativeToImage309 = Canvas.GetLeft(clickableSection_Copy8) - Canvas.GetLeft(image);
-            double sectionTopRelativeToImage309 = Canvas.GetTop(clickableSection_Copy8) - Canvas.GetTop(image);
-            //211
-            double sectionLeftRelativeToImage310 = Canvas.GetLeft(clickableSection_Copy9) - Canvas.GetLeft(image);
-            double sectionTopRelativeToImage310 = Canvas.GetTop(clickableSection_Copy9) - Canvas.GetTop(image);
-            //212
-            double sectionLeftRelativeToImage311 = Canvas.GetLeft(clickableSection_Copy10) - Canvas.GetLeft(image);
-            double sectionTopRelativeToImage311 = Canvas.GetTop(clickableSection_Copy10) - Canvas.GetTop(image);
-            //213
-            double sectionLeftRelativeToImage312 = Canvas.GetLeft(clickableSection_Copy11) - Canvas.GetLeft(image);
-            double sectionTopRelativeToImage312 = Canvas.GetTop(clickableSection_Copy11) - Canvas.GetTop(image);
+            foreach (var section in clickableSections)
+            {
+                // Scale the width and height of each clickable section
+                section.Width *= scale;
+                section.Height *= scale;
 
-            // Calculate the new position of the clickable section
-            //201
-            double newSectionLeftRelativeToImage = sectionLeftRelativeToImage * scale;
-            double newSectionTopRelativeToImage = sectionTopRelativeToImage * scale;
-            //202
-            double newSectionLeftRelativeToImage302 = sectionLeftRelativeToImage302 * scale;
-            double newSectionTopRelativeToImage302 = sectionTopRelativeToImage302 * scale;
-            //203
-            double newSectionLeftRelativeToImage303 = sectionLeftRelativeToImage303 * scale;
-            double newSectionTopRelativeToImage303 = sectionTopRelativeToImage303 * scale;
-            //204
-            double newSectionLeftRelativeToImage304 = sectionLeftRelativeToImage304 * scale;
-            double newSectionTopRelativeToImage304 = sectionTopRelativeToImage304 * scale;
-            //205
-            double newSectionLeftRelativeToImage305 = sectionLeftRelativeToImage305 * scale;
-            double newSectionTopRelativeToImage305 = sectionTopRelativeToImage305 * scale;
-            //206
-            double newSectionLeftRelativeToImage306 = sectionLeftRelativeToImage306 * scale;
-            double newSectionTopRelativeToImage306 = sectionTopRelativeToImage306 * scale;
-            //207
-            double newSectionLeftRelativeToImage307 = sectionLeftRelativeToImage307 * scale;
-            double newSectionTopRelativeToImage307 = sectionTopRelativeToImage307 * scale;
-            //208
-            double newSectionLeftRelativeToImage3072 = sectionLeftRelativeToImage3072 * scale;
-            double newSectionTopRelativeToImage3072 = sectionTopRelativeToImage3072 * scale;
-            //209
-            double newSectionLeftRelativeToImage308 = sectionLeftRelativeToImage308 * scale;
-            double newSectionTopRelativeToImage308 = sectionTopRelativeToImage308 * scale;
-            //210
-            double newSectionLeftRelativeToImage309 = sectionLeftRelativeToImage309 * scale;
-            double newSectionTopRelativeToImage309 = sectionTopRelativeToImage309 * scale;
-            //211
-            double newSectionLeftRelativeToImage310 = sectionLeftRelativeToImage310 * scale;
-            double newSectionTopRelativeToImage310 = sectionTopRelativeToImage310 * scale;
-            //212
-            double newSectionLeftRelativeToImage311 = sectionLeftRelativeToImage311 * scale;
-            double newSectionTopRelativeToImage311 = sectionTopRelativeToImage311 * scale;
-            //212
-            double newSectionLeftRelativeToImage312 = sectionLeftRelativeToImage312 * scale;
-            double newSectionTopRelativeToImage312 = sectionTopRelativeToImage312 * scale;
+                // Calculate the position of each section relative to the image
+                double sectionLeftRelativeToImage = Canvas.GetLeft(section) - Canvas.GetLeft(image);
+                double sectionTopRelativeToImage = Canvas.GetTop(section) - Canvas.GetTop(image);
 
-            // Apply the new position of the clickable section
-            Canvas.SetLeft(clickableSection, Canvas.GetLeft(image) + newSectionLeftRelativeToImage);
-            Canvas.SetTop(clickableSection, Canvas.GetTop(image) + newSectionTopRelativeToImage);
-            //202
-            Canvas.SetLeft(clickableSection_Copy, Canvas.GetLeft(image) + newSectionLeftRelativeToImage302);
-            Canvas.SetTop(clickableSection_Copy, Canvas.GetTop(image) + newSectionTopRelativeToImage302);
-            //203
-            Canvas.SetLeft(clickableSection_Copy1, Canvas.GetLeft(image) + newSectionLeftRelativeToImage303);
-            Canvas.SetTop(clickableSection_Copy1, Canvas.GetTop(image) + newSectionTopRelativeToImage303);
-            //204
-            Canvas.SetLeft(clickableSection_Copy2, Canvas.GetLeft(image) + newSectionLeftRelativeToImage304);
-            Canvas.SetTop(clickableSection_Copy2, Canvas.GetTop(image) + newSectionTopRelativeToImage304);
-            //205
-            Canvas.SetLeft(clickableSection_Copy3, Canvas.GetLeft(image) + newSectionLeftRelativeToImage305);
-            Canvas.SetTop(clickableSection_Copy3, Canvas.GetTop(image) + newSectionTopRelativeToImage305);
-            //206
-            Canvas.SetLeft(clickableSection_Copy4, Canvas.GetLeft(image) + newSectionLeftRelativeToImage306);
-            Canvas.SetTop(clickableSection_Copy4, Canvas.GetTop(image) + newSectionTopRelativeToImage306);
-            //207
-            Canvas.SetLeft(clickableSection_Copy5, Canvas.GetLeft(image) + newSectionLeftRelativeToImage307);
-            Canvas.SetTop(clickableSection_Copy5, Canvas.GetTop(image) + newSectionTopRelativeToImage307);
-            //208
-            Canvas.SetLeft(clickableSection_Copy6, Canvas.GetLeft(image) + newSectionLeftRelativeToImage3072);
-            Canvas.SetTop(clickableSection_Copy6, Canvas.GetTop(image) + newSectionTopRelativeToImage3072);
-            //209
-            Canvas.SetLeft(clickableSection_Copy7, Canvas.GetLeft(image) + newSectionLeftRelativeToImage308);
-            Canvas.SetTop(clickableSection_Copy7, Canvas.GetTop(image) + newSectionTopRelativeToImage308);
-            //210
-            Canvas.SetLeft(clickableSection_Copy8, Canvas.GetLeft(image) + newSectionLeftRelativeToImage309);
-            Canvas.SetTop(clickableSection_Copy8, Canvas.GetTop(image) + newSectionTopRelativeToImage309);
-            //211
-            Canvas.SetLeft(clickableSection_Copy9, Canvas.GetLeft(image) + newSectionLeftRelativeToImage310);
-            Canvas.SetTop(clickableSection_Copy9, Canvas.GetTop(image) + newSectionTopRelativeToImage310);
-            //212
-            Canvas.SetLeft(clickableSection_Copy10, Canvas.GetLeft(image) + newSectionLeftRelativeToImage311);
-            Canvas.SetTop(clickableSection_Copy10, Canvas.GetTop(image) + newSectionTopRelativeToImage311);
-            //212
-            Canvas.SetLeft(clickableSection_Copy11, Canvas.GetLeft(image) + newSectionLeftRelativeToImage312);
-            Canvas.SetTop(clickableSection_Copy11, Canvas.GetTop(image) + newSectionTopRelativeToImage312);
+                // Calculate the new position after scaling
+                double newSectionLeftRelativeToImage = sectionLeftRelativeToImage * scale;
+                double newSectionTopRelativeToImage = sectionTopRelativeToImage * scale;
 
-            ResetInteractionTimer();
+                // Set the new position
+                Canvas.SetLeft(section, Canvas.GetLeft(image) + newSectionLeftRelativeToImage);
+                Canvas.SetTop(section, Canvas.GetTop(image) + newSectionTopRelativeToImage);
+            }
         }
 
 

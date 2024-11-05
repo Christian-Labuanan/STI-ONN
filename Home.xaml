@@ -14,7 +14,7 @@
     <Viewbox  StretchDirection="Both">
         <Grid Background="#FFEAF2FF" HorizontalAlignment="Center" VerticalAlignment="Center" Height="1080" Width="1920">
             <Rectangle HorizontalAlignment="Center" Height="130" Margin="0,955,0,0" Stroke="#0B5793" Fill="#0B5793" VerticalAlignment="Top" Width="1920"/>
-            <Image x:Name="STI_ONN" Height="472" Width="684" Source="assets/STI ONN Logo transparent 3.png" Stretch="Fill" Margin="0,-144,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <Image x:Name="STI_ONN" Height="127" Width="392" Source="assets/STI ONN Logo transparent 3.png" Stretch="Fill" Margin="767,28,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <Button x:Name="touch" HorizontalAlignment="Left" Margin="57,28,0,0" VerticalAlignment="Top" Height="68" Width="72" FontSize="60" FontFamily="Tw Cen MT" FontWeight="Bold" Foreground="Black" BorderBrush="{x:Null}" Background="#FFD4D4D4" Opacity="0.85" Click="touch_Click_1">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
@@ -23,44 +23,81 @@
                 </Button.Resources>
                 <Image Source="/assets/Icons/back.png" Stretch="Fill" Height="42" Width="30"/>
             </Button>
-            <Rectangle HorizontalAlignment="Left" Height="684" Margin="168,271,0,0" Stroke="#FFE4E4E4" VerticalAlignment="Top" Width="752" Opacity="1" RadiusX="50" RadiusY="50" Fill="White"/>
-            <Rectangle HorizontalAlignment="Left" Height="678" Margin="1027,277,0,0" Stroke="#FFE4E4E4" VerticalAlignment="Top" Width="736" Opacity="1" RadiusX="50" RadiusY="50" Fill="White"/>
-            <Button Margin="1054,281,169,0" VerticalAlignment="Top" Height="668" FontSize="55" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" Click="Button_Click2" Foreground="Black" BorderBrush="{x:Null}">
-                <Button.Resources>
-                    <Style TargetType="{x:Type Border}">
-                        <Setter Property="CornerRadius" Value="50"/>
-                    </Style>
-                </Button.Resources>
-                <Button.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform AngleY="0.029"/>
-                        <RotateTransform Angle="0.092"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Button.RenderTransform>
-                <Image Source="/assets/Icons/announcement.png" Stretch="Fill" RenderTransformOrigin="0.23,0.141" Height="512" Width="512"/>
-            </Button>
-            <Label Content="Check Announcement" HorizontalAlignment="Left" Margin="1121,859,0,0" VerticalAlignment="Top" Height="108" Width="586" FontSize="55" FontFamily="Leelawadee" FontWeight="Bold"/>
-            <Button Margin="180,269,1012,0" VerticalAlignment="Top" Height="680" FontSize="55" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" Click="Button_Click" Foreground="Black" BorderBrush="{x:Null}">
-                <Button.Resources>
-                    <Style TargetType="{x:Type Border}">
-                        <Setter Property="CornerRadius" Value="50"/>
-                    </Style>
-                </Button.Resources>
-                <Button.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform AngleY="0.026"/>
-                        <RotateTransform Angle="0.093"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Button.RenderTransform>
-                <Image Source="/assets/Icons/building.png" Stretch="Fill" Height="450" Width="450"/>
-            </Button>
-            <Label Content="Navigate Building" HorizontalAlignment="Left" Margin="312,859,0,0" VerticalAlignment="Top" Height="108" Width="488" FontSize="55" FontFamily="Leelawadee" FontWeight="Bold"/>
-            <Label Content="What will you be doing today?" HorizontalAlignment="Left" Margin="618,196,0,0" VerticalAlignment="Top" FontSize="50" FontFamily="Dutch801 XBd BT" Foreground="Black"/>
-            
+
+            <!-- Use a Grid to distribute the buttons evenly -->
+            <Grid Margin="20,250,20,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".7*"/>
+                    <!-- First button -->
+                    <ColumnDefinition Width=".7*"/>
+                    <!-- Second button -->
+                    <ColumnDefinition Width=".7*"/>
+                    <!-- Third button -->
+                </Grid.ColumnDefinitions>
+
+                <!-- Navigate Building Button with White Background -->
+                <Rectangle Grid.Column="0" HorizontalAlignment="Center" Height="680" Stroke="#FFE4E4E4" VerticalAlignment="Top" Width="600" RadiusX="50" RadiusY="50" Fill="White"/>
+                <Button Grid.Column="0" VerticalAlignment="Top" Height="680" FontSize="55" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" Click="Button_Click" Foreground="Black" BorderBrush="{x:Null}">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="50"/>
+                        </Style>
+                    </Button.Resources>
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform AngleY="0.026"/>
+                            <RotateTransform Angle="0.093"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                    <Image Source="/assets/Icons/building.png" Stretch="Fill" Height="450" Width="450"/>
+                </Button>
+                <Label Content="Navigate Building" Grid.Column="0" HorizontalAlignment="Center" Margin="0,580,0,0" VerticalAlignment="Top" Height="108" Width="488" FontSize="55" FontFamily="Leelawadee" FontWeight="Bold"/>
+
+                <!-- Check Announcement Button with White Background -->
+                <Rectangle Grid.Column="1" HorizontalAlignment="Center" Height="680" Stroke="#FFE4E4E4" VerticalAlignment="Top" Width="600" RadiusX="50" RadiusY="50" Fill="White"/>
+                <Button Grid.Column="1" VerticalAlignment="Top" Height="680" FontSize="55" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" Click="Button_Click2" Foreground="Black" BorderBrush="{x:Null}">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="50"/>
+                        </Style>
+                    </Button.Resources>
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform AngleY="0.029"/>
+                            <RotateTransform Angle="0.092"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                    <Image Source="/assets/Icons/announcement.png" Stretch="Fill" RenderTransformOrigin="0.23,0.141" Height="512" Width="512"/>
+                </Button>
+                <Label Content="Check Announcement" Grid.Column="1" HorizontalAlignment="Center" Margin="0,580,0,0" VerticalAlignment="Top" Height="108" Width="586" FontSize="55" FontFamily="Leelawadee" FontWeight="Bold"/>
+
+                <!-- Professor's Schedule Button with White Background -->
+                <Rectangle Grid.Column="2" HorizontalAlignment="Center" Height="680" Stroke="#FFE4E4E4" VerticalAlignment="Top" Width="600" RadiusX="50" RadiusY="50" Fill="White"/>
+                <Button Grid.Column="2" VerticalAlignment="Top" Height="680" FontSize="55" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" Click="Button_Click_ProfessorSchedule" Foreground="Black" BorderBrush="{x:Null}">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="50"/>
+                        </Style>
+                    </Button.Resources>
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform AngleY="0.029"/>
+                            <RotateTransform Angle="0.092"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                    <Image Source="/assets/Icons/schedule.png" Stretch="Fill" RenderTransformOrigin="0.23,0.141" Height="512" Width="512"/>
+                </Button>
+                <Label Content="Instructor's Schedule" Grid.Column="2" HorizontalAlignment="Center" Margin="0,580,0,0" VerticalAlignment="Top" Height="108" Width="586" FontSize="55" FontFamily="Leelawadee" FontWeight="Bold"/>
+            </Grid>
+            <!--Main Title -->
+            <Label Content="What will you be doing today?" HorizontalAlignment="Left" Margin="618,146,0,0" VerticalAlignment="Top" FontSize="50" FontFamily="Dutch801 XBd BT" Foreground="Black"/>
+
         </Grid>
     </Viewbox>
 </Window>
