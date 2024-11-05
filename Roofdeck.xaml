@@ -14,7 +14,7 @@
     <Viewbox StretchDirection="Both">
         <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="1080" Width="1920">
             <Grid Margin="492,0,0,947">
-                <Image Margin="357,-180,357,-179" Source="/assets/STI ONN Logo transparent 3.png" Stretch="Fill"/>
+                <Image Margin="560,25,560,0" Source="/assets/STI ONN Logo transparent 3.png" Stretch="Fill"/>
             </Grid>
             <Grid Margin="0,0,1488,0" Background="#FFEAF2FF">
                 <Label Content="Floor Map" HorizontalAlignment="Center" Margin="0,24,0,0" VerticalAlignment="Top" FontSize="55" FontWeight="Bold" FontFamily="Tw Cen MT"/>

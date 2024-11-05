@@ -58,7 +58,7 @@ namespace STI_ONN
         private void LoadExcelContent()
         {
             // Specify the path to your Excel file
-            string excelFilePath = @"C:\Users\Rodmar\OneDrive\Documents\GitHub\STI-ONN\assets\Schedules\Floor 2 schedule.xlsx";
+            string excelFilePath = @"D:\FILES\COLLEGE\Thesis Code\STI ONN\assets\Schedules\Floor 2 schedule.xlsx";
 
             // Create a new Excel Application
             Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
