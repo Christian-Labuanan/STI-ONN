@@ -15,7 +15,7 @@
         <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="1080" Width="1920">
             <!-- Logo -->
             <Grid Margin="492,0,0,947">
-                <Image Margin="357,-180,357,-179" Source="/assets/STI ONN Logo transparent 3.png" Stretch="Fill"/>
+                <Image Margin="560,25,560,0" Source="/assets/STI ONN Logo transparent 3.png" Stretch="Fill"/>
             </Grid>
 
             <!-- Sidebar Menu -->
@@ -180,7 +180,7 @@
                         </Image>
 
                         <!-- Clickable Sections -->
-                        <Rectangle Name="clickableSection" Fill="Transparent" MouseDown="room301" Canvas.Left="386" Canvas.Top="311" Height="91" Width="88" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <Rectangle Name="clickableSection" Fill="Transparent" MouseDown="room301" Canvas.Left="342" Canvas.Top="293" Height="100" Width="88" HorizontalAlignment="Center" VerticalAlignment="Top">
                             <Rectangle.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleX="1.068"/>
@@ -191,7 +191,7 @@
                             </Rectangle.RenderTransform>
                         </Rectangle>
 
-                        <Rectangle x:Name="clickableSection_Copy" Fill="Transparent" MouseDown="room302" Canvas.Left="484" Canvas.Top="319" Height="83" Width="76" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <Rectangle x:Name="clickableSection_Copy" Fill="Transparent" MouseDown="room302" Canvas.Left="452" Canvas.Top="293" Height="100" Width="76" HorizontalAlignment="Center" VerticalAlignment="Top">
                             <Rectangle.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleX="1.076" ScaleY="1.004"/>
@@ -201,7 +201,7 @@
                                 </TransformGroup>
                             </Rectangle.RenderTransform>
                         </Rectangle>
-                        <Rectangle x:Name="clickableSection_Copy1" Fill="Transparent" MouseDown="room303" Canvas.Left="574" Canvas.Top="312" Height="84" Width="114" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <Rectangle x:Name="clickableSection_Copy1" Fill="Transparent" MouseDown="room303" Canvas.Left="556" Canvas.Top="290" Height="97" Width="123" HorizontalAlignment="Left" VerticalAlignment="Top">
                             <Rectangle.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleX="1.026"/>
@@ -211,17 +211,17 @@
                                 </TransformGroup>
                             </Rectangle.RenderTransform>
                         </Rectangle>
-                        <Rectangle x:Name="clickableSection_Copy2" Fill="Transparent" MouseDown="room304" Canvas.Left="700" Canvas.Top="312" Height="84" Width="102" HorizontalAlignment="Center" VerticalAlignment="Top">
+                        <Rectangle x:Name="clickableSection_Copy2" Fill="Transparent" MouseDown="room304" Canvas.Left="698" Canvas.Top="292" Height="100" Width="103" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Rectangle.RenderTransform>
                                 <TransformGroup>
-                                    <ScaleTransform ScaleX="0.985"/>
-                                    <SkewTransform AngleX="-25" AngleY="17.161"/>
+                                    <ScaleTransform ScaleX="1.01"/>
+                                    <SkewTransform AngleX="-25" AngleY="13.896"/>
                                     <RotateTransform Angle="-16.822"/>
                                     <TranslateTransform X="-0.194" Y="1.302"/>
                                 </TransformGroup>
                             </Rectangle.RenderTransform>
                         </Rectangle>
-                        <Rectangle x:Name="clickableSection_Copy3" Fill="Transparent" MouseDown="room305" Canvas.Left="810" Canvas.Top="312" Height="84" Width="130" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <Rectangle x:Name="clickableSection_Copy3" Fill="Transparent" MouseDown="room305" Canvas.Left="824" Canvas.Top="292" Height="95" Width="139" HorizontalAlignment="Left" VerticalAlignment="Top">
                             <Rectangle.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleX="0.913"/>
@@ -231,7 +231,7 @@
                                 </TransformGroup>
                             </Rectangle.RenderTransform>
                         </Rectangle>
-                        <Rectangle x:Name="clickableSection_Copy4" Fill="Transparent" MouseDown="room306" Canvas.Left="994" Canvas.Top="313" Height="84" Width="129" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <Rectangle x:Name="clickableSection_Copy4" Fill="Transparent" MouseDown="room306" Canvas.Left="1038" Canvas.Top="285" Height="104" Width="129" HorizontalAlignment="Center" VerticalAlignment="Top">
                             <Rectangle.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleX="0.866"/>
@@ -241,7 +241,7 @@
                                 </TransformGroup>
                             </Rectangle.RenderTransform>
                         </Rectangle>
-                        <Rectangle x:Name="clickableSection_Copy5" Fill="Transparent" MouseDown="room307" Canvas.Left="454" Canvas.Top="433" Height="163" Width="100" HorizontalAlignment="Center" VerticalAlignment="Top">
+                        <Rectangle x:Name="clickableSection_Copy5" Fill="Transparent" MouseDown="room307" Canvas.Left="420" Canvas.Top="453" Height="185" Width="103" HorizontalAlignment="Left" VerticalAlignment="Center">
                             <Rectangle.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleX="1.027"/>
@@ -251,7 +251,7 @@
                                 </TransformGroup>
                             </Rectangle.RenderTransform>
                         </Rectangle>
-                        <Rectangle x:Name="clickableSection_Copy6" Fill="Transparent" MouseDown="room3072" Canvas.Left="458" Canvas.Top="521" Height="219" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <Rectangle x:Name="clickableSection_Copy6" Fill="Transparent" MouseDown="room3072" Canvas.Left="461" Canvas.Top="543" Height="269" Width="146" HorizontalAlignment="Left" VerticalAlignment="Top">
                             <Rectangle.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleX="0.896" ScaleY="1.207"/>
@@ -261,7 +261,7 @@
                                 </TransformGroup>
                             </Rectangle.RenderTransform>
                         </Rectangle>
-                        <Rectangle x:Name="clickableSection_Copy7" Fill="Transparent" MouseDown="room308" Canvas.Left="592" Canvas.Top="413" Height="181" Width="108" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <Rectangle x:Name="clickableSection_Copy7" Fill="Transparent" MouseDown="room308" Canvas.Left="574" Canvas.Top="433" Height="207" Width="117" HorizontalAlignment="Left" VerticalAlignment="Top">
                             <Rectangle.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleX="1.011" ScaleY="1.002"/>
@@ -271,17 +271,17 @@
                                 </TransformGroup>
                             </Rectangle.RenderTransform>
                         </Rectangle>
-                        <Rectangle x:Name="clickableSection_Copy8" Fill="Transparent" MouseDown="room309" Canvas.Left="709" Canvas.Top="413" Height="181" Width="124" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <Rectangle x:Name="clickableSection_Copy8" Fill="Transparent" MouseDown="room309" Canvas.Left="709" Canvas.Top="425" Height="210" Width="131" HorizontalAlignment="Left" VerticalAlignment="Top">
                             <Rectangle.RenderTransform>
                                 <TransformGroup>
-                                    <ScaleTransform ScaleX="0.984" ScaleY="1.002"/>
-                                    <SkewTransform AngleX="-24.519" AngleY="17.42"/>
-                                    <RotateTransform Angle="-18.363"/>
+                                    <ScaleTransform ScaleX="0.945" ScaleY="1.002"/>
+                                    <SkewTransform AngleX="-24.519" AngleY="22.587"/>
+                                    <RotateTransform Angle="-21.248"/>
                                     <TranslateTransform X="-5.713" Y="35.856"/>
                                 </TransformGroup>
                             </Rectangle.RenderTransform>
                         </Rectangle>
-                        <Rectangle x:Name="clickableSection_Copy9" Fill="Transparent" MouseDown="room310" Canvas.Left="843" Canvas.Top="413" Height="176" Width="137" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <Rectangle x:Name="clickableSection_Copy9" Fill="Transparent" MouseDown="room310" Canvas.Left="857" Canvas.Top="425" Height="220" Width="152" HorizontalAlignment="Left" VerticalAlignment="Top">
                             <Rectangle.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleX="0.926" ScaleY="1.002"/>
@@ -291,7 +291,7 @@
                                 </TransformGroup>
                             </Rectangle.RenderTransform>
                         </Rectangle>
-                        <Rectangle x:Name="clickableSection_Copy10" Fill="Transparent" MouseDown="room311" Canvas.Left="1049" Canvas.Top="590" Height="228" Width="115" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <Rectangle x:Name="clickableSection_Copy10" Fill="Transparent" MouseDown="room311" Canvas.Left="1089" Canvas.Top="640" Height="256" Width="131" HorizontalAlignment="Left" VerticalAlignment="Top">
                             <Rectangle.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleX="0.926" ScaleY="0.957"/>
@@ -333,6 +333,36 @@
                 </StackPanel>
 
             </Grid>
+
+            <!-- Navigation Animation -->
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Top" Height="63" Canvas.Left="760" Canvas.Top="506" Margin="0,381,291,0">
+                <TextBlock x:Name="desc1" FontSize="18" FontWeight="Bold" FontFamily="Tw Cen MT" Foreground="Black" Height="39">
+                     <Run Text="This way to Multipurpose Hall"/>
+                </TextBlock>
+
+                <ItemsControl x:Name="ArrowsContainer" HorizontalAlignment="Center">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </StackPanel>
+
+            <StackPanel  Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Height="63" Canvas.Left="494" Canvas.Top="502" Margin="763,381,0,0">
+
+                <TextBlock x:Name="desc2" FontSize="18" FontWeight="Bold" FontFamily="Tw Cen MT" Foreground="Black" Height="39">
+                    <Run Text="This way to Library"/>
+                </TextBlock>
+                <ItemsControl x:Name="ArrowsContainer2" HorizontalAlignment="Center">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+
+            </StackPanel>
 
             <!-- Dimming Overlay -->
             <Rectangle Fill="#80000000" Visibility="Collapsed" Name="dimmingOverlay"/>
