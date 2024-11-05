@@ -49,6 +49,7 @@
     <None Remove="assets\Maps\Mezzanine.png" />
     <None Remove="assets\Maps\Roofdeck.png" />
     <None Remove="assets\Maps\Roofdeck5th.png" />
+    <None Remove="assets\sti calamba.png" />
     <None Remove="assets\zoom-in.png" />
     <None Remove="assets\zoom-out.png" />
     <None Remove="assets\zoom-reset.png" />
@@ -114,6 +115,7 @@
     <Resource Include="assets\Maps\Ground3d.png" />
     <Resource Include="assets\Maps\Mezzanine.png" />
     <Resource Include="assets\Maps\Roofdeck5th.png" />
+    <Resource Include="assets\sti calamba.png" />
     <Resource Include="assets\STI ONN Logo transparent 3.png" />
     <Resource Include="assets\Icons\zoom-in.png" />
     <Resource Include="assets\Icons\zoom-out.png" />

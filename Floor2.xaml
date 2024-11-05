@@ -200,7 +200,7 @@
                                 </TransformGroup>
                             </Image.RenderTransform>
                         </Image>
-                        <Rectangle Name="clickableSection" Fill="red"
+                        <Rectangle Name="clickableSection" Fill="transparent"
                     MouseDown="room201" Canvas.Left="326" Canvas.Top="302" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="110" Width="87">
                             <Rectangle.RenderTransform>
                                 <TransformGroup>
