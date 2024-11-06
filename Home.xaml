@@ -14,7 +14,7 @@
     <Viewbox  StretchDirection="Both">
         <Grid Background="#FFEAF2FF" HorizontalAlignment="Center" VerticalAlignment="Center" Height="1080" Width="1920">
             <Rectangle HorizontalAlignment="Center" Height="130" Margin="0,955,0,0" Stroke="#0B5793" Fill="#0B5793" VerticalAlignment="Top" Width="1920"/>
-            <Image x:Name="STI_ONN" Height="127" Width="392" Source="assets/STI ONN Logo transparent 3.png" Stretch="Fill" Margin="767,28,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Image x:Name="STI_ONN" Height="126" Width="334" Source="assets/STI ONN Logo transparent 3.png" Stretch="Fill" Margin="0,10,0,0" HorizontalAlignment="center" VerticalAlignment="Top"/>
 
             <Button x:Name="touch" HorizontalAlignment="Left" Margin="57,28,0,0" VerticalAlignment="Top" Height="68" Width="72" FontSize="60" FontFamily="Tw Cen MT" FontWeight="Bold" Foreground="Black" BorderBrush="{x:Null}" Background="#FFD4D4D4" Opacity="0.85" Click="touch_Click_1">
                 <Button.Resources>

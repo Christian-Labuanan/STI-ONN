@@ -79,7 +79,7 @@
                         </MenuItem.Icon>
                     </MenuItem>
 
-                    <MenuItem Margin="-1,237,1,-299" FontSize="40" FontWeight="Bold" Background="#FF0B5793">
+                    <MenuItem Margin="-1,237,1,-299" FontSize="25" FontWeight="Bold" Background="#FF0B5793">
                         <MenuItem.Header>
                             <Grid>
                                 <TextBlock Text="Ground" Margin="85,0,-86,0" Foreground="White" FontFamily="Leelawadee"/>
@@ -201,17 +201,6 @@
                                 </TransformGroup>
                             </Image.RenderTransform>
                         </Image>
-                        <Rectangle Name="clickableSection"
-                        MouseDown="ClickableSection_Click" Canvas.Left="543" Canvas.Top="321" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="125" Width="142" Fill="Transparent">
-                            <Rectangle.RenderTransform>
-                                <TransformGroup>
-                                    <ScaleTransform ScaleX="1.019"/>
-                                    <SkewTransform AngleX="-25" AngleY="12.682"/>
-                                    <RotateTransform Angle="-12.719"/>
-                                    <TranslateTransform X="1.277" Y="-6.034"/>
-                                </TransformGroup>
-                            </Rectangle.RenderTransform>
-                        </Rectangle>
 
                         <!-- Navigation Animation -->
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Top" Height="63" Canvas.Left="760" Canvas.Top="506">
@@ -228,7 +217,7 @@
                         </StackPanel>
 
                         <StackPanel  Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Height="63" Canvas.Left="494" Canvas.Top="502">
-                            
+
                             <TextBlock x:Name="desc2" Text="This way to Mezzanine" FontSize="24" FontWeight="Bold" FontFamily="Tw Cen MT" Foreground="Black" Height="34"/>
 
                             <ItemsControl x:Name="ArrowsContainer2" HorizontalAlignment="Center">

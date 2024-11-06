@@ -38,8 +38,8 @@ namespace STI_ONN
 
             // Center window and set size
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            this.Width = 600; // Adjust as necessary
-            this.Height = 450; // Adjust as necessary
+            this.Width = 1150; // Adjust as necessary
+            this.Height = 950; // Adjust as necessary
 
             // Inside the constructor or initialization method
             ScrollViewer scrollViewer = new ScrollViewer
@@ -74,8 +74,8 @@ namespace STI_ONN
                     var image = new System.Windows.Controls.Image
                     {
                         Source = new BitmapImage(new Uri(match.Value)),
-                        Width = 300,
-                        Height = 200,
+                        Width = 1150,
+                        Height = 950,
                         Margin = new Thickness(5)
                     };
                     ImageContainer.Children.Add(image);

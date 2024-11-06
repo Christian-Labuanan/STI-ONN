@@ -51,7 +51,7 @@
         </Grid>
 
         <!-- Main container with scrollable content -->
-        <ScrollViewer VerticalScrollBarVisibility="hidden" HorizontalScrollBarVisibility="Disabled" DockPanel.Dock="Bottom" PanningMode="VerticalOnly">
+        <ScrollViewer VerticalScrollBarVisibility="hidden" HorizontalScrollBarVisibility="Disabled" DockPanel.Dock="Bottom" PanningMode="VerticalOnly" Height="549">
             <StackPanel Margin="10">
                 <!-- Announcement title display -->
                 <TextBlock x:Name="DetailTitle" 

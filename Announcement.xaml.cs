@@ -54,19 +54,19 @@ namespace STI_ONN
             announcementDetailWindow.ShowDialog();
 
         }
-        // Method to dim or restore the opacity of announcement cards
-        private void DimAnnouncementCards(bool dim)
-        {
-            double opacityValue = dim ? 0.3 : 1.0; // Dim to 30% opacity or restore to 100%
-
-            foreach (var child in AnnouncementWrapPanel.Children)
+            // Method to dim or restore the opacity of announcement cards
+            private void DimAnnouncementCards(bool dim)
             {
-                if (child is Border card)
+                double opacityValue = dim ? 0.3 : 1.0; // Dim to 30% opacity or restore to 100%
+
+                foreach (var child in AnnouncementWrapPanel.Children)
                 {
-                    card.Opacity = opacityValue; // Set the opacity for each announcement card
+                    if (child is Border card)
+                    {
+                        card.Opacity = opacityValue; // Set the opacity for each announcement card
+                    }
                 }
             }
-        }
 
         // Fetches announcements from Firebase
         private async Task<List<AnnouncementItem>> GetAnnouncementsFromFirebase()
@@ -122,7 +122,7 @@ namespace STI_ONN
             var sortedAnnouncements = announcements
                 .Select(announcement =>
                 {
-                    announcement.IsNew = (now - announcement.Timestamp).TotalHours < 24; // Mark as new if posted within the last 24 hours
+                    announcement.IsNew = (now - announcement.Timestamp).TotalHours < 3; // Mark as new if posted within the last 3 hours
                     return announcement;
                 })
                 .OrderByDescending(announcement => announcement.Timestamp) // Sort from newest to oldest

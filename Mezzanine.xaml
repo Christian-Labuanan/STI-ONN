@@ -93,7 +93,7 @@
                         </MenuItem.Icon>
                     </MenuItem>
 
-                    <MenuItem Margin="0,317,0,-379" FontSize="40" FontWeight="Bold" Background="#FF0B5793">
+                    <MenuItem Margin="0,317,0,-379" FontSize="25" FontWeight="Bold" Background="#FF0B5793">
                         <MenuItem.Header>
                             <Grid>
                                 <TextBlock Text="Mezzanine" Margin="85,0,-86,0" Foreground="White" FontFamily="Leelawadee"/>

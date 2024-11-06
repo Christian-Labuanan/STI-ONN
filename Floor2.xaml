@@ -107,7 +107,7 @@
                         </MenuItem.Icon>
                     </MenuItem>
 
-                    <MenuItem Margin="1,398,-1,-460" FontSize="40" FontWeight="Bold" Background="#FF0B5793">
+                    <MenuItem Margin="1,398,-1,-460" FontSize="25" FontWeight="Bold" Background="#FF0B5793">
                         <MenuItem.Header>
                             <Grid>
                                 <TextBlock Text="2nd Floor" Margin="85,0,-86,0" Foreground="White" FontFamily="Leelawadee"/>
