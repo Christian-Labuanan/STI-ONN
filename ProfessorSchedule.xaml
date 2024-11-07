@@ -11,8 +11,9 @@
         WindowStyle="None"
         Background="#FFEAF2FF">
     <Viewbox StretchDirection="Both">
-        <Grid Background="#FFEAF2FF" HorizontalAlignment="Center" VerticalAlignment="Center" Height="1080" Width="1920">
-            <Grid.ColumnDefinitions>
+        <Grid>
+            <Grid Background="#FFEAF2FF" HorizontalAlignment="Center" VerticalAlignment="Center" Height="1080" Width="1920">
+                <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="209*"/>
                 <ColumnDefinition Width="54*"/>
                 <ColumnDefinition Width="217*"/>
@@ -34,6 +35,9 @@
                 </Button.Resources>
                 <Image Source="/assets/Icons/back.png" Stretch="Fill" Height="42" Width="30"/>
             </Button>
+        </Grid>
+            <!-- Dim Overlay Rectangle -->
+            <Rectangle x:Name="DimOverlay" Fill="#99000000" Visibility="Collapsed" Panel.ZIndex="1000"/>
         </Grid>
     </Viewbox>
 </Window>

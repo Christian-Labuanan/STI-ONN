@@ -20,19 +20,29 @@ namespace STI_ONN
     /// </summary>
     public partial class Announcement : Window
     {
-
         public Announcement()
         {
             InitializeComponent();
             // Load announcements on startup
             LoadAnnouncements();
 
+
         }
 
         private async Task LoadAnnouncements()
         {
+          
+            var loadingWindow = new Loading { LoadingMessage = "Loading Announcements, please wait..." };
+            loadingWindow.Show();
+            // Disable the main window to prevent interaction
+            this.IsEnabled = false;
+
             var announcements = await GetAnnouncementsFromFirebase();
             PopulateAnnouncements(announcements);
+            loadingWindow.Close();
+            // Re-enable the main window
+            this.IsEnabled = true;
+
         }
 
         private void OpenAnnouncementDetail(AnnouncementItem announcement)

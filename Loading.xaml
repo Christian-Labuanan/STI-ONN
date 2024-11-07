@@ -10,7 +10,7 @@
     <Grid>
         <Border Background="White" CornerRadius="10" BorderBrush="Gray" BorderThickness="1">
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                <TextBlock FontSize="16" Margin="10"><Run Text="Loading"/><Run Language="en-ph" Text=" Room Schedule"/><Run Text=", please wait..."/></TextBlock>
+                <TextBlock x:Name="LoadingTextBlock" FontSize="16" Margin="10" FontWeight="Bold" HorizontalAlignment="Center" />
                 <ProgressBar Width="300" Height="20" Margin="10" Cursor="Wait" IsIndeterminate="True"/>
             </StackPanel>
         </Border>

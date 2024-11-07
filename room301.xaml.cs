@@ -34,13 +34,13 @@ namespace STI_ONN
 
         private async void DisplayExcelContent()
         {
+            // Disable the main window to prevent user interaction
+            this.IsEnabled = false;
             // Show loading window
             Loading loadingWindow = new Loading();
             loadingWindow.Topmost = true;
+            loadingWindow.LoadingMessage = "Loading 3rd Floor Room Schedule, please wait...";
             loadingWindow.Show();
-
-            // Pause execution for 3 seconds
-            await Task.Delay(3000);
 
             // Load Excel content asynchronously
             await Task.Run(() => LoadExcelContent());
@@ -53,6 +53,8 @@ namespace STI_ONN
 
             // Close loading window
             loadingWindow.Close();
+            // Re-enable the main window (Floor2Schedules)
+            this.IsEnabled = true;
         }
 
         private void LoadExcelContent()

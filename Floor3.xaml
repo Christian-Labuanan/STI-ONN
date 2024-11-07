@@ -72,7 +72,7 @@
                     </MenuItem>
 
                     <!-- Ground Floor Button -->
-                    <MenuItem Margin="-1,237,1,-299" FontSize="40" FontWeight="Bold" Click="ground_btn">
+                    <MenuItem Margin="-1,237,1,-299" FontSize="30" FontWeight="Bold" Click="ground_btn">
                         <MenuItem.Header>
                             <Grid>
                                 <TextBlock Text="Ground" Margin="85,0,-86,0" FontFamily="Leelawadee"/>
@@ -84,7 +84,7 @@
                     </MenuItem>
 
                     <!-- Mezzanine Button -->
-                    <MenuItem Margin="0,317,0,-379" FontSize="40" FontWeight="Bold" Click="mezzanine_btn">
+                    <MenuItem Margin="0,317,0,-379" FontSize="30" FontWeight="Bold" Click="mezzanine_btn">
                         <MenuItem.Header>
                             <Grid>
                                 <TextBlock Text="Mezzanine" Margin="85,0,-86,0" FontFamily="Leelawadee"/>
@@ -96,7 +96,7 @@
                     </MenuItem>
 
                     <!-- Second Floor Button -->
-                    <MenuItem Margin="1,398,-1,-460" FontSize="40" FontWeight="Bold" Click="floor2_btn">
+                    <MenuItem Margin="1,398,-1,-460" FontSize="30" FontWeight="Bold" Click="floor2_btn">
                         <MenuItem.Header>
                             <Grid>
                                 <TextBlock Text="2nd Floor" Margin="85,0,-86,0" FontFamily="Leelawadee"/>
@@ -108,7 +108,7 @@
                     </MenuItem>
 
                     <!-- Third Floor Button -->
-                    <MenuItem Margin="-1,478,1,-540" FontSize="25" FontWeight="Bold" Background="#FF0B5793" FontFamily="Leelawadee">
+                    <MenuItem Margin="-1,478,1,-540" FontSize="50" FontWeight="Bold" Background="#FF0B5793" FontFamily="Leelawadee">
                         <MenuItem.Header>
                             <Grid>
                                 <TextBlock Text="3rd Floor" Margin="85,0,-86,0" Foreground="White" FontFamily="Leelawadee"/>
@@ -120,7 +120,7 @@
                     </MenuItem>
 
                     <!-- Fourth Floor Button -->
-                    <MenuItem Margin="1,558,-1,-620" FontSize="40" FontWeight="Bold" Click="floor4_btn">
+                    <MenuItem Margin="1,558,-1,-620" FontSize="30" FontWeight="Bold" Click="floor4_btn">
                         <MenuItem.Header>
                             <Grid>
                                 <TextBlock Text="4th Floor" Margin="85,0,-86,0" FontFamily="Leelawadee"/>
@@ -132,7 +132,7 @@
                     </MenuItem>
 
                     <!-- Roof Deck Button -->
-                    <MenuItem Margin="-1,637,1,-699" FontSize="40" FontWeight="Bold" Click="roofdeck_btn">
+                    <MenuItem Margin="-1,637,1,-699" FontSize="30" FontWeight="Bold" Click="roofdeck_btn">
                         <MenuItem.Header>
                             <Grid>
                                 <TextBlock Text="Roof Deck" Margin="85,0,-86,0" FontFamily="Leelawadee"/>
@@ -142,7 +142,7 @@
                             <Image Source="/assets/Icons/roofdeck.png" Margin="45,-19,-81,-17"/>
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Margin="0,716,0,-778" FontSize="40" FontWeight="Bold" Click="court_btn">
+                    <MenuItem Margin="0,716,0,-778" FontSize="30" FontWeight="Bold" Click="court_btn">
                         <MenuItem.Header>
                             <Grid>
                                 <TextBlock Text="Court" Margin="85,0,-86,0" FontFamily="Leelawadee"/>

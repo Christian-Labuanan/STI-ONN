@@ -25,6 +25,7 @@
     <None Remove="assets\Icons\ground-white.png" />
     <None Remove="assets\Icons\ground.png" />
     <None Remove="assets\Icons\home.png" />
+    <None Remove="assets\Icons\instructor.png" />
     <None Remove="assets\Icons\megaphone.png" />
     <None Remove="assets\Icons\mezanine-white.png" />
     <None Remove="assets\Icons\mezanine.png" />
@@ -95,6 +96,7 @@
     <Resource Include="assets\Icons\default-image.png" />
     <Resource Include="assets\Icons\ground-white.png" />
     <Resource Include="assets\Icons\ground.png" />
+    <Resource Include="assets\Icons\instructor.png" />
     <Resource Include="assets\Icons\megaphone.png" />
   </ItemGroup>
 

@@ -37,8 +37,16 @@ namespace STI_ONN
 
         private async Task LoadInstructors()
         {
+            var loadingWindow = new Loading { LoadingMessage = "Loading Instructor Schedule, please wait..." };
+            loadingWindow.Show();
+            // Disable the main window to prevent interaction
+            this.IsEnabled = false;
+
             var instructors = await GetInstructorsFromFirebase();
             PopulateInstructorCards(instructors);
+            loadingWindow.Close();
+            // Re-enable the main window
+            this.IsEnabled = true;
         }
 
         private async Task<List<Instructor>> GetInstructorsFromFirebase()
@@ -97,8 +105,8 @@ namespace STI_ONN
         {
             var cardBorder = new Border
             {
-                Width = 300,
-                Height = 300,
+                Width = 250,
+                Height = 250,
                 Margin = new Thickness(15),
                 Background = Brushes.White,
                 CornerRadius = new CornerRadius(15),
@@ -111,6 +119,20 @@ namespace STI_ONN
                     ShadowDepth = 2
                 }
             };
+            // Attach click event to the card border
+            cardBorder.MouseLeftButtonUp += (s, e) => OpenSchedule(instructor.ScheduleUrl, instructor.Name, instructor.AvatarUrl);
+
+            // Add hover effect
+            cardBorder.MouseEnter += (s, e) =>
+            {
+                cardBorder.Background = new SolidColorBrush(Color.FromRgb(230, 240, 255)); // Light blue on hover
+                cardBorder.BorderBrush = Brushes.SkyBlue;
+            };
+            cardBorder.MouseLeave += (s, e) =>
+            {
+                cardBorder.Background = Brushes.White; // Reset to original color
+                cardBorder.BorderBrush = Brushes.LightGray;
+            };
 
             var stackPanel = new StackPanel
             {
@@ -118,7 +140,6 @@ namespace STI_ONN
                 {
                     CreateNameTextBlock(instructor.Name),
                     CreateAvatarImage(instructor.AvatarUrl),
-                    CreateViewScheduleButton(instructor.ScheduleUrl, instructor.Name, instructor.AvatarUrl)
                 }
             };
 
@@ -152,28 +173,23 @@ namespace STI_ONN
             };
         }
 
-        private Button CreateViewScheduleButton(string scheduleUrl, string instructorName, string instructorAvatarUrl)
-        {
-            var button = new Button
-            {
-                Content = "View Schedule",
-                Margin = new Thickness(10),
-                Padding = new Thickness(10),
-                Background = Brushes.LightBlue,
-                BorderBrush = Brushes.Transparent,
-                HorizontalAlignment = HorizontalAlignment.Center
-            };
-            button.Click += (s, e) => OpenSchedule(scheduleUrl, instructorName, instructorAvatarUrl);
-            return button;
-        }
 
         private async void OpenSchedule(string scheduleUrl, string instructorName, string instructorAvatarUrl)
         {
             if (!string.IsNullOrEmpty(scheduleUrl))
             {
+                // Show the dim overlay
+                DimOverlay.Visibility = Visibility.Visible;
+                // Show loading screen while the schedule is loading
+                var loadingWindow = new Loading { LoadingMessage = "Loading Schedule, please wait..." };
+                loadingWindow.Show();
                 var scheduleViewer = new ScheduleViewer();
                 await scheduleViewer.LoadSchedule(scheduleUrl, instructorName, instructorAvatarUrl);
                 scheduleViewer.ShowDialog();
+                // Hide the loading window when ScheduleViewer closes
+                loadingWindow.Close();
+                // Hide the dim overlay when ScheduleViewer closes
+                DimOverlay.Visibility = Visibility.Collapsed;
             }
             else
             {
