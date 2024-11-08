@@ -58,8 +58,6 @@ namespace STI_ONN
         }
         public async Task LoadSchedule(string scheduleUrl, string instructorName, string instructorAvatarUrl)
         {
-            var loadingWindow = new Loading();
-            loadingWindow.Show();
 
             try
             {
@@ -104,10 +102,7 @@ namespace STI_ONN
             {
                 MessageBox.Show("Failed to load schedule: " + ex.Message);
             }
-            finally
-            {
-                loadingWindow.Close();
-            }
+            
         }
         private void FullscreenButton_Click(object sender, RoutedEventArgs e)
         {

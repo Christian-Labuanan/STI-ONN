@@ -10,42 +10,44 @@
         WindowStyle="None" ResizeMode="NoResize"
         Background="#FFEAF2FF">
     <Grid>
-        <!-- Fixed Top Overlay for Title and Buttons -->
-        <Grid VerticalAlignment="Top" Height="50" Background="#FFD6E6F2" Panel.ZIndex="1" DockPanel.Dock="Top">
+        <Grid VerticalAlignment="Top" Height="60" Background="#FFD6E6F2" Panel.ZIndex="1" DockPanel.Dock="Top">
             <!-- Title Label -->
             <TextBlock Text="Instructor Schedule" 
-                       HorizontalAlignment="Center" 
-                       VerticalAlignment="Center" 
-                       FontSize="20" 
-                       FontWeight="Bold"
-                       Foreground="#333" />
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center" 
+            FontSize="20" 
+            FontWeight="Bold"
+            Foreground="#333" />
 
             <!-- Fullscreen Button -->
-            <Button Content="⛶" Width="44" Height="44" 
-                    HorizontalAlignment="Right" VerticalAlignment="Top" 
-                    Margin="0,3,60,0" 
-                    FontSize="18" FontFamily="Arial" FontWeight="Bold" 
-                    Background="#FF305496" Foreground="White" BorderBrush="{x:Null}"
-                    Click="FullscreenButton_Click"
-                    Focusable="False">
+            <Button Content="⛶" Width="55" Height="55" 
+            HorizontalAlignment="Right" VerticalAlignment="Top" 
+            Margin="0,3,75,0" 
+            FontSize="18" FontFamily="Arial" FontWeight="Bold" 
+            Background="#FF305496" Foreground="White" BorderBrush="{x:Null}"
+            Click="FullscreenButton_Click"
+            Focusable="False">
+                <!-- Added Focusable="False" -->
+
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
-                        <Setter Property="CornerRadius" Value="20"/>
+                        <Setter Property="CornerRadius" Value="30"/>
                     </Style>
                 </Button.Resources>
             </Button>
 
             <!-- Close Button -->
-            <Button Content="X" Width="44" Height="44" 
-                    HorizontalAlignment="Right" VerticalAlignment="Top" 
-                    Margin="0,3,10,0" 
-                    FontSize="18" FontFamily="Arial" FontWeight="Bold" 
-                    Background="#FF305496" Foreground="White" BorderBrush="{x:Null}"
-                    Click="CloseButton_Click"
-                    Focusable="False">
+            <Button Content="X" Width="55" Height="55" 
+            HorizontalAlignment="Right" VerticalAlignment="Top" 
+            Margin="0,3,10,0" 
+            FontSize="18" FontFamily="Arial" FontWeight="Bold" 
+            Background="#FF305496" Foreground="White" BorderBrush="{x:Null}"
+            Click="CloseButton_Click"
+            Focusable="False">
+                <!-- Added Focusable="False" -->
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
-                        <Setter Property="CornerRadius" Value="20"/>
+                        <Setter Property="CornerRadius" Value="30"/>
                     </Style>
                 </Button.Resources>
             </Button>
@@ -56,7 +58,11 @@
             <Grid>
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20">
                     <!-- Instructor's Avatar -->
-                    <Image x:Name="InstructorImage" Height="150" Width="150" Stretch="Uniform" HorizontalAlignment="Center" Margin="10"/>
+                    <Image x:Name="InstructorImage" Height="200" Width="200" Stretch="Uniform" HorizontalAlignment="Center" Margin="10" >
+                        <Image.Clip>
+                            <EllipseGeometry Center="100,100" RadiusX="100" RadiusY="100" />
+                        </Image.Clip>
+                    </Image>
 
                     <!-- Instructor's Name -->
                     <TextBlock x:Name="InstructorNameTextBlock" FontWeight="Bold" FontSize="24" HorizontalAlignment="Center" Margin="10"/>
@@ -64,7 +70,35 @@
                     <!-- Schedule DataGrid (Read-Only) -->
                     <DataGrid x:Name="ScheduleDataGrid" AutoGenerateColumns="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
                               IsReadOnly="True" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserReorderColumns="False" 
-                              CanUserSortColumns="False" PreviewMouseWheel="DataGrid_PreviewMouseWheel" ManipulationDelta="DataGrid_ManipulationDelta"/>
+                              CanUserSortColumns="False" PreviewMouseWheel="DataGrid_PreviewMouseWheel" ManipulationDelta="DataGrid_ManipulationDelta">
+                        <!-- Styles for DataGrid Cells -->
+                        <DataGrid.Resources>
+                            <!-- General Style for all DataGridCells -->
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="Background" Value="#FFF2CC"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="FontWeight" Value="Normal"/>
+                                <Setter Property="Padding" Value="10"/>
+                                <Style.Triggers>
+                                    <!-- Style for the first column (blue background) -->
+                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Column.DisplayIndex}" Value="0">
+                                        <Setter Property="Background" Value="#305496"/>
+                                        <Setter Property="Foreground" Value="White"/>
+                                        <Setter Property="FontWeight" Value="Bold"/>
+                                        <Setter Property="Padding" Value="10"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+
+                            <!-- Style for DataGridColumnHeader (blue background for header) -->
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="Background" Value="#305496"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            </Style>
+                        </DataGrid.Resources>
+                    </DataGrid>
                 </StackPanel>
             </Grid>
         </ScrollViewer>

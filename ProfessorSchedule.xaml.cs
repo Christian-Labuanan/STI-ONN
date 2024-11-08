@@ -17,6 +17,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using DocumentFormat.OpenXml.Bibliography;
 
 namespace STI_ONN
 {
@@ -43,8 +44,25 @@ namespace STI_ONN
             this.IsEnabled = false;
 
             var instructors = await GetInstructorsFromFirebase();
+
+            // Assign the retrieved instructors to the Instructors collection for filtering
+            Instructors = new ObservableCollection<Instructor>(instructors);
+
+            // Populate the department ComboBox with distinct and sorted departments
+            var departments = Instructors
+                .Select(i => i.Department)
+                .Distinct()
+                .OrderBy(d => d)
+                .ToList();
+            departments.Insert(0, "All"); // Add "All" as the first item
+            DepartmentComboBox.ItemsSource = departments;
+            DepartmentComboBox.SelectedIndex = 0; // Default to "All"
+
             PopulateInstructorCards(instructors);
+            // Add a small delay to ensure the UI has finished processing
+            await Task.Delay(100);
             loadingWindow.Close();
+
             // Re-enable the main window
             this.IsEnabled = true;
         }
@@ -60,6 +78,7 @@ namespace STI_ONN
                 {
                     Name = item.Object.Name,
                     AvatarUrl = item.Object.AvatarUrl,
+                    Department = item.Object.Department, // Ensure this field exists in your data
                     ScheduleUrl = item.Object.ScheduleUrl,
                     Timestamp = item.Object.Timestamp
                 }).ToList();
@@ -68,6 +87,58 @@ namespace STI_ONN
             {
                 MessageBox.Show("Error fetching instructors: " + ex.Message);
                 return new List<Instructor>();
+            }
+        }
+
+        private void DepartmentComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Check if instructors are loaded
+            if (Instructors == null) return;
+
+            // Get the selected department
+            var selectedDepartment = DepartmentComboBox.SelectedItem as string;
+
+            // Filter instructors based on the selected department
+            List<Instructor> filteredInstructors;
+            if (selectedDepartment == "All")
+            {
+                // Show all instructors if "All" is selected
+                filteredInstructors = Instructors.ToList();
+                DepartmentDescriptionTextBlock.Text = "All Departments";  // Display description for 'All'
+            }
+            else
+            {
+                // Filter for the selected department only
+                filteredInstructors = Instructors
+                    .Where(i => i.Department == selectedDepartment)
+                    .ToList();
+
+                // Display department description based on selection
+                string departmentDescription = GetDepartmentDescription(selectedDepartment);
+                DepartmentDescriptionTextBlock.Text = departmentDescription;
+            }
+
+            // Update the instructor cards to show only filtered instructors
+            PopulateInstructorCards(filteredInstructors);
+        }
+
+        private string GetDepartmentDescription(string department)
+        {
+            // Define descriptions for each department
+            switch (department)
+            {
+                case "IT":
+                    return "Information Technology Department";
+                case "SHS":
+                    return "Senior High School Department";
+                case "GE":
+                    return "General Education Department";
+                case "THM":
+                    return "Tourism and Hospitality Management Department";
+                case "AMT":
+                    return "Academic Management Team (Head) Department";
+                default:
+                    return "";
             }
         }
 
@@ -106,7 +177,7 @@ namespace STI_ONN
             var cardBorder = new Border
             {
                 Width = 250,
-                Height = 250,
+                Height = 270,
                 Margin = new Thickness(15),
                 Background = Brushes.White,
                 CornerRadius = new CornerRadius(15),
@@ -140,6 +211,7 @@ namespace STI_ONN
                 {
                     CreateNameTextBlock(instructor.Name),
                     CreateAvatarImage(instructor.AvatarUrl),
+                    CreateDepartmentTextBlock(instructor.Department)
                 }
             };
 
@@ -169,7 +241,20 @@ namespace STI_ONN
                 Width = 150,
                 Stretch = Stretch.UniformToFill,
                 Margin = new Thickness(10),
-                HorizontalAlignment = HorizontalAlignment.Center
+                HorizontalAlignment = HorizontalAlignment.Center,
+                Clip = new EllipseGeometry(new Rect(0, 0, 150, 150))  // Makes the image circula
+            };
+        }
+        private TextBlock CreateDepartmentTextBlock(string department)
+        {
+            return new TextBlock
+            {
+                Text = "Department: " + department,
+                FontWeight = FontWeights.Bold,
+                FontSize = 20,
+                TextWrapping = TextWrapping.Wrap,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                Margin = new Thickness(5)
             };
         }
 
@@ -180,14 +265,18 @@ namespace STI_ONN
             {
                 // Show the dim overlay
                 DimOverlay.Visibility = Visibility.Visible;
+
                 // Show loading screen while the schedule is loading
                 var loadingWindow = new Loading { LoadingMessage = "Loading Schedule, please wait..." };
                 loadingWindow.Show();
+
                 var scheduleViewer = new ScheduleViewer();
                 await scheduleViewer.LoadSchedule(scheduleUrl, instructorName, instructorAvatarUrl);
-                scheduleViewer.ShowDialog();
+                
                 // Hide the loading window when ScheduleViewer closes
                 loadingWindow.Close();
+
+                scheduleViewer.ShowDialog();
                 // Hide the dim overlay when ScheduleViewer closes
                 DimOverlay.Visibility = Visibility.Collapsed;
             }
@@ -200,6 +289,7 @@ namespace STI_ONN
         {
             public string Name { get; set; }
             public string AvatarUrl { get; set; }
+            public string Department { get; set; } // Department field
             public string ScheduleUrl { get; set; }
             public long Timestamp { get; set; }
         }
