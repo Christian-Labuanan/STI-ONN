@@ -55,7 +55,7 @@
             </Grid>
 
             <!-- Main container with scrollable content -->
-            <ScrollViewer VerticalScrollBarVisibility="hidden" HorizontalScrollBarVisibility="Disabled" DockPanel.Dock="Top" PanningMode="VerticalOnly" Height="549">
+            <ScrollViewer VerticalScrollBarVisibility="hidden" HorizontalScrollBarVisibility="Disabled" DockPanel.Dock="Top" PanningMode="VerticalOnly" Height="800">
                 <StackPanel Margin="5" VerticalAlignment="Top">
                     <!-- Announcement title display -->
                     <TextBlock x:Name="DetailTitle" 
@@ -80,8 +80,6 @@
                            HorizontalAlignment="Stretch"
                            TextTrimming="None"
                            Margin="75,10,75,0" Height="auto"/>
-                    <!-- Container for additional images -->
-                    <StackPanel x:Name="ImageContainer" Orientation="Vertical" Margin="0,10,0,10" />
                 </StackPanel>
             </ScrollViewer>
 
@@ -94,6 +92,5 @@
                    HorizontalAlignment="Stretch"
                    VerticalAlignment="Stretch"/>
         </DockPanel>
-
     </Grid>
 </Window>

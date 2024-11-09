@@ -36,6 +36,7 @@ namespace STI_ONN
 
         }
 
+
         private async Task LoadInstructors()
         {
             var loadingWindow = new Loading { LoadingMessage = "Loading Instructor Schedule, please wait..." };

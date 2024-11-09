@@ -89,7 +89,7 @@ namespace STI_ONN
                 return announcementList.Select(item => new AnnouncementItem
                 {
                     ImageUrl = item.Object.ImageUrl,
-                    Text = RemoveHtmlTags(item.Object.Text),
+                    Text = item.Object.Text,
                     Timestamp = item.Object.Timestamp,
                     Title = item.Object.Title
                 }).ToList();
@@ -101,11 +101,6 @@ namespace STI_ONN
             }
         }
 
-        // Removes HTML tags from the given input string
-        private static string RemoveHtmlTags(string input)
-        {
-            return string.IsNullOrWhiteSpace(input) ? input : Regex.Replace(input, "<.*?>", string.Empty);
-        }
 
         // Loads announcements from Firebase and updates the UI
         /*private async Task LoadAnnouncements()

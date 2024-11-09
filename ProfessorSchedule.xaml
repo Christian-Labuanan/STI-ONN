@@ -10,6 +10,7 @@
         WindowState="Maximized"
         WindowStyle="None"
         Background="#FFEAF2FF">
+    
     <Viewbox StretchDirection="Both">
         <Grid>
             <Grid Background="#FFEAF2FF" HorizontalAlignment="Center" VerticalAlignment="Center" Height="1080" Width="1920">
@@ -48,18 +49,22 @@
                 
                 <!-- Department description TextBlock -->
                 <TextBlock x:Name="DepartmentDescriptionTextBlock" HorizontalAlignment="Left" VerticalAlignment="Top" 
-                Width="auto" Margin="220,130,0,0" FontSize="20" FontWeight="Bold" Foreground="Black"/>
+                Width="auto" Margin="220,135,0,0" FontSize="20" FontWeight="Bold" Foreground="Black"/>
 
                 <!-- Main container for scaling content within the window -->
-            <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="50,150,50,150" Grid.ColumnSpan="3">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="50,175,50,150" Grid.ColumnSpan="3">
                 <WrapPanel x:Name="InstructorWrapPanel" Orientation="Horizontal" HorizontalAlignment="Center">
                     <!-- Instructor Cards will be dynamically loaded here -->
                 </WrapPanel>
             </ScrollViewer>
 
             <Rectangle HorizontalAlignment="Left" Height="130" Margin="0,955,0,0" Stroke="#0B5793" Fill="#0B5793" VerticalAlignment="Top" Width="1920" Grid.ColumnSpan="3"/>
+                
             <Image x:Name="STI_ONN" Height="126" Width="334" Source="assets/STI ONN Logo transparent 3.png" Stretch="Fill" Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.ColumnSpan="3"/>
-            <Button x:Name="touch" HorizontalAlignment="Left" Margin="57,28,0,0" VerticalAlignment="Top" Height="68" Width="72" FontSize="60" FontFamily="Tw Cen MT" FontWeight="Bold" Foreground="Black" BorderBrush="{x:Null}" Background="#FFD4D4D4" Opacity="0.85" Click="touch_Click_1">
+                <!-- Instructor Schedule Label -->
+            <TextBlock Text="Instructor Schedule" FontSize="36" FontWeight="Bold" Foreground="Black" HorizontalAlignment="Center" Margin="0,125,0,900" Grid.ColumnSpan="3"/>
+                
+                <Button x:Name="touch" HorizontalAlignment="Left" Margin="57,28,0,0" VerticalAlignment="Top" Height="68" Width="72" FontSize="60" FontFamily="Tw Cen MT" FontWeight="Bold" Foreground="Black" BorderBrush="{x:Null}" Background="#FFD4D4D4" Opacity="0.85" Click="touch_Click_1">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="50"/>

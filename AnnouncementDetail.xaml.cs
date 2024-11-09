@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+
 using static STI_ONN.Announcement;
 
 
@@ -31,7 +32,7 @@ namespace STI_ONN
             // Set announcement details
             DetailTitle.Text = announcement.Title;
             LoadImage(announcement.ImageUrl);
-            DetailText.Text = RemoveHtmlTags(announcement.Text);
+            DetailText.Text = (announcement.Text);
 
             // Load images and text from the announcement
             LoadAnnouncementContent(announcement);
@@ -53,46 +54,8 @@ namespace STI_ONN
         private void LoadAnnouncementContent(AnnouncementItem announcement)
         {
             // Load text without HTML tags
-            string cleanText = RemoveHtmlTags(announcement.Text);
+            string cleanText = (announcement.Text);
             DetailText.Text = cleanText;
-
-            // Extract and load images from the text
-            LoadImagesFromText(announcement.Text);
-        }
-
-        private void LoadImagesFromText(string text)
-        {
-            // Regular expression to find image URLs in the text
-            var regex = new Regex(@"(https?://[^\s]+\.(jpg|jpeg|png|gif))", RegexOptions.IgnoreCase);
-            MatchCollection matches = regex.Matches(text);
-
-            foreach (Match match in matches)
-            {
-                try
-                {
-                    // Attempt to create and load the image
-                    var image = new System.Windows.Controls.Image
-                    {
-                        Source = new BitmapImage(new Uri(match.Value)),
-                        Width = 1150,
-                        Height = 950,
-                        Margin = new Thickness(5)
-                    };
-                    ImageContainer.Children.Add(image);
-                }
-                catch (Exception)
-                {
-                    // If an error occurs, you could add a placeholder image or skip adding the image
-                    var placeholder = new System.Windows.Controls.Image
-                    {
-                        Source = new BitmapImage(new Uri("pack://application:,,,/assets/Icons/default-image.png")),
-                        Width = 300,
-                        Height = 200,
-                        Margin = new Thickness(5)
-                    };
-                    ImageContainer.Children.Add(placeholder);
-                }
-            }
         }
 
         private void LoadImage(string imageUrl)
@@ -132,9 +95,5 @@ namespace STI_ONN
             this.Left = (SystemParameters.PrimaryScreenWidth - this.Width) / 2;
         }
 
-        private string RemoveHtmlTags(string text)
-        {
-            return Regex.Replace(text, "<.*?>", string.Empty);
-        }
     }
 }

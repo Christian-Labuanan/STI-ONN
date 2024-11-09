@@ -11,12 +11,20 @@
 
     <!-- Main container for scaling content within the window -->
     <Viewbox StretchDirection="Both">
+
         <Grid Background="#FFEAF2FF" Height="1080" Width="1920">
+            <!-- Rectangle for Background -->
+            <Rectangle x:Name="BackgroundRectangle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Rectangle.Fill>
+                    <SolidColorBrush x:Name="BackgroundBrush" Color="#0171bc"/>
+                </Rectangle.Fill>
+            </Rectangle>
+
             <!-- Dimmed background overlay -->
             <Rectangle x:Name="Overlay" Fill="Black" Opacity="0.5" Visibility="Collapsed" MouseDown="Overlay_MouseDown" />
 
             <!-- Scrollable area for Announcement Cards -->
-            <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="10,150,10,130">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="10,175,10,130">
                 <WrapPanel x:Name="AnnouncementWrapPanel" Orientation="Horizontal" HorizontalAlignment="Center">
                     <!-- Announcement Cards dynamically loaded here -->
                 </WrapPanel>
@@ -34,11 +42,30 @@
 
             <!-- STI ONN Logo -->
             <Image x:Name="STI_ONN" Height="126" Width="334" Source="/assets/STI ONN Logo transparent 3.png" Stretch="Fill" Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-
-
+            <!-- Announcement Label -->
+            <TextBlock Text="Announcement" FontSize="36" FontWeight="Bold" Foreground="Black" HorizontalAlignment="Center" Margin="0,125,0,900"/>
             <!-- Decorative Bottom Border -->
             <Rectangle Height="130" Margin="0,955,0,0" Stroke="#0B5793" Fill="#0B5793" VerticalAlignment="Top" Width="1920"/>
 
         </Grid>
     </Viewbox>
+    <!-- Animation for Pulsating Effect -->
+    <!-- Pulsating animation -->
+    <Window.Resources>
+        <Storyboard x:Key="PulsatingColorStoryboard" AutoReverse="True" RepeatBehavior="Forever">
+            <ColorAnimation 
+                    Storyboard.TargetName="BackgroundBrush" 
+                    Storyboard.TargetProperty="Color" 
+                    From="#0171bc" 
+                    To="#fef200" 
+                    Duration="0:0:7"/>
+        </Storyboard>
+    </Window.Resources>
+
+    <!-- Trigger the animation on window load -->
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource PulsatingColorStoryboard}"/>
+        </EventTrigger>
+    </Window.Triggers>
 </Window>
