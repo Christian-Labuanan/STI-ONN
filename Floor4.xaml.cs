@@ -22,11 +22,6 @@ namespace STI_ONN
 
         private double originalScale = 1.0;
 
-        private double originalClickableSectionLeft;
-        private double originalClickableSectionTop;
-        private double originalClickableSectionWidth;
-        private double originalClickableSectionHeight;
-
         private bool isDragging = false;
         private Point lastPosition;
 
@@ -40,18 +35,11 @@ namespace STI_ONN
             // Store the original size of the image
             originalWidth = image.Width;
             originalHeight = image.Height;
-            squareWidth = clickableSection.Width;
-            squareHeight = clickableSection.Height;
 
             // Store the original position of the image
             originalImageLeft = Canvas.GetLeft(image);
             originalImageTop = Canvas.GetTop(image);
 
-            // Store the original position and size of the clickable section
-            originalClickableSectionLeft = Canvas.GetLeft(clickableSection);
-            originalClickableSectionTop = Canvas.GetTop(clickableSection);
-            originalClickableSectionWidth = clickableSection.Width;
-            originalClickableSectionHeight = clickableSection.Height;
 
             // Initialize and start the interaction timer
             interactionTimer = new DispatcherTimer();
@@ -156,31 +144,11 @@ namespace STI_ONN
             double newHeight = image.Height * scale;
 
             // Calculate the adjustment for the clickable section size and position
-            //room301
-            double sectionWidthAdjustment = clickableSection.Width * (scale - 1);
-            double sectionHeightAdjustment = clickableSection.Height * (scale - 1);
-
             // Apply the new width and height to the image
             image.Width = newWidth;
             image.Height = newHeight;
 
-            // Adjust the size of the clickable section
-            //301
-            clickableSection.Width += sectionWidthAdjustment;
-            clickableSection.Height += sectionHeightAdjustment;
-
-            // Calculate the new position of the clickable section relative to the image
-            //301
-            double sectionLeftRelativeToImage = Canvas.GetLeft(clickableSection) - Canvas.GetLeft(image);
-            double sectionTopRelativeToImage = Canvas.GetTop(clickableSection) - Canvas.GetTop(image);
-
-            // Calculate the new position of the clickable section
-            //301
-            double newSectionLeftRelativeToImage = sectionLeftRelativeToImage * scale;
-            double newSectionTopRelativeToImage = sectionTopRelativeToImage * scale;
             // Apply the new position of the clickable section
-            Canvas.SetLeft(clickableSection, Canvas.GetLeft(image) + newSectionLeftRelativeToImage);
-            Canvas.SetTop(clickableSection, Canvas.GetTop(image) + newSectionTopRelativeToImage);
             ResetInteractionTimer();
         }
 
@@ -199,7 +167,6 @@ namespace STI_ONN
             HideArrows();
             isDragging = false;
             image.ReleaseMouseCapture();
-            clickableSection.ReleaseMouseCapture();
             ResetInteractionTimer();
         }
 
@@ -214,10 +181,6 @@ namespace STI_ONN
 
                 Canvas.SetLeft(image, Canvas.GetLeft(image) + deltaX);
                 Canvas.SetTop(image, Canvas.GetTop(image) + deltaY);
-
-                //301
-                Canvas.SetLeft(clickableSection, Canvas.GetLeft(clickableSection) + deltaX);
-                Canvas.SetTop(clickableSection, Canvas.GetTop(clickableSection) + deltaY);
 
                 HideArrows();
                 ResetInteractionTimer();
@@ -247,12 +210,6 @@ namespace STI_ONN
             // Reset the position of the image to its original position
             Canvas.SetLeft(image, originalImageLeft);
             Canvas.SetTop(image, originalImageTop);
-
-            // Reset the position and size of the clickable section to its original values
-            Canvas.SetLeft(clickableSection, originalClickableSectionLeft);
-            Canvas.SetTop(clickableSection, originalClickableSectionTop);
-            clickableSection.Width = originalClickableSectionWidth;
-            clickableSection.Height = originalClickableSectionHeight;
 
             ShowArrows();
             // Reset the screensaver timer
@@ -332,12 +289,6 @@ namespace STI_ONN
 
         #endregion
 
-        private void ClickableSection_Click(object sender, MouseButtonEventArgs e)
-        {
-            MessageBox.Show("Room 101/ Bar");
-
-            ResetInteractionTimer();
-        }
         private void ground_btn(object sender, RoutedEventArgs e)
         {
             Building b1 = new Building();

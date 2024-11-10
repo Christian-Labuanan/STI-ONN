@@ -194,12 +194,12 @@
 
                 <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="-58,154,0,0">
                     <Canvas Name="canvas" Background="White" Height="900" VerticalAlignment="Bottom">
-                        <Image Height="844" Source="/assets/Maps/02MezzanineFloor.png" Width="1469" Canvas.Top="25"
+                        <Image Height="896" Source="/assets/Maps/02MezzanineFloor.png" Width="1544" Canvas.Top="-90"
                            Name="image"
                            MouseWheel="Image_MouseWheel"
                            MouseLeftButtonDown="Image_MouseLeftButtonDown"
                            MouseLeftButtonUp="Image_MouseLeftButtonUp"
-                           MouseMove="Image_MouseMove" Canvas.Left="14" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Center">
+                           MouseMove="Image_MouseMove" Canvas.Left="-16" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Top">
                             <Image.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform/>
@@ -252,7 +252,7 @@
                 </StackPanel>
             </Grid>
             <!-- Navigation Animation -->
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Top" Height="63" Canvas.Left="760" Canvas.Top="506" Margin="0,399,291,0">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Top" Height="63" Canvas.Left="760" Canvas.Top="506" Margin="0,279,327,0">
                 <TextBlock x:Name="desc1" FontSize="18" FontWeight="Bold" FontFamily="Tw Cen MT" Foreground="Black" Height="39">
                     <Run Text="This way to Room: 205,206,207,"/>
                     <LineBreak/>
@@ -268,7 +268,7 @@
                 </ItemsControl>
             </StackPanel>
 
-            <StackPanel  Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Height="63" Canvas.Left="494" Canvas.Top="502" Margin="764,403,0,0">
+            <StackPanel  Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Height="63" Canvas.Left="494" Canvas.Top="502" Margin="767,279,0,0">
 
                 <TextBlock x:Name="desc2" FontSize="18" FontWeight="Bold" FontFamily="Tw Cen MT" Foreground="Black" Height="39">
                     <Run Text="This way to Room: 201,202,203,"/>

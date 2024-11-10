@@ -195,12 +195,12 @@
 
                 <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="-56,154,0,0">
                     <Canvas Name="canvas" Background="White" Height="900" VerticalAlignment="Bottom">
-                        <Image Height="844" Source="/assets/Maps/05ForthFloor.png" Width="1469" Canvas.Top="25"
+                        <Image Height="896" Source="/assets/Maps/05ForthFloor.png" Width="1544" Canvas.Top="-90"
                            Name="image"
                            MouseWheel="Image_MouseWheel"
                            MouseLeftButtonDown="Image_MouseLeftButtonDown"
                            MouseLeftButtonUp="Image_MouseLeftButtonUp"
-                           MouseMove="Image_MouseMove" Canvas.Left="5" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Center">
+                           MouseMove="Image_MouseMove" Canvas.Left="-18" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Top">
                             <Image.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform/>
@@ -210,20 +210,8 @@
                                 </TransformGroup>
                             </Image.RenderTransform>
                         </Image>
-                        <Rectangle Name="clickableSection" Fill="Transparent"
-                    MouseDown="ClickableSection_Click" Canvas.Left="666" Canvas.Top="266" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Height="324" Width="366">
-                            <Rectangle.RenderTransform>
-                                <TransformGroup>
-                                    <ScaleTransform ScaleX="0.933"/>
-                                    <SkewTransform AngleY="-7.301"/>
-                                    <RotateTransform Angle="7.314"/>
-                                    <TranslateTransform X="1.276" Y="35.057"/>
-                                </TransformGroup>
-                            </Rectangle.RenderTransform>
-                        </Rectangle>
                     </Canvas>
                 </ScrollViewer>
-
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1057,936,0,0" Height="117" Width="305">
                     <Button Click="ZoomResetButton_Click" Margin="5" Background="White" BorderBrush="White" Height="84" Width="89">
@@ -253,7 +241,7 @@
                 </StackPanel>
             </Grid>
             <!-- Navigation Animation -->
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Top" Height="63" Canvas.Left="760" Canvas.Top="506" Margin="0,381,291,0">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Top" Height="63" Canvas.Left="760" Canvas.Top="506" Margin="0,254,268,0">
                 <TextBlock x:Name="desc1" FontSize="18" FontWeight="Bold" FontFamily="Tw Cen MT" Foreground="Black" Height="39">
                     <Run Text="This way to Canteen"/>
                 </TextBlock>
@@ -267,7 +255,7 @@
                 </ItemsControl>
             </StackPanel>
 
-            <StackPanel  Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Height="63" Canvas.Left="494" Canvas.Top="502" Margin="763,381,0,0">
+            <StackPanel  Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Height="62" Canvas.Left="494" Canvas.Top="502" Margin="762,254,0,0">
 
                 <TextBlock x:Name="desc2" FontSize="18" FontWeight="Bold" FontFamily="Tw Cen MT" Foreground="Black" Height="39">
                     <Run Text="This way to Canteen"/>
