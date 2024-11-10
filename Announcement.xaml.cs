@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Firebase.Database;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Threading;
-using Firebase.Database;
-using System.Text.RegularExpressions;
-using System.Windows.Threading;
 using System.Windows.Shapes;
 
 namespace STI_ONN
@@ -31,7 +24,7 @@ namespace STI_ONN
 
         private async Task LoadAnnouncements()
         {
-          
+
             var loadingWindow = new Loading { LoadingMessage = "Loading Announcements, please wait..." };
             loadingWindow.Show();
             // Disable the main window to prevent interaction
@@ -51,7 +44,7 @@ namespace STI_ONN
             DimAnnouncementCards(true);
 
             Overlay.Visibility = Visibility.Visible;
-            
+
             var announcementDetailWindow = new AnnouncementDetail(announcement);
             announcementDetailWindow.Closed += (sender, args) =>
             {
@@ -64,19 +57,19 @@ namespace STI_ONN
             announcementDetailWindow.ShowDialog();
 
         }
-            // Method to dim or restore the opacity of announcement cards
-            private void DimAnnouncementCards(bool dim)
-            {
-                double opacityValue = dim ? 0.3 : 1.0; // Dim to 30% opacity or restore to 100%
+        // Method to dim or restore the opacity of announcement cards
+        private void DimAnnouncementCards(bool dim)
+        {
+            double opacityValue = dim ? 0.3 : 1.0; // Dim to 30% opacity or restore to 100%
 
-                foreach (var child in AnnouncementWrapPanel.Children)
+            foreach (var child in AnnouncementWrapPanel.Children)
+            {
+                if (child is Border card)
                 {
-                    if (child is Border card)
-                    {
-                        card.Opacity = opacityValue; // Set the opacity for each announcement card
-                    }
+                    card.Opacity = opacityValue; // Set the opacity for each announcement card
                 }
             }
+        }
 
         // Fetches announcements from Firebase
         private async Task<List<AnnouncementItem>> GetAnnouncementsFromFirebase()
@@ -158,7 +151,7 @@ namespace STI_ONN
         // Creates a card UI element for the given announcement
         private Border CreateAnnouncementCard(AnnouncementItem announcement)
         {
-            
+
             var cardBorder = new Border
             {
                 Width = 350,

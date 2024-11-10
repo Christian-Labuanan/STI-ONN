@@ -1,23 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using OfficeOpenXml;
+﻿using OfficeOpenXml;
 using System.Data;
 using System.IO;
 using System.Net.Http;
-using System.Threading.Tasks;
-using System.Reactive.Concurrency;
-using System.ComponentModel;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace STI_ONN
 {
@@ -102,7 +91,7 @@ namespace STI_ONN
             {
                 MessageBox.Show("Failed to load schedule: " + ex.Message);
             }
-            
+
         }
         private void FullscreenButton_Click(object sender, RoutedEventArgs e)
         {

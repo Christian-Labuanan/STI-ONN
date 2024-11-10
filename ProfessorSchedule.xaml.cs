@@ -1,23 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using Firebase.Database;
+﻿using Firebase.Database;
 using Firebase.Database.Query;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Diagnostics;
-using DocumentFormat.OpenXml.Bibliography;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace STI_ONN
 {
@@ -273,7 +260,7 @@ namespace STI_ONN
 
                 var scheduleViewer = new ScheduleViewer();
                 await scheduleViewer.LoadSchedule(scheduleUrl, instructorName, instructorAvatarUrl);
-                
+
                 // Hide the loading window when ScheduleViewer closes
                 loadingWindow.Close();
 

@@ -60,7 +60,7 @@ namespace STI_ONN
             double newWidth = image.Width * scale;
             double newHeight = image.Height * scale;
 
- 
+
 
             // Apply the new width and height to the image
             image.Width = newWidth;
