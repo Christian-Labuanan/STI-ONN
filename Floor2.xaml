@@ -20,12 +20,12 @@
                 <Label Content="Floor Map" HorizontalAlignment="Center" Margin="0,24,0,0" VerticalAlignment="Top" FontSize="55" FontWeight="Bold" FontFamily="Tw Cen MT"/>
 
                 <!-- menubar -->
-                <TextBlock Text="Floors" Margin="152,381,152,644" FontWeight="Bold" FontSize="40"/>
+                <TextBlock Text="Floors" Margin="152,360,152,644" FontWeight="Bold" FontSize="40"/>
                 <Line
                 X1="0" Y1="10"
                 X2="400" Y2="10"
                 Stroke="Black"
-                StrokeThickness="1" Margin="20,367,10,675" RenderTransformOrigin="0.5,0.5" >
+                StrokeThickness="1" Margin="20,350,10,675" RenderTransformOrigin="0.5,0.5" >
                     <Line.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -36,7 +36,7 @@
                     </Line.RenderTransform>
                 </Line>
 
-                <Menu Margin="0,199,0,0" Background="Transparent">
+                <Menu Margin="0,140,0,0" Background="Transparent">
                     <Menu.ItemsPanel>
 
                         <ItemsPanelTemplate>
@@ -47,14 +47,14 @@
 
                     </Menu.ItemsPanel>
 
-                    <MenuItem Margin="0,9,0,-47" FontSize="40" FontWeight="Bold" Click="home_btn">
+                    <MenuItem Margin="-1,0,0,-20" FontSize="40" FontWeight="Bold" Click="home_btn">
                         <MenuItem.Header>
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition/>
                                     <RowDefinition Height="0*"/>
                                 </Grid.RowDefinitions>
-                                <TextBlock Text="Home" Margin="85,0,-86,0" FontFamily="Leelawadee UI"/>
+                                <TextBlock Text="Home" Margin="85,0,-86,0" FontFamily="Leelawadee"/>
                             </Grid>
                         </MenuItem.Header>
 
@@ -65,10 +65,10 @@
                         </MenuItem.Icon>
                     </MenuItem>
 
-                    <MenuItem Margin="-1,79,1,-141" FontSize="40" FontWeight="Bold" Click="announcement_btn">
+                    <MenuItem Margin="-1,30,1,-90" FontSize="40" FontWeight="Bold" Click="announcement_btn">
                         <MenuItem.Header>
                             <Grid>
-                                <TextBlock Text="Announcement" Margin="85,0,-86,0" FontFamily="Leelawadee"/>
+                                <TextBlock Text="Announcement" Margin="85,0,0,0" FontFamily="Leelawadee" HorizontalAlignment="Left" Width="288"/>
                             </Grid>
                         </MenuItem.Header>
 
@@ -78,8 +78,18 @@
 
                         </MenuItem.Icon>
                     </MenuItem>
+                    <MenuItem Margin="-1,100,0,-150" FontSize="40" FontWeight="Bold" Click="instructor_schedule_btn">
+                        <MenuItem.Header>
+                            <Grid>
+                                <TextBlock Text="Instructor" Margin="85,0,-86,0" FontFamily="Leelawadee"/>
+                            </Grid>
+                        </MenuItem.Header>
+                        <MenuItem.Icon>
+                            <Image Source="/assets/Icons/instructor.png" Margin="45,-15,-81,-15" />
+                        </MenuItem.Icon>
+                    </MenuItem>
 
-                    <MenuItem Margin="-1,237,1,-299" FontSize="30" FontWeight="Bold" Click="ground_btn">
+                    <MenuItem Margin="-1,260,1,-320" FontSize="30" FontWeight="Bold" Click="ground_btn">
                         <MenuItem.Header>
                             <Grid>
                                 <TextBlock Text="Ground" Margin="85,0,-86,0" FontFamily="Leelawadee"/>
@@ -93,7 +103,7 @@
                         </MenuItem.Icon>
                     </MenuItem>
 
-                    <MenuItem Margin="0,317,0,-379" FontSize="30" FontWeight="Bold" Click="mezzanine_btn">
+                    <MenuItem Margin="0,330,0,-400" FontSize="30" FontWeight="Bold" Click="mezzanine_btn">
                         <MenuItem.Header>
                             <Grid>
                                 <TextBlock Text="Mezzanine" Margin="85,0,-86,0" FontFamily="Leelawadee"/>
@@ -107,7 +117,7 @@
                         </MenuItem.Icon>
                     </MenuItem>
 
-                    <MenuItem Margin="1,398,-1,-460" FontSize="50" FontWeight="Bold" Background="#FF0B5793">
+                    <MenuItem Margin="1,405,-1,-465" FontSize="38" FontWeight="Bold" Background="#FF0B5793">
                         <MenuItem.Header>
                             <Grid>
                                 <TextBlock Text="2nd Floor" Margin="85,0,-86,0" Foreground="White" FontFamily="Leelawadee"/>

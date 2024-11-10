@@ -364,6 +364,12 @@ namespace STI_ONN
             m1.Show();
             this.Close();
         }
+        private void instructor_schedule_btn(object sender, RoutedEventArgs e)
+        {
+            ProfessorSchedule ps = new ProfessorSchedule();
+            ps.Show();
+            this.Close();
+        }
 
         private void floor2_btn(object sender, RoutedEventArgs e)
         {

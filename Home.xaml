@@ -56,7 +56,7 @@
                             <TranslateTransform/>
                         </TransformGroup>
                     </Button.RenderTransform>
-                    <Image Source="/assets/Icons/building.png" Stretch="Fill" Height="450" Width="450"/>
+                    <Image Source="/assets/Icons/building.png" Stretch="Uniform" Height="450" Width="550"/>
                 </Button>
                 <Label Content="Navigate Building" Grid.Column="0" HorizontalAlignment="Center" Margin="0,580,0,0" VerticalAlignment="Top" Height="108" Width="488" FontSize="55" FontFamily="Leelawadee" FontWeight="Bold"/>
 

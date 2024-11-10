@@ -754,18 +754,22 @@ namespace STI_ONN
 
             ResetInteractionTimer();
         }
-
         private void home_btn(object sender, RoutedEventArgs e)
         {
             Home h1 = new Home();
             h1.Show();
             this.Close();
         }
-
         private void announcement_btn(object sender, RoutedEventArgs e)
         {
             Announcement a1 = new Announcement();
             a1.Show();
+            this.Close();
+        }
+        private void instructor_schedule_btn(object sender, RoutedEventArgs e)
+        {
+            ProfessorSchedule ps = new ProfessorSchedule();
+            ps.Show();
             this.Close();
         }
         private void ground_btn(object sender, RoutedEventArgs e)
