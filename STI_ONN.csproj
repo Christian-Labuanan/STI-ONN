@@ -130,7 +130,7 @@
     <Resource Include="assets\Icons\zoom-out.png" />
     <Resource Include="assets\Icons\zoom-reset.png" />
     <Content Include="Firebase\ServiceAccountKey.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 

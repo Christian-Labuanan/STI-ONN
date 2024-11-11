@@ -23,8 +23,6 @@ namespace STI_ONN
     {
         private int sheetNumber;
         private string roomNumber;
-        // Static field to store FirebaseApp instance
-        private static FirebaseApp firebaseApp;
 
         public Floor2Schedules(int sheetNumber, string roomNumber)
         {
@@ -32,34 +30,15 @@ namespace STI_ONN
             this.sheetNumber = sheetNumber;
             this.roomNumber = roomNumber;
             DisplayExcelContent();
-            // Initialize FirebaseApp only once
-            InitializeFirebase();
+            // Call the centralized Firebase initialization
+            FirebaseManager.InitializeFirebase();
         }
-        private void InitializeFirebase()
-        {
-            // Check if FirebaseApp is already initialized
-            if (firebaseApp == null)
-            {
-                // Create a dynamic file path for ServiceAccountKey.json
-                string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Firebase", "ServiceAccountKey.json");
-                firebaseApp = FirebaseApp.Create(new AppOptions
-                {
-                    Credential = GoogleCredential.FromFile(filePath),
-                });
-            }
-        }
+        
         private async void DisplayExcelContent()
         {
             // Disable the main window to prevent user interaction
             this.IsEnabled = false;
 
-            // Show loading window
-            Loading loadingWindow = new Loading
-            {
-                Topmost = true,
-                LoadingMessage = "Loading 2nd Floor Room Schedule, please wait..."
-            };
-            loadingWindow.Show();
 
             try
             {
@@ -80,9 +59,6 @@ namespace STI_ONN
             finally
             {
 
-                // Close loading window
-                loadingWindow.Close();
-
                 // Re-enable the main window
                 this.IsEnabled = true;
             }
@@ -90,12 +66,13 @@ namespace STI_ONN
 
         private async Task LoadExcelContent()
         {
+            // Unique temp file to avoid conflicts
+            string tempFilePath = Path.Combine(Path.GetTempPath(), $"tempfile_{Guid.NewGuid()}.xlsx");
             try
             {
                 
                 // Initialize Google Cloud Storage client
                 var storageClient = StorageClient.Create();
-
 
                 // Initialize the FirebaseStorage instance with your bucket name
                 var bucketName = "sti-onn-d0161.appspot.com";
@@ -127,8 +104,6 @@ namespace STI_ONN
                 // Set the position of the stream to the beginning
                 memoryStream.Position = 0;
 
-                // Create a temporary file to save the memory stream
-                string tempFilePath = Path.Combine(Path.GetTempPath(), "tempfile.xlsx");
                 // Write the memory stream to the temporary file
                 File.WriteAllBytes(tempFilePath, memoryStream.ToArray());
 
@@ -170,15 +145,22 @@ namespace STI_ONN
 
                 // Release COM objects
                 ReleaseExcelObjects(excelApp, workbook, worksheet);
-                // Ensure the file is no longer in use before proceeding
-                await Task.Delay(1000);  // Small delay to ensure Excel processes have released the file
+                // Wait a bit and then try deleting the temporary file
+                await Task.Delay(500);  // Wait for 1 second
+                                        // Try deleting the temp file
+                await DeleteTempFile(tempFilePath);
 
-                // Optional: Delete the temporary file after use
+
                 if (File.Exists(tempFilePath))
                 {
                     try
                     {
-                        File.Delete(tempFilePath);
+                        // Try opening the file exclusively to check if it is still in use
+                        using (FileStream fs = new FileStream(tempFilePath, FileMode.Open, FileAccess.ReadWrite, FileShare.None))
+                        {
+                            // If it is not in use, delete it
+                            File.Delete(tempFilePath);
+                        }
                     }
                     catch (IOException ex)
                     {
@@ -205,6 +187,38 @@ namespace STI_ONN
             if (worksheet != null) Marshal.ReleaseComObject(worksheet);
             if (workbook != null) Marshal.ReleaseComObject(workbook);
             if (excelApp != null) Marshal.ReleaseComObject(excelApp);
+
+            // Force garbage collection
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+        }
+        private async Task DeleteTempFile(string filePath)
+        {
+            const int maxAttempts = 5;
+            int attempt = 0;
+            bool fileDeleted = false;
+
+            while (!fileDeleted && attempt < maxAttempts)
+            {
+                try
+                {
+                    if (File.Exists(filePath))
+                    {
+                        File.Delete(filePath);
+                        fileDeleted = true;
+                    }
+                }
+                catch (IOException)
+                {
+                    await Task.Delay(500); // Wait before retrying
+                }
+                attempt++;
+            }
+
+            if (!fileDeleted)
+            {
+                Dispatcher.Invoke(() => MessageBox.Show("Unable to delete temp file after multiple attempts.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning));
+            }
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)

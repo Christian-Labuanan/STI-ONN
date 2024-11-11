@@ -5,6 +5,8 @@ using System.IO;
 using System.Threading.Tasks;
 using Google.Cloud.Storage.V1;
 using System.Runtime.InteropServices;
+using FirebaseAdmin;
+using Google.Apis.Auth.OAuth2;
 
 namespace STI_ONN
 {
@@ -22,6 +24,8 @@ namespace STI_ONN
             this.sheetNumber = sheetNumber;
             this.roomNumber = roomNumber;
             DisplayExcelContent();
+            // Initialize Firebase once in the application
+            FirebaseManager.InitializeFirebase();
         }
 
         private async void DisplayExcelContent()
@@ -87,8 +91,8 @@ namespace STI_ONN
                 // Set the position of the stream to the beginning
                 memoryStream.Position = 0;
 
-                // Create a temporary file to save the memory stream
-                string tempFilePath = Path.Combine(Path.GetTempPath(), "tempfile.xlsx");
+                // Create a unique temporary file path for each instance
+                string tempFilePath = Path.Combine(Path.GetTempPath(), $"tempfile_{Guid.NewGuid()}.xlsx");
 
                 // Write the memory stream to the temporary file
                 File.WriteAllBytes(tempFilePath, memoryStream.ToArray());
@@ -139,7 +143,7 @@ namespace STI_ONN
                 ReleaseExcelObjects(excelApp, workbook, worksheet);
 
                 // Ensure the file is no longer in use before proceeding
-                await Task.Delay(1000);  // Small delay to ensure Excel processes have released the file
+                await Task.Delay(2000);  // Small delay to ensure Excel processes have released the file
 
                 // Optional: Delete the temporary file after use
                 if (File.Exists(tempFilePath))
@@ -169,10 +173,16 @@ namespace STI_ONN
         }
         private void ReleaseExcelObjects(Microsoft.Office.Interop.Excel.Application excelApp, Workbook workbook, Worksheet worksheet)
         {
-            // Properly release Excel COM objects to prevent memory leaks
+            // Properly release Excel COM objects
             if (worksheet != null) Marshal.ReleaseComObject(worksheet);
             if (workbook != null) Marshal.ReleaseComObject(workbook);
             if (excelApp != null) Marshal.ReleaseComObject(excelApp);
+
+            // Force garbage collection
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
         }
 
 
