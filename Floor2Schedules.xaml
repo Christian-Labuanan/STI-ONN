@@ -18,15 +18,15 @@
                     <Setter Property="Foreground" Value="Black"/>
                     <!-- Default text color -->
                     <Style.Triggers>
+                        <!-- For DataGridRow, you can use the FindAncestor for the row, not DataGridCell -->
                         <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=Header}" Value="0">
                             <Setter Property="Background" Value="#305496"/>
                             <Setter Property="Foreground" Value="White"/>
-                            <!-- Change text color to white for cells in the first column -->
                         </DataTrigger>
+                        <!-- For DataGridCell, binding to the column display index -->
                         <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Column.DisplayIndex}" Value="0">
                             <Setter Property="Background" Value="#305496"/>
                             <Setter Property="Foreground" Value="White"/>
-                            <!-- Change text color to white for cells in the first row -->
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
