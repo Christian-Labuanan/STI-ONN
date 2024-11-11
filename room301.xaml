@@ -42,7 +42,7 @@
                 <Style x:Key="LeftAlignedText" TargetType="TextBlock">
                     <Setter Property="HorizontalAlignment" Value="Left"/>
                     <Setter Property="VerticalAlignment" Value="Center"/>
-                    <Setter Property="Padding" Value="10,0,0,0"/>
+                    <Setter Property="Padding" Value="10,10,10,10"/>
                 </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>

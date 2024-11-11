@@ -39,6 +39,11 @@ namespace STI_ONN
             // Disable the main window to prevent user interaction
             this.IsEnabled = false;
 
+            // Show loading window
+            Loading loadingWindow = new Loading();
+            loadingWindow.Topmost = true;
+            loadingWindow.LoadingMessage = "Loading 3rd Floor Room Schedule, please wait...";
+            loadingWindow.Show();
 
             try
             {
@@ -58,7 +63,8 @@ namespace STI_ONN
             }
             finally
             {
-
+                // Close loading window
+                loadingWindow.Close();
                 // Re-enable the main window
                 this.IsEnabled = true;
             }
@@ -68,6 +74,11 @@ namespace STI_ONN
         {
             // Unique temp file to avoid conflicts
             string tempFilePath = Path.Combine(Path.GetTempPath(), $"tempfile_{Guid.NewGuid()}.xlsx");
+            Microsoft.Office.Interop.Excel.Application excelApp = null;
+            Workbook workbook = null;
+            Worksheet worksheet = null;
+            Microsoft.Office.Interop.Excel.Range range = null;
+
             try
             {
                 
@@ -107,11 +118,11 @@ namespace STI_ONN
                 // Write the memory stream to the temporary file
                 File.WriteAllBytes(tempFilePath, memoryStream.ToArray());
 
-                // Load Excel data from the stream
-                Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
-                Workbook workbook = excelApp.Workbooks.Open(tempFilePath); // You can save the stream temporarily to disk and open it
-                Worksheet worksheet = (Worksheet)workbook.Sheets[sheetNumber];
-                Microsoft.Office.Interop.Excel.Range range = worksheet.UsedRange;
+                // Open Excel and read data
+                excelApp = new Microsoft.Office.Interop.Excel.Application();
+                workbook = excelApp.Workbooks.Open(tempFilePath);
+                worksheet = (Worksheet)workbook.Sheets[1];
+                range = worksheet.UsedRange;
 
                 // Create a DataTable to hold the Excel data
                 System.Data.DataTable dataTable = new System.Data.DataTable();
@@ -181,17 +192,6 @@ namespace STI_ONN
                 });
             }
         }
-        private void ReleaseExcelObjects(Microsoft.Office.Interop.Excel.Application excelApp, Workbook workbook, Worksheet worksheet)
-        {
-            // Properly release Excel COM objects
-            if (worksheet != null) Marshal.ReleaseComObject(worksheet);
-            if (workbook != null) Marshal.ReleaseComObject(workbook);
-            if (excelApp != null) Marshal.ReleaseComObject(excelApp);
-
-            // Force garbage collection
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
-        }
         private async Task DeleteTempFile(string filePath)
         {
             const int maxAttempts = 5;
@@ -220,7 +220,20 @@ namespace STI_ONN
                 Dispatcher.Invoke(() => MessageBox.Show("Unable to delete temp file after multiple attempts.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning));
             }
         }
+        private void ReleaseExcelObjects(params object[] excelObjects)
+        {
+            foreach (var obj in excelObjects)
+            {
+                if (obj != null && Marshal.IsComObject(obj))
+                {
+                    Marshal.ReleaseComObject(obj);
+                }
+            }
 
+            // Force garbage collection to release COM resources
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+        }
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             // Close the window

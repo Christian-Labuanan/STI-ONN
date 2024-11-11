@@ -33,27 +33,28 @@ namespace STI_ONN
             // Disable the main window to prevent user interaction
             this.IsEnabled = false;
             // Show loading window
-            Loading loadingWindow = new Loading();
-            loadingWindow.Topmost = true;
-            loadingWindow.LoadingMessage = "Loading 3rd Floor Room Schedule, please wait...";
+            Loading loadingWindow = new Loading
+            {
+                Topmost = true,
+                LoadingMessage = "Loading Room 301 Schedule, please wait..."
+            };
             loadingWindow.Show();
 
-            // Load Excel content asynchronously
-            await Task.Run(() => LoadExcelContent());
-
-            // Update roomLabel on the UI thread
-            Dispatcher.Invoke(() =>
+            try
             {
-                roomLabel.Content = roomNumber;
-            });
-
-            // Close loading window
-            loadingWindow.Close();
+                // Await the LoadExcelContent task to ensure it completes before closing the loading window
+                await LoadExcelContent();
+            }
+            finally
+            {
+                // Close loading window
+                loadingWindow.Close();
             // Re-enable the main window (Floor2Schedules)
             this.IsEnabled = true;
+            }
         }
 
-        private async void LoadExcelContent()
+        private async Task LoadExcelContent()
         {
             try
             {
