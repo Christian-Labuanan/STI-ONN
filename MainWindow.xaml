@@ -9,7 +9,9 @@
         Height="auto" Width="auto"
         WindowState="Maximized"
         WindowStartupLocation="CenterScreen"
-        WindowStyle="None" Background="#FFEAF2FF">
+        WindowStyle="None" Background="#FFEAF2FF"
+        x:Name="MainWindowInstance">
+    
     <Viewbox  StretchDirection="Both">
         <Grid Background="#FFEAF2FF" HorizontalAlignment="Center" VerticalAlignment="Center" Height="1080" Width="1920">
             <Image Margin="0,0,-42,63" Source="/assets/sti calamba.png" Stretch="Fill" Opacity="0.45">

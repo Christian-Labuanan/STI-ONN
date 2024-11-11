@@ -13,12 +13,6 @@
     <Viewbox StretchDirection="Both">
 
         <Grid Background="#FFEAF2FF" Height="1080" Width="1920">
-            <!-- Rectangle for Background -->
-            <Rectangle x:Name="BackgroundRectangle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <Rectangle.Fill>
-                    <SolidColorBrush x:Name="BackgroundBrush" Color="#0171bc"/>
-                </Rectangle.Fill>
-            </Rectangle>
 
             <!-- Dimmed background overlay -->
             <Rectangle x:Name="Overlay" Fill="Black" Opacity="0.5" Visibility="Collapsed" MouseDown="Overlay_MouseDown" />
@@ -49,23 +43,4 @@
 
         </Grid>
     </Viewbox>
-    <!-- Animation for Pulsating Effect -->
-    <!-- Pulsating animation -->
-    <Window.Resources>
-        <Storyboard x:Key="PulsatingColorStoryboard" AutoReverse="True" RepeatBehavior="Forever">
-            <ColorAnimation 
-                    Storyboard.TargetName="BackgroundBrush" 
-                    Storyboard.TargetProperty="Color" 
-                    From="#0171bc" 
-                    To="#fef200" 
-                    Duration="0:0:7"/>
-        </Storyboard>
-    </Window.Resources>
-
-    <!-- Trigger the animation on window load -->
-    <Window.Triggers>
-        <EventTrigger RoutedEvent="Window.Loaded">
-            <BeginStoryboard Storyboard="{StaticResource PulsatingColorStoryboard}"/>
-        </EventTrigger>
-    </Window.Triggers>
 </Window>

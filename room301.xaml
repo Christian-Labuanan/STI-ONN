@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:STI_ONN"
         mc:Ignorable="d"
-        Title="room301" Height="585" Width="828"
+        Title="room301" Height="750" Width="1350"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
 
     <Grid Background="#FFEAF2FF">
-        <DataGrid x:Name="excelDataGrid" Margin="19,49,19,53" HeadersVisibility="None" AutoGenerateColumns="False" IsReadOnly="True" Width="790">
+        <DataGrid x:Name="excelDataGrid" Margin="40,50,30,60" HeadersVisibility="None" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Stretch">
             <DataGrid.CellStyle>
                 <Style TargetType="DataGridCell">
                     <Setter Property="Background" Value="#FFF2CC"/>
@@ -32,22 +32,31 @@
                 </Style>
             </DataGrid.CellStyle>
             <DataGrid.Resources>
-                <Style x:Key="CenteredText" TargetType="TextBlock">
+                <!-- Style for centered and bold text -->
+                <Style x:Key="CenteredTextBold" TargetType="TextBlock">
                     <Setter Property="HorizontalAlignment" Value="Center"/>
                     <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                </Style>
+                <!-- Left-aligned text with padding -->
+                <Style x:Key="LeftAlignedText" TargetType="TextBlock">
+                    <Setter Property="HorizontalAlignment" Value="Left"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="Padding" Value="10,0,0,0"/>
                 </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Column1" Binding="{Binding Column1}" Width="110" ElementStyle="{StaticResource CenteredText}" />
-                <DataGridTextColumn Header="Column2" Binding="{Binding Column2}" Width="110" ElementStyle="{StaticResource CenteredText}" />
-                <DataGridTextColumn Header="Column3" Binding="{Binding Column3}" Width="110" ElementStyle="{StaticResource CenteredText}" />
-                <DataGridTextColumn Header="Column4" Binding="{Binding Column4}" Width="110" ElementStyle="{StaticResource CenteredText}" />
-                <DataGridTextColumn Header="Column5" Binding="{Binding Column5}" Width="110" ElementStyle="{StaticResource CenteredText}" />
-                <DataGridTextColumn Header="Column6" Binding="{Binding Column6}" Width="110" ElementStyle="{StaticResource CenteredText}" />
-                <DataGridTextColumn Header="Column7" Binding="{Binding Column7}" Width="110" ElementStyle="{StaticResource CenteredText}" />
+                <DataGridTextColumn Header="Column1" Binding="{Binding Column1}" Width="*" ElementStyle="{StaticResource CenteredTextBold}" />
+                
+                <DataGridTextColumn Header="Column2" Binding="{Binding Column2}" Width="*" ElementStyle="{StaticResource LeftAlignedText}" />
+                <DataGridTextColumn Header="Column3" Binding="{Binding Column3}" Width="*" ElementStyle="{StaticResource LeftAlignedText}" />
+                <DataGridTextColumn Header="Column4" Binding="{Binding Column4}" Width="*" ElementStyle="{StaticResource LeftAlignedText}" />
+                <DataGridTextColumn Header="Column5" Binding="{Binding Column5}" Width="*" ElementStyle="{StaticResource LeftAlignedText}" />
+                <DataGridTextColumn Header="Column6" Binding="{Binding Column6}" Width="*" ElementStyle="{StaticResource LeftAlignedText}" />
+                <DataGridTextColumn Header="Column7" Binding="{Binding Column7}" Width="*" ElementStyle="{StaticResource LeftAlignedText}" />
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Close" Click="CloseButton_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,537,19,0" Height="44" Width="72" FontSize="18" FontFamily="Arial" FontWeight="Bold" BorderBrush="{x:Null}" Background="#FF305496" Foreground="White">
+        <Button Content="Close" Click="CloseButton_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,19,10" Height="44" Width="72" FontSize="18" FontFamily="Arial" FontWeight="Bold" BorderBrush="{x:Null}" Background="#FF305496" Foreground="White">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="20"/>

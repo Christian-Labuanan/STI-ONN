@@ -1,6 +1,10 @@
 ﻿using Microsoft.Office.Interop.Excel;
 using System.Data;
 using System.Windows;
+using System.IO;
+using System.Threading.Tasks;
+using Google.Cloud.Storage.V1;
+using System.Runtime.InteropServices;
 
 namespace STI_ONN
 {
@@ -45,52 +49,130 @@ namespace STI_ONN
             this.IsEnabled = true;
         }
 
-        private void LoadExcelContent()
+        private async void LoadExcelContent()
         {
-            // Specify the path to your Excel file
-            string excelFilePath = @"C:\Users\Rodmar\OneDrive\Documents\GitHub\STI-ONN\assets\Schedules\stiSched.xlsx";
-
-            // Create a new Excel Application
-            Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
-
-            // Open the Excel file
-            Workbook workbook = excelApp.Workbooks.Open(excelFilePath);
-
-            // Get the specified worksheet
-            Worksheet worksheet = (Worksheet)workbook.Sheets[sheetNumber];
-
-            // Get the used range of cells
-            Microsoft.Office.Interop.Excel.Range range = worksheet.UsedRange;
-
-            // Create a DataTable to hold the Excel data
-            System.Data.DataTable dt = new System.Data.DataTable();
-
-            // Add columns to DataTable
-            for (int col = 1; col <= 7; col++)
+            try
             {
-                dt.Columns.Add($"Column{col}");
-            }
+                // Initialize Google Cloud Storage client
+                var storageClient = StorageClient.Create();
 
-            // Loop through the cells and populate the DataTable
-            for (int row = 1; row <= 25; row++)
-            {
-                DataRow dr = dt.NewRow();
+                // Specify the bucket name
+                var bucketName = "sti-onn-d0161.appspot.com";
+
+                // List all objects in the 'schedules/Floor3/' directory
+                var files = storageClient.ListObjects(bucketName, "schedules/Floor3/");
+
+                // Find the file that matches the Excel file criteria (e.g., ending with .xlsx)
+                string filePath = null;
+                foreach (var file in files)
+                {
+                    if (file.Name.EndsWith(".xlsx"))
+                    {
+                        filePath = file.Name;
+                        break; // Exit loop once the file is found
+                    }
+                }
+
+                if (filePath == null)
+                {
+                    throw new Exception("Excel file not found in Firebase Storage.");
+                }
+
+                // Create a memory stream to download the file
+                var memoryStream = new MemoryStream();
+
+                // Download the file from Firebase Storage
+                await storageClient.DownloadObjectAsync(bucketName, filePath, memoryStream);
+
+                // Set the position of the stream to the beginning
+                memoryStream.Position = 0;
+
+                // Create a temporary file to save the memory stream
+                string tempFilePath = Path.Combine(Path.GetTempPath(), "tempfile.xlsx");
+
+                // Write the memory stream to the temporary file
+                File.WriteAllBytes(tempFilePath, memoryStream.ToArray());
+
+                // Create a new Excel Application
+                Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
+
+                // Open the Excel file
+                Workbook workbook = excelApp.Workbooks.Open(tempFilePath);
+
+                // Get the specified worksheet
+                Worksheet worksheet = (Worksheet)workbook.Sheets[sheetNumber];
+
+                // Get the used range of cells
+                Microsoft.Office.Interop.Excel.Range range = worksheet.UsedRange;
+
+                // Create a DataTable to hold the Excel data
+                System.Data.DataTable dt = new System.Data.DataTable();
+
+                // Add columns to DataTable
                 for (int col = 1; col <= 7; col++)
                 {
-                    dr[col - 1] = (range.Cells[row, col] as Microsoft.Office.Interop.Excel.Range)?.Value2?.ToString();
+                    dt.Columns.Add($"Column{col}");
                 }
-                dt.Rows.Add(dr);
+
+                // Loop through the cells and populate the DataTable
+                for (int row = 1; row <= 25; row++)
+                {
+                    DataRow dr = dt.NewRow();
+                    for (int col = 1; col <= 7; col++)
+                    {
+                        dr[col - 1] = (range.Cells[row, col] as Microsoft.Office.Interop.Excel.Range)?.Value2?.ToString();
+                    }
+                    dt.Rows.Add(dr);
+                }
+
+                // Bind DataTable to DataGrid on the UI thread
+                System.Windows.Application.Current.Dispatcher.Invoke(() =>
+                {
+                    excelDataGrid.ItemsSource = dt.DefaultView;
+                });
+
+                // Close Excel
+                workbook.Close(false);
+                excelApp.Quit();
+
+                // Release Excel COM objects
+                ReleaseExcelObjects(excelApp, workbook, worksheet);
+
+                // Ensure the file is no longer in use before proceeding
+                await Task.Delay(1000);  // Small delay to ensure Excel processes have released the file
+
+                // Optional: Delete the temporary file after use
+                if (File.Exists(tempFilePath))
+                {
+                    try
+                    {
+                        File.Delete(tempFilePath);
+                    }
+                    catch (IOException ex)
+                    {
+                        // Handle the case where the file is still in use
+                        Dispatcher.Invoke(() =>
+                        {
+                            MessageBox.Show($"Error deleting file: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        });
+                    }
+                }
             }
-
-            // Bind DataTable to DataGrid on the UI thread
-            System.Windows.Application.Current.Dispatcher.Invoke(() =>
+            catch (Exception ex)
             {
-                excelDataGrid.ItemsSource = dt.DefaultView;
-            });
-
-            // Close Excel
-            workbook.Close(false);
-            excelApp.Quit();
+                // Handle errors gracefully
+                Dispatcher.Invoke(() =>
+                {
+                    MessageBox.Show($"Error loading Excel file: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                });
+            }
+        }
+        private void ReleaseExcelObjects(Microsoft.Office.Interop.Excel.Application excelApp, Workbook workbook, Worksheet worksheet)
+        {
+            // Properly release Excel COM objects to prevent memory leaks
+            if (worksheet != null) Marshal.ReleaseComObject(worksheet);
+            if (workbook != null) Marshal.ReleaseComObject(workbook);
+            if (excelApp != null) Marshal.ReleaseComObject(excelApp);
         }
 
 

@@ -56,6 +56,7 @@
     <None Remove="assets\zoom-in.png" />
     <None Remove="assets\zoom-out.png" />
     <None Remove="assets\zoom-reset.png" />
+    <None Remove="Firebase\ServiceAccountKey.json" />
     <None Remove="STI ONN Logo transparent 3.png" />
   </ItemGroup>
 
@@ -128,6 +129,9 @@
     <Resource Include="assets\Icons\zoom-in.png" />
     <Resource Include="assets\Icons\zoom-out.png" />
     <Resource Include="assets\Icons\zoom-reset.png" />
+    <Content Include="Firebase\ServiceAccountKey.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

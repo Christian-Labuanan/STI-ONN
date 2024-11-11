@@ -12,6 +12,7 @@ using SystemDataTable = System.Data.DataTable;
 using ExcelDataTable = Microsoft.Office.Interop.Excel.DataTable;
 using System;
 using Firebase.Storage.Options;
+using System.Runtime.InteropServices;
 
 namespace STI_ONN
 {
@@ -39,10 +40,11 @@ namespace STI_ONN
             // Check if FirebaseApp is already initialized
             if (firebaseApp == null)
             {
-                // Initialize Firebase Admin SDK only once
-                firebaseApp = FirebaseApp.Create(new AppOptions()
+                // Create a dynamic file path for ServiceAccountKey.json
+                string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Firebase", "ServiceAccountKey.json");
+                firebaseApp = FirebaseApp.Create(new AppOptions
                 {
-                    Credential = GoogleCredential.FromFile("C:\\Users\\Rodmar\\OneDrive\\Documents\\GitHub\\STI-ONN\\Firebase\\ServiceAccountKey.json"),
+                    Credential = GoogleCredential.FromFile(filePath),
                 });
             }
         }
@@ -59,20 +61,31 @@ namespace STI_ONN
             };
             loadingWindow.Show();
 
-            // Load Excel content asynchronously
-            await Task.Run(() => LoadExcelContent());
-
-            // Update roomLabel on the UI thread
-            Dispatcher.Invoke(() =>
+            try
             {
-                roomLabel.Content = roomNumber;
-            });
+                // Load Excel content asynchronously
+                await Task.Run(() => LoadExcelContent());
 
-            // Close loading window
-            loadingWindow.Close();
+                // Update roomLabel on the UI thread
+                Dispatcher.Invoke(() => { roomLabel.Content = roomNumber; });
+            }
+            catch (Exception ex)
+            {
+                // Handle errors gracefully
+                Dispatcher.Invoke(() =>
+                {
+                    MessageBox.Show($"Error loading Excel file: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                });
+            }
+            finally
+            {
 
-            // Re-enable the main window
-            this.IsEnabled = true;
+                // Close loading window
+                loadingWindow.Close();
+
+                // Re-enable the main window
+                this.IsEnabled = true;
+            }
         }
 
         private async Task LoadExcelContent()
@@ -83,18 +96,34 @@ namespace STI_ONN
                 // Initialize Google Cloud Storage client
                 var storageClient = StorageClient.Create();
 
-                // Specify the path to your Excel file in Firebase Storage
-                var filePath = "schedules/Floor2/Floor 2 schedule.xlsx";
+
                 // Initialize the FirebaseStorage instance with your bucket name
                 var bucketName = "sti-onn-d0161.appspot.com";
 
+                // List all objects in the 'schedules/Floor2/' directory
+                var files = storageClient.ListObjects(bucketName, "schedules/Floor2/");
+
+                // Find the file that matches the Excel file criteria (e.g., ending with .xlsx)
+                string filePath = null;
+                foreach (var file in files)
+                {
+                    if (file.Name.EndsWith(".xlsx"))
+                    {
+                        filePath = file.Name;
+                        break; // Exit loop once the file is found
+                    }
+                }
+
+                if (filePath == null)
+                {
+                    throw new Exception("Excel file not found in Firebase Storage.");
+                }
                 // Create a memory stream to download the file
                 var memoryStream = new MemoryStream();
 
                 // Download the file from Firebase Storage
                 await storageClient.DownloadObjectAsync(bucketName, filePath, memoryStream);
                 
-
                 // Set the position of the stream to the beginning
                 memoryStream.Position = 0;
 
@@ -138,6 +167,28 @@ namespace STI_ONN
                 // Close Excel
                 workbook.Close(false);
                 excelApp.Quit();
+
+                // Release COM objects
+                ReleaseExcelObjects(excelApp, workbook, worksheet);
+                // Ensure the file is no longer in use before proceeding
+                await Task.Delay(1000);  // Small delay to ensure Excel processes have released the file
+
+                // Optional: Delete the temporary file after use
+                if (File.Exists(tempFilePath))
+                {
+                    try
+                    {
+                        File.Delete(tempFilePath);
+                    }
+                    catch (IOException ex)
+                    {
+                        // Handle the case where the file is still in use
+                        Dispatcher.Invoke(() =>
+                        {
+                            MessageBox.Show($"Error deleting file: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        });
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -147,6 +198,13 @@ namespace STI_ONN
                     MessageBox.Show($"Error loading Excel file: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 });
             }
+        }
+        private void ReleaseExcelObjects(Microsoft.Office.Interop.Excel.Application excelApp, Workbook workbook, Worksheet worksheet)
+        {
+            // Properly release Excel COM objects
+            if (worksheet != null) Marshal.ReleaseComObject(worksheet);
+            if (workbook != null) Marshal.ReleaseComObject(workbook);
+            if (excelApp != null) Marshal.ReleaseComObject(excelApp);
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
