@@ -73,13 +73,13 @@
                        Margin="0,10,0,20" />
 
                     <!-- Announcement text/details -->
-                    <TextBlock x:Name="DetailText" 
-                           FontSize="16" 
-                           TextWrapping="Wrap"
-                           TextAlignment="Justify"
-                           HorizontalAlignment="Stretch"
-                           TextTrimming="None"
-                           Margin="75,10,75,0" Height="auto"/>
+                    <!-- Replace the TextBlock for DetailText with a RichTextBox to handle formatted content -->
+                    <RichTextBox x:Name="DetailTextBox" 
+             FontSize="16" 
+             IsReadOnly="True" 
+             Margin="75,10,75,0" 
+             BorderThickness="0" 
+             Background="Transparent"/>
                 </StackPanel>
             </ScrollViewer>
 
