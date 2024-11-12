@@ -198,8 +198,7 @@
                 <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="-58,136,0,0">
                     <Canvas Name="canvas" Background="White" Height="900" VerticalAlignment="Bottom">
                         <Image Height="896" Source="/assets/Maps/01GroundFloor.png" Width="1544" Canvas.Top="-156"
-                               Name="image"
-                               MouseWheel="Image_MouseWheel"
+                               Name="image"         
                                MouseLeftButtonDown="Image_MouseLeftButtonDown"
                                MouseLeftButtonUp="Image_MouseLeftButtonUp"
                                MouseMove="Image_MouseMove" Canvas.Left="-33" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="UniformToFill">
@@ -212,6 +211,40 @@
                                 </TransformGroup>
                             </Image.RenderTransform>
                         </Image>
+
+                        <Rectangle Name="clickableSection" Fill="transparent"
+                            MouseDown="room101" Canvas.Left="510" Canvas.Top="137" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="164" Width="168">
+                            <Rectangle.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="1.027"/>
+                                    <SkewTransform AngleX="-25" AngleY="11.724"/>
+                                    <RotateTransform Angle="-12.972"/>
+                                    <TranslateTransform X="3.729" Y="-8.235"/>
+                                </TransformGroup>
+                            </Rectangle.RenderTransform>
+                        </Rectangle>
+                        <Rectangle x:Name="clickableSection_Copy" Fill="Transparent"
+                             MouseDown="room102" Canvas.Left="707" Canvas.Top="132" RenderTransformOrigin="0.5,0.5" Height="159" Width="325" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Rectangle.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.978"/>
+                                    <SkewTransform AngleX="-25" AngleY="17.923"/>
+                                    <RotateTransform Angle="-17.978"/>
+                                    <TranslateTransform X="3.106" Y="-0.11"/>
+                                </TransformGroup>
+                            </Rectangle.RenderTransform>
+                        </Rectangle>
+                        <Rectangle x:Name="clickableSection_Copy1" Fill="Transparent"
+                            MouseDown="room103" Canvas.Left="1140" Canvas.Top="385" RenderTransformOrigin="0.5,0.5" Height="131" Width="275" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <Rectangle.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.887"/>
+                                    <SkewTransform AngleX="-25" AngleY="30.031"/>
+                                    <RotateTransform Angle="-30.788"/>
+                                    <TranslateTransform X="5.883" Y="12.766"/>
+                                </TransformGroup>
+                            </Rectangle.RenderTransform>
+                        </Rectangle>
 
                         <!-- Navigation Animation -->
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Top" Height="63" Canvas.Left="750" Canvas.Top="362">
@@ -269,6 +302,8 @@
                     </Button>
                 </StackPanel>
             </Grid>
+            <!-- Dimming Overlay -->
+            <Rectangle Fill="#80000000" Visibility="Collapsed" Name="dimmingOverlay"/>
         </Grid>
     </Viewbox>
 </Window>

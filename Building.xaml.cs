@@ -19,10 +19,27 @@ namespace STI_ONN
 
         private double originalScale = 1.0;
 
+        // Define the zoom limits
+        private const double minScale = 0.8; // Minimum zoom level
+        private const double maxScale = 1.5; // Maximum zoom level
+
+
+        //201
         private double originalClickableSectionLeft;
         private double originalClickableSectionTop;
         private double originalClickableSectionWidth;
         private double originalClickableSectionHeight;
+
+        //202
+        private double originalClickableSectionCopyLeft;
+        private double originalClickableSectionCopyTop;
+        private double originalClickableSectionCopyWidth;
+        private double originalClickableSectionCopyHeight;
+        //203
+        private double originalClickableSectionCopyLeft303;
+        private double originalClickableSectionCopyTop303;
+        private double originalClickableSectionCopyWidth303;
+        private double originalClickableSectionCopyHeight303;
 
         private bool isDragging = false;
         private Point lastPosition;
@@ -43,6 +60,21 @@ namespace STI_ONN
             originalImageLeft = Canvas.GetLeft(image);
             originalImageTop = Canvas.GetTop(image);
 
+            // Store the original position and size of the clickable section
+            originalClickableSectionLeft = Canvas.GetLeft(clickableSection);
+            originalClickableSectionTop = Canvas.GetTop(clickableSection);
+            originalClickableSectionWidth = clickableSection.Width;
+            originalClickableSectionHeight = clickableSection.Height;
+            //202
+            originalClickableSectionCopyLeft = Canvas.GetLeft(clickableSection_Copy);
+            originalClickableSectionCopyTop = Canvas.GetTop(clickableSection_Copy);
+            originalClickableSectionCopyWidth = clickableSection_Copy.Width;
+            originalClickableSectionCopyHeight = clickableSection_Copy.Height;
+            //203
+            originalClickableSectionCopyLeft303 = Canvas.GetLeft(clickableSection_Copy1);
+            originalClickableSectionCopyTop303 = Canvas.GetTop(clickableSection_Copy1);
+            originalClickableSectionCopyWidth303 = clickableSection_Copy1.Width;
+            originalClickableSectionCopyHeight303 = clickableSection_Copy1.Height;
 
             // Initialize and start the interaction timer
             interactionTimer = new DispatcherTimer();
@@ -133,28 +165,6 @@ namespace STI_ONN
 
         // Zoom in and out 
         // Drag left and right
-        private void Image_MouseWheel(object sender, MouseWheelEventArgs e)
-        {
-            HideArrows();
-            var delta = e.Delta;
-            var scale = delta > 0 ? 1.1 : 0.9; // Increase or decrease zoom factor
-
-            // Calculate the zooming center point relative to the image
-            Point zoomCenter = e.GetPosition(image);
-
-            // Calculate the new width and height after zooming
-            double newWidth = image.Width * scale;
-            double newHeight = image.Height * scale;
-
-            // Calculate the adjustment for the clickable section size and position
-
-            // Apply the new width and height to the image
-            image.Width = newWidth;
-            image.Height = newHeight;
-            ResetInteractionTimer();
-        }
-
-
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             HideArrows();
@@ -184,6 +194,16 @@ namespace STI_ONN
                 Canvas.SetLeft(image, Canvas.GetLeft(image) + deltaX);
                 Canvas.SetTop(image, Canvas.GetTop(image) + deltaY);
 
+                //201
+                Canvas.SetLeft(clickableSection, Canvas.GetLeft(clickableSection) + deltaX);
+                Canvas.SetTop(clickableSection, Canvas.GetTop(clickableSection) + deltaY);
+                //202
+                Canvas.SetLeft(clickableSection_Copy, Canvas.GetLeft(clickableSection_Copy) + deltaX);
+                Canvas.SetTop(clickableSection_Copy, Canvas.GetTop(clickableSection_Copy) + deltaY);
+                //203
+                Canvas.SetLeft(clickableSection_Copy1, Canvas.GetLeft(clickableSection_Copy1) + deltaX);
+                Canvas.SetTop(clickableSection_Copy1, Canvas.GetTop(clickableSection_Copy1) + deltaY);
+
                 ResetInteractionTimer();
             }
         }
@@ -203,6 +223,22 @@ namespace STI_ONN
                 image.LayoutTransform = Transform.Identity;
             }
 
+            // Reset the position and size of the clickable section to its original values
+            Canvas.SetLeft(clickableSection, originalClickableSectionLeft);
+            Canvas.SetTop(clickableSection, originalClickableSectionTop);
+            clickableSection.Width = originalClickableSectionWidth;
+            clickableSection.Height = originalClickableSectionHeight;
+            //202
+            Canvas.SetLeft(clickableSection_Copy, originalClickableSectionCopyLeft);
+            Canvas.SetTop(clickableSection_Copy, originalClickableSectionCopyTop);
+            clickableSection_Copy.Width = originalClickableSectionCopyWidth;
+            clickableSection_Copy.Height = originalClickableSectionCopyHeight;
+            //203
+            Canvas.SetLeft(clickableSection_Copy1, originalClickableSectionCopyLeft303);
+            Canvas.SetTop(clickableSection_Copy1, originalClickableSectionCopyTop303);
+            clickableSection_Copy1.Width = originalClickableSectionCopyWidth303;
+            clickableSection_Copy1.Height = originalClickableSectionCopyHeight303;
+
             ShowArrows(); // Show the arrows after resetting
             ResetInteractionTimer(); // Reset the screensaver timer
         }
@@ -214,21 +250,45 @@ namespace STI_ONN
             image.Width = originalWidth * scale;
             image.Height = originalHeight * scale;
 
+            //201
+            Canvas.SetLeft(clickableSection, originalClickableSectionLeft * scale);
+            Canvas.SetTop(clickableSection, originalClickableSectionTop * scale);
+            clickableSection.Width = originalClickableSectionWidth * scale;
+            clickableSection.Height = originalClickableSectionHeight * scale;
+            //202
+            Canvas.SetLeft(clickableSection_Copy, originalClickableSectionCopyLeft * scale);
+            Canvas.SetTop(clickableSection_Copy, originalClickableSectionCopyTop * scale);
+            clickableSection_Copy.Width = originalClickableSectionCopyWidth * scale;
+            clickableSection_Copy.Height = originalClickableSectionCopyHeight * scale;
+            //203
+            Canvas.SetLeft(clickableSection_Copy1, originalClickableSectionCopyLeft303 * scale);
+            Canvas.SetTop(clickableSection_Copy1, originalClickableSectionCopyTop303 * scale);
+            clickableSection_Copy1.Width = originalClickableSectionCopyWidth303 * scale;
+            clickableSection_Copy1.Height = originalClickableSectionCopyHeight303 * scale;
+
             HideArrows();
         }
 
         private void ZoomInButton_Click(object sender, RoutedEventArgs e)
         {
-            originalScale += 0.1;
-            ApplyZoom(originalScale);
-            ResetInteractionTimer();
+            if (originalScale < maxScale)
+            {
+                originalScale += 0.1;
+                ApplyZoom(originalScale);
+                HideArrows();
+                ResetInteractionTimer();
+            }
         }
 
         private void ZoomOutButton_Click(object sender, RoutedEventArgs e)
         {
-            originalScale -= 0.1;
-            ApplyZoom(originalScale);
-            ResetInteractionTimer();
+            if (originalScale > minScale)
+            {
+                originalScale -= 0.1;
+                ApplyZoom(originalScale);
+                HideArrows();
+                ResetInteractionTimer();
+            }
         }
 
         // Function to hide the arrows
@@ -280,6 +340,64 @@ namespace STI_ONN
         }
 
         #endregion
+
+        private void room101(object sender, RoutedEventArgs e)
+        {
+            // Create and show the room 101 window
+            Floor1Schedule floor1 = new Floor1Schedule(1, "Room 101 Schedules");
+            floor1.Owner = this;
+
+            // Show the dimming overlay to dim the window
+            dimmingOverlay.Visibility = Visibility.Visible;
+
+            // Handle the Closed event of the room 301 window to hide the dimming overlay when the window is closed
+            floor1.Closed += (s, args) =>
+            {
+                // Hide the dimming overlay
+                dimmingOverlay.Visibility = Visibility.Collapsed;
+            };
+
+            // Show the room 301 window
+            floor1.ShowDialog();
+        }
+        private void room102(object sender, RoutedEventArgs e)
+        {
+            // Create and show the room 301 window
+            Floor1Schedule floor1 = new Floor1Schedule(2, "Room 102 Schedules");
+            floor1.Owner = this;
+
+            // Show the dimming overlay to dim the window
+            dimmingOverlay.Visibility = Visibility.Visible;
+
+            // Handle the Closed event of the room 102 window to hide the dimming overlay when the window is closed
+            floor1.Closed += (s, args) =>
+            {
+                // Hide the dimming overlay
+                dimmingOverlay.Visibility = Visibility.Collapsed;
+            };
+
+            // Show the room 301 window
+            floor1.ShowDialog();
+        }
+        private void room103(object sender, RoutedEventArgs e)
+        {
+            // Create and show the room 301 window
+            Floor1Schedule floor1 = new Floor1Schedule(3, "Room 103 Schedules");
+            floor1.Owner = this;
+
+            // Show the dimming overlay to dim the window
+            dimmingOverlay.Visibility = Visibility.Visible;
+
+            // Handle the Closed event of the room 301 window to hide the dimming overlay when the window is closed
+            floor1.Closed += (s, args) =>
+            {
+                // Hide the dimming overlay
+                dimmingOverlay.Visibility = Visibility.Collapsed;
+            };
+
+            // Show the room 301 window
+            floor1.ShowDialog();
+        }
 
         private void home_btn(object sender, RoutedEventArgs e)
         {
