@@ -17,14 +17,13 @@ using System.Runtime.InteropServices;
 namespace STI_ONN
 {
     /// <summary>
-    /// Interaction logic for Floor2Schedules.xaml
+    /// Interaction logic for Floor1Schedule.xaml
     /// </summary>
-    public partial class Floor2Schedules : System.Windows.Window
+    public partial class Floor1Schedule : System.Windows.Window
     {
         private int sheetNumber;
         private string roomNumber;
-
-        public Floor2Schedules(int sheetNumber, string roomNumber)
+        public Floor1Schedule(int sheetNumber, string roomNumber)
         {
             InitializeComponent();
             this.sheetNumber = sheetNumber;
@@ -33,7 +32,6 @@ namespace STI_ONN
             // Call the centralized Firebase initialization
             FirebaseManager.InitializeFirebase();
         }
-        
         private async void DisplayExcelContent()
         {
             // Disable the main window to prevent user interaction
@@ -42,7 +40,7 @@ namespace STI_ONN
             // Show loading window
             Loading loadingWindow = new Loading();
             loadingWindow.Topmost = true;
-            loadingWindow.LoadingMessage = "Loading 3rd Floor Room Schedule, please wait...";
+            loadingWindow.LoadingMessage = "Loading 1st Floor Room Schedule, please wait...";
             loadingWindow.Show();
 
             try
@@ -81,7 +79,7 @@ namespace STI_ONN
 
             try
             {
-                
+
                 // Initialize Google Cloud Storage client
                 var storageClient = StorageClient.Create();
 
@@ -89,7 +87,7 @@ namespace STI_ONN
                 var bucketName = "sti-onn-d0161.appspot.com";
 
                 // List all objects in the 'schedules/Floor2/' directory
-                var files = storageClient.ListObjects(bucketName, "schedules/Floor2/");
+                var files = storageClient.ListObjects(bucketName, "schedules/Floor1/");
 
                 // Find the file that matches the Excel file criteria (e.g., ending with .xlsx)
                 string filePath = null;
@@ -111,7 +109,7 @@ namespace STI_ONN
 
                 // Download the file from Firebase Storage
                 await storageClient.DownloadObjectAsync(bucketName, filePath, memoryStream);
-                
+
                 // Set the position of the stream to the beginning
                 memoryStream.Position = 0;
 
@@ -123,6 +121,15 @@ namespace STI_ONN
                 workbook = excelApp.Workbooks.Open(tempFilePath);
                 worksheet = (Worksheet)workbook.Sheets[1];
                 range = worksheet.UsedRange;
+
+                if (worksheet.Index != sheetNumber)
+                {
+                    Dispatcher.Invoke(() =>
+                    {
+                        roomLabel2.Content = "No available schedule for this room.";
+                    });
+                    return;
+                }
 
                 // Create a DataTable to hold the Excel data
                 System.Data.DataTable dataTable = new System.Data.DataTable();

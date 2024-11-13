@@ -164,7 +164,7 @@ namespace STI_ONN
         {
             var cardBorder = new Border
             {
-                Width = 250,
+                Width = 300,
                 Height = 270,
                 Margin = new Thickness(15),
                 Background = Brushes.White,
