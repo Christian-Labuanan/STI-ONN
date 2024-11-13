@@ -17,6 +17,10 @@ namespace STI_ONN
         private double originalImageLeft;
         private double originalImageTop;
 
+        // Define the zoom limits
+        private const double minScale = 0.8; // Minimum zoom level
+        private const double maxScale = 1.5; // Maximum zoom level
+
         private double originalScale = 1.0;
         //201
         private double originalClickableSectionLeft;
@@ -261,49 +265,6 @@ namespace STI_ONN
 
         // Zoom in and out 
         // Drag left and right
-        private void Image_MouseWheel(object sender, MouseWheelEventArgs e)
-        {
-            HideArrows();
-            var delta = e.Delta;
-            var scale = delta > 0 ? 1.1 : 0.9; // Increase or decrease zoom factor
-
-            // Calculate the zooming center point relative to the image
-            Point zoomCenter = e.GetPosition(image);
-
-            // Apply the new width and height to the image
-            image.Width *= scale;
-            image.Height *= scale;
-
-            // List of clickable sections
-            var clickableSections = new List<FrameworkElement>
-                {
-                    clickableSection, clickableSection_Copy, clickableSection_Copy1, clickableSection_Copy2,
-                    clickableSection_Copy3, clickableSection_Copy4, clickableSection_Copy5, clickableSection_Copy6,
-                    clickableSection_Copy7, clickableSection_Copy8, clickableSection_Copy9, clickableSection_Copy10,
-                    clickableSection_Copy11
-                };
-
-            foreach (var section in clickableSections)
-            {
-                // Scale the width and height of each clickable section
-                section.Width *= scale;
-                section.Height *= scale;
-
-                // Calculate the position of each section relative to the image
-                double sectionLeftRelativeToImage = Canvas.GetLeft(section) - Canvas.GetLeft(image);
-                double sectionTopRelativeToImage = Canvas.GetTop(section) - Canvas.GetTop(image);
-
-                // Calculate the new position after scaling
-                double newSectionLeftRelativeToImage = sectionLeftRelativeToImage * scale;
-                double newSectionTopRelativeToImage = sectionTopRelativeToImage * scale;
-
-                // Set the new position
-                Canvas.SetLeft(section, Canvas.GetLeft(image) + newSectionLeftRelativeToImage);
-                Canvas.SetTop(section, Canvas.GetTop(image) + newSectionTopRelativeToImage);
-            }
-        }
-
-
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             HideArrows();
@@ -549,18 +510,24 @@ namespace STI_ONN
 
         private void ZoomInButton_Click(object sender, RoutedEventArgs e)
         {
-            HideArrows();
-            originalScale += 0.1;
-            ApplyZoom(originalScale);
-            ResetInteractionTimer();
+            if (originalScale < maxScale)
+            {
+                HideArrows();
+                originalScale += 0.1;
+                ApplyZoom(originalScale);
+                ResetInteractionTimer();
+            }
         }
 
         private void ZoomOutButton_Click(object sender, RoutedEventArgs e)
         {
-            HideArrows();
-            originalScale -= 0.1;
-            ApplyZoom(originalScale);
-            ResetInteractionTimer();
+            if (originalScale > minScale)
+            {
+                originalScale -= 0.1;
+                ApplyZoom(originalScale);
+                HideArrows();
+                ResetInteractionTimer();
+            }
         }
 
         // Function to hide the arrows

@@ -20,6 +20,10 @@ namespace STI_ONN
         private double originalImageLeft;
         private double originalImageTop;
 
+        // Define the zoom limits
+        private const double minScale = 0.8; // Minimum zoom level
+        private const double maxScale = 1.5; // Maximum zoom level
+
         private double originalScale = 1.0;
 
         private bool isDragging = false;
@@ -130,29 +134,6 @@ namespace STI_ONN
         }
         // Zoom in and out 
         // Drag left and right
-        private void Image_MouseWheel(object sender, MouseWheelEventArgs e)
-        {
-            HideArrows();
-            var delta = e.Delta;
-            var scale = delta > 0 ? 1.1 : 0.9; // Increase or decrease zoom factor
-
-            // Calculate the zooming center point relative to the image
-            Point zoomCenter = e.GetPosition(image);
-
-            // Calculate the new width and height after zooming
-            double newWidth = image.Width * scale;
-            double newHeight = image.Height * scale;
-
-            // Calculate the adjustment for the clickable section size and position
-            // Apply the new width and height to the image
-            image.Width = newWidth;
-            image.Height = newHeight;
-
-            // Apply the new position of the clickable section
-            ResetInteractionTimer();
-        }
-
-
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             HideArrows();
@@ -218,17 +199,24 @@ namespace STI_ONN
 
         private void ApplyZoom(double scale)
         {
-            HideArrows();
-            image.Width = originalWidth * scale;
-            image.Height = originalHeight * scale;
+            if (originalScale < maxScale)
+            {
+                HideArrows();
+                originalScale += 0.1;
+                ApplyZoom(originalScale);
+                ResetInteractionTimer();
+            }
         }
 
         private void ZoomInButton_Click(object sender, RoutedEventArgs e)
         {
-            HideArrows();
-            originalScale += 0.1;
-            ApplyZoom(originalScale);
-            ResetInteractionTimer();
+            if (originalScale > minScale)
+            {
+                originalScale -= 0.1;
+                ApplyZoom(originalScale);
+                HideArrows();
+                ResetInteractionTimer();
+            }
         }
 
         private void ZoomOutButton_Click(object sender, RoutedEventArgs e)
