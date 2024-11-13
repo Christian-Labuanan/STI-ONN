@@ -35,7 +35,7 @@ namespace STI_ONN
             // Center window and set size
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             this.Width = 1150; // Adjust as necessary
-            this.Height = 950; // Adjust as necessary
+            this.Height = 650; // Adjust as necessary
 
             // Inside the constructor or initialization method
             ScrollViewer scrollViewer = new ScrollViewer
@@ -48,23 +48,52 @@ namespace STI_ONN
 
         private void LoadAnnouncementContent(AnnouncementItem announcement)
         {
-            string htmlContent = announcement.Text;
-
-            // Decode HTML entities like &nbsp; into real characters
-            htmlContent = HttpUtility.HtmlDecode(htmlContent);
+            string htmlContent = HttpUtility.HtmlDecode(announcement.Text); // Decode HTML entities
 
             // Load HTML content into HtmlAgilityPack's HtmlDocument
             HtmlDocument doc = new HtmlDocument();
             doc.LoadHtml(htmlContent);
 
-            // Create a FlowDocument to build the content for the RichTextBox
+            // Create FlowDocument for the RichTextBox
             FlowDocument flowDoc = new FlowDocument();
 
-            // Generalized handling for text styling tags
+            // Handle different HTML tags
+            ProcessHtmlTags(doc, flowDoc);
+
+            // Set the FlowDocument to the RichTextBox
+            DetailTextBox.Document = flowDoc;
+        }
+
+        private void ProcessHtmlTags(HtmlDocument doc, FlowDocument flowDoc)
+        {
+            // Handle inline styles (bold, italic, underline)
+            HandleTextStyles(doc, flowDoc);
+
+            // Handle headers (h1, h2)
+            HandleHeaders(doc, flowDoc);
+
+            // Handle paragraphs
+            HandleParagraphs(doc, flowDoc);
+
+            // Handle line breaks
+            HandleLineBreaks(doc, flowDoc);
+
+            // Handle lists (unordered and ordered)
+            HandleLists(doc, flowDoc);
+
+            // Handle images
+            HandleImages(doc, flowDoc);
+
+            // Handle links
+            HandleLinks(doc, flowDoc);
+        }
+
+        private void HandleTextStyles(HtmlDocument doc, FlowDocument flowDoc)
+        {
             var tagStyles = new Dictionary<string, Action<HtmlNode>>
             {
-                { "//b | //strong", node => AddStyledParagraph(flowDoc, node.InnerText, FontWeights.Bold, null, null) },
-                { "//i", node => AddStyledParagraph(flowDoc, node.InnerText, null, FontStyles.Italic, null) },
+                { "//b | //strong", node => AddStyledParagraph(flowDoc, node.InnerText, FontWeights.Bold) },
+                { "//i", node => AddStyledParagraph(flowDoc, node.InnerText, null, FontStyles.Italic) },
                 { "//u", node => AddStyledParagraph(flowDoc, node.InnerText, null, null, TextDecorations.Underline) }
             };
 
@@ -75,27 +104,35 @@ namespace STI_ONN
                     action(tag);
                 }
             }
+        }
 
-            // Handle headers
+        private void HandleHeaders(HtmlDocument doc, FlowDocument flowDoc)
+        {
             foreach (HtmlNode hTag in doc.DocumentNode.SelectNodes("//h1 | //h2") ?? Enumerable.Empty<HtmlNode>())
             {
                 double fontSize = hTag.Name == "h1" ? 24 : 20;
                 AddStyledParagraph(flowDoc, hTag.InnerText, FontWeights.Bold, null, null, fontSize);
             }
+        }
 
-            // Handle paragraphs
+        private void HandleParagraphs(HtmlDocument doc, FlowDocument flowDoc)
+        {
             foreach (HtmlNode pTag in doc.DocumentNode.SelectNodes("//p") ?? Enumerable.Empty<HtmlNode>())
             {
                 flowDoc.Blocks.Add(new Paragraph(new Run(pTag.InnerText)));
             }
+        }
 
-            // Handle line breaks
+        private void HandleLineBreaks(HtmlDocument doc, FlowDocument flowDoc)
+        {
             foreach (HtmlNode brTag in doc.DocumentNode.SelectNodes("//br") ?? Enumerable.Empty<HtmlNode>())
             {
                 flowDoc.Blocks.Add(new Paragraph(new LineBreak()));
             }
+        }
 
-            // Handle unordered and ordered lists
+        private void HandleLists(HtmlDocument doc, FlowDocument flowDoc)
+        {
             var listTags = new Dictionary<string, TextMarkerStyle>
             {
                 { "//ul", TextMarkerStyle.Disc },
@@ -114,50 +151,63 @@ namespace STI_ONN
                     flowDoc.Blocks.Add(list);
                 }
             }
+        }
 
-            // Handle <img> tags for base64 images
+        private void HandleImages(HtmlDocument doc, FlowDocument flowDoc)
+        {
             foreach (HtmlNode imgTag in doc.DocumentNode.SelectNodes("//img") ?? Enumerable.Empty<HtmlNode>())
             {
                 string imgSrc = imgTag.GetAttributeValue("src", string.Empty);
                 if (imgSrc.StartsWith("data:image"))
                 {
-                    try
-                    {
-                        // Extract base64 string and create BitmapImage
-                        string base64Data = imgSrc.Split(',')[1];
-                        byte[] binaryData = Convert.FromBase64String(base64Data);
-                        BitmapImage bitmap = new BitmapImage();
-                        using (var stream = new MemoryStream(binaryData))
-                        {
-                            bitmap.BeginInit();
-                            bitmap.CacheOption = BitmapCacheOption.OnLoad;
-                            bitmap.StreamSource = stream;
-                            bitmap.EndInit();
-                        }
-
-                        // Add the Image to the FlowDocument
-                        Image img = new Image { Source = bitmap, Width = 1000, Height = 1000, Margin = new Thickness(5) };
-                        flowDoc.Blocks.Add(new Paragraph(new InlineUIContainer(img)));
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("Error decoding base64 image: " + ex.Message);
-                    }
+                    AddBase64Image(flowDoc, imgSrc);
                 }
                 else if (Uri.IsWellFormedUriString(imgSrc, UriKind.Absolute))
                 {
-                    Image img = new Image
-                    {
-                        Source = new BitmapImage(new Uri(imgSrc)),
-                        Width = 1000,
-                        Height = 1000,
-                        Margin = new Thickness(5)
-                    };
-                    flowDoc.Blocks.Add(new Paragraph(new InlineUIContainer(img)));
+                    AddExternalImage(flowDoc, imgSrc);
                 }
             }
+        }
 
-            // Handle links
+        private void AddBase64Image(FlowDocument flowDoc, string imgSrc)
+        {
+            try
+            {
+                string base64Data = imgSrc.Split(',')[1];
+                byte[] binaryData = Convert.FromBase64String(base64Data);
+                BitmapImage bitmap = new BitmapImage();
+                using (var stream = new MemoryStream(binaryData))
+                {
+                    bitmap.BeginInit();
+                    bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmap.StreamSource = stream;
+                    bitmap.EndInit();
+                }
+
+                // Add the Image to the FlowDocument
+                Image img = new Image { Source = bitmap, Width = 1000, Height = 1000, Margin = new Thickness(5) };
+                flowDoc.Blocks.Add(new Paragraph(new InlineUIContainer(img)));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error decoding base64 image: " + ex.Message);
+            }
+        }
+
+        private void AddExternalImage(FlowDocument flowDoc, string imgSrc)
+        {
+            Image img = new Image
+            {
+                Source = new BitmapImage(new Uri(imgSrc)),
+                Width = 1000,
+                Height = 1000,
+                Margin = new Thickness(5)
+            };
+            flowDoc.Blocks.Add(new Paragraph(new InlineUIContainer(img)));
+        }
+
+        private void HandleLinks(HtmlDocument doc, FlowDocument flowDoc)
+        {
             foreach (HtmlNode linkTag in doc.DocumentNode.SelectNodes("//a") ?? Enumerable.Empty<HtmlNode>())
             {
                 var hyperlink = new Hyperlink(new Run(linkTag.InnerText))
@@ -168,9 +218,6 @@ namespace STI_ONN
                 };
                 flowDoc.Blocks.Add(new Paragraph(hyperlink));
             }
-
-            // Set the FlowDocument to the RichTextBox
-            DetailTextBox.Document = flowDoc;
         }
 
         private void AddStyledParagraph(FlowDocument flowDoc, string text, FontWeight? fontWeight = null, FontStyle? fontStyle = null, TextDecorationCollection textDecorations = null, double fontSize = 12)
