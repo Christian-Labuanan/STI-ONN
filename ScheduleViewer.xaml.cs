@@ -62,6 +62,28 @@ namespace STI_ONN
                 using var package = new ExcelPackage(new MemoryStream(fileBytes));
                 var worksheet = package.Workbook.Worksheets[0];
 
+                // Add padding and set font for the first row and column
+                worksheet.Cells.Style.Font.Size = 11; // Set a standard font size
+                worksheet.Cells.Style.Font.Name = "Arial"; // Set a standard font
+
+                // Apply padding to all cells
+                worksheet.Cells.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+                worksheet.Cells.Style.VerticalAlignment = OfficeOpenXml.Style.ExcelVerticalAlignment.Center;
+                worksheet.Cells.Style.WrapText = true; // Wrap text for better readability
+
+                // Apply bold formatting to the first row (header)
+                for (int col = 1; col <= worksheet.Dimension.End.Column; col++)
+                {
+                    worksheet.Cells[1, col].Style.Font.Bold = true;
+                }
+
+                // Apply bold formatting to the first column
+                for (int row = 1; row <= worksheet.Dimension.End.Row; row++)
+                {
+                    worksheet.Cells[row, 1].Style.Font.Bold = true;
+                }
+
+
                 DataTable table = new DataTable();
                 foreach (var headerCell in worksheet.Cells[1, 1, 1, worksheet.Dimension.End.Column])
                 {

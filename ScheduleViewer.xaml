@@ -69,8 +69,9 @@
 
                     <!-- Schedule DataGrid (Read-Only) -->
                     <DataGrid x:Name="ScheduleDataGrid" AutoGenerateColumns="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
-                              IsReadOnly="True" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserReorderColumns="False" 
-                              CanUserSortColumns="False" PreviewMouseWheel="DataGrid_PreviewMouseWheel" ManipulationDelta="DataGrid_ManipulationDelta">
+                              IsReadOnly="True" ColumnWidth="*" Margin="20" BorderThickness="2" CanUserResizeColumns="False" CanUserResizeRows="False" 
+                              CanUserReorderColumns="False" CanUserSortColumns="False" PreviewMouseWheel="DataGrid_PreviewMouseWheel" ManipulationDelta="DataGrid_ManipulationDelta">
+                        
                         <!-- Styles for DataGrid Cells -->
                         <DataGrid.Resources>
                             <!-- General Style for all DataGridCells -->
@@ -79,6 +80,9 @@
                                 <Setter Property="Foreground" Value="Black"/>
                                 <Setter Property="FontWeight" Value="Normal"/>
                                 <Setter Property="Padding" Value="10"/>
+                                <Setter Property="BorderBrush" Value="#FFF2CC"/>
+                                <Setter Property="BorderThickness" Value="5"/>
+
                                 <Style.Triggers>
                                     <!-- Style for the first column (blue background) -->
                                     <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Column.DisplayIndex}" Value="0">
@@ -86,6 +90,8 @@
                                         <Setter Property="Foreground" Value="White"/>
                                         <Setter Property="FontWeight" Value="Bold"/>
                                         <Setter Property="Padding" Value="10"/>
+                                        <Setter Property="BorderThickness" Value="1"/>
+                                        
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
@@ -96,6 +102,7 @@
                                 <Setter Property="Foreground" Value="White"/>
                                 <Setter Property="FontWeight" Value="Bold"/>
                                 <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                <Setter Property="Padding" Value="10,5,10,5"/>
                             </Style>
                         </DataGrid.Resources>
                     </DataGrid>

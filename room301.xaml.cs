@@ -36,7 +36,7 @@ namespace STI_ONN
             Loading loadingWindow = new Loading
             {
                 Topmost = true,
-                LoadingMessage = "Loading Room 301 Schedule, please wait..."
+                LoadingMessage = "Loading 3rd Floor Schedule, please wait..."
             };
             loadingWindow.Show();
 
@@ -44,6 +44,8 @@ namespace STI_ONN
             {
                 // Await the LoadExcelContent task to ensure it completes before closing the loading window
                 await LoadExcelContent();
+                // Update roomLabel on the UI thread
+                Dispatcher.Invoke(() => { roomLabel.Content = roomNumber; });
             }
             finally
             {

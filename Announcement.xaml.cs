@@ -120,7 +120,7 @@ namespace STI_ONN
             var sortedAnnouncements = announcements
                 .Select(announcement =>
                 {
-                    announcement.IsNew = (now - announcement.Timestamp).TotalHours < 3; // Mark as new if posted within the last 3 hours
+                    announcement.IsNew = (now - announcement.Timestamp).TotalHours < 6; // Mark as new if posted within the last 3 hours
                     return announcement;
                 })
                 .OrderByDescending(announcement => announcement.Timestamp) // Sort from newest to oldest

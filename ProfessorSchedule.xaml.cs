@@ -123,6 +123,8 @@ namespace STI_ONN
                     return "General Education Department";
                 case "THM":
                     return "Tourism and Hospitality Management Department";
+                case "CPE":
+                    return "Computer Enginneering Department";
                 case "AMT":
                     return "Academic Management Team (Head) Department";
                 default:
@@ -164,8 +166,8 @@ namespace STI_ONN
         {
             var cardBorder = new Border
             {
-                Width = 300,
-                Height = 270,
+                Width = 430,
+                Height = 400,
                 Margin = new Thickness(15),
                 Background = Brushes.White,
                 CornerRadius = new CornerRadius(15),
@@ -225,21 +227,24 @@ namespace STI_ONN
             return new Image
             {
                 Source = new BitmapImage(new Uri(avatarUrl)),
-                Height = 150,
-                Width = 150,
+                Height = 250,
+                Width = 250,
                 Stretch = Stretch.UniformToFill,
                 Margin = new Thickness(10),
                 HorizontalAlignment = HorizontalAlignment.Center,
-                Clip = new EllipseGeometry(new Rect(0, 0, 150, 150))  // Makes the image circula
+                Clip = new EllipseGeometry(new Rect(0, 0, 250, 250))  // Makes the image circula
             };
         }
         private TextBlock CreateDepartmentTextBlock(string department)
         {
+            // Get the full department description based on the abbreviation
+            string departmentDescription = GetDepartmentDescription(department);
             return new TextBlock
             {
-                Text = "Department: " + department,
+                Text = departmentDescription,
                 FontWeight = FontWeights.Bold,
                 FontSize = 20,
+                TextAlignment = TextAlignment.Center,
                 TextWrapping = TextWrapping.Wrap,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 Margin = new Thickness(5)
