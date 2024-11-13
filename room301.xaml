@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:STI_ONN"
         mc:Ignorable="d"
-        Title="room301" Height="750" Width="1350"
+        Title="3rd Floor Schedule" Height="750" Width="1350"
         WindowState="Maximized"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
