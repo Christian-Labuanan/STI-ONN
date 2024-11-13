@@ -21,7 +21,7 @@
             </Grid.ColumnDefinitions>
 
             <ComboBox x:Name="DepartmentComboBox"
-                HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Margin="200,85,0,0"
+                HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Margin="200,180,0,0"
                 SelectionChanged="DepartmentComboBox_SelectionChanged" FontSize="16" FontWeight="Medium"
                 Background="#FFFFFF" Foreground="#333333" BorderBrush="#2196F3" BorderThickness="2"
                 Height="40" Padding="10,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center">
@@ -49,11 +49,11 @@
                 
                 <!-- Department description TextBlock -->
                 <TextBlock x:Name="DepartmentDescriptionTextBlock" HorizontalAlignment="Left" VerticalAlignment="Top" 
-                Width="auto" Margin="220,135,0,0" FontSize="20" FontWeight="Bold" Foreground="Black"/>
+                Width="auto" Margin="220,225,0,0" FontSize="20" FontWeight="Bold" Foreground="Black"/>
 
                 <!-- Main container for scaling content within the window -->
-            <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="50,175,50,150" Grid.ColumnSpan="3">
-                <WrapPanel x:Name="InstructorWrapPanel" Orientation="Horizontal" HorizontalAlignment="Center">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="100,265,100,150" Grid.ColumnSpan="3">
+                    <WrapPanel x:Name="InstructorWrapPanel" Orientation="Horizontal" HorizontalAlignment="Center" ItemWidth="500">
                     <!-- Instructor Cards will be dynamically loaded here -->
                 </WrapPanel>
             </ScrollViewer>

@@ -6,12 +6,13 @@
         xmlns:local="clr-namespace:STI_ONN"
         mc:Ignorable="d"
         Title="room301" Height="750" Width="1350"
+        WindowState="Maximized"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
 
     <Grid Background="#FFEAF2FF">
-        <DataGrid x:Name="excelDataGrid" Margin="40,50,30,60" HeadersVisibility="None" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Stretch">
+        <DataGrid x:Name="excelDataGrid" Margin="100,80,100,50" HeadersVisibility="None" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Stretch" FontSize="20">
             <DataGrid.CellStyle>
                 <Style TargetType="DataGridCell">
                     <Setter Property="Background" Value="#FFF2CC"/>
@@ -56,13 +57,21 @@
                 <DataGridTextColumn Header="Column7" Binding="{Binding Column7}" Width="*" ElementStyle="{StaticResource LeftAlignedText}" />
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Close" Click="CloseButton_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,19,10" Height="44" Width="72" FontSize="18" FontFamily="Arial" FontWeight="Bold" BorderBrush="{x:Null}" Background="#FF305496" Foreground="White">
+        <!-- Close Button -->
+        <Button Content="X" Width="55" Height="55" 
+                HorizontalAlignment="Right" VerticalAlignment="Top" 
+                Margin="0,20,20,0" 
+                FontSize="18" FontFamily="Arial" FontWeight="Bold" 
+                Background="#FF305496" Foreground="White" BorderBrush="{x:Null}"
+                Click="CloseButton_Click"
+                Focusable="False">
+            <!-- Added Focusable="False" -->
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="20"/>
+                    <Setter Property="CornerRadius" Value="30"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Label x:Name="roomLabel" Content="Room Schedules" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" FontFamily="Arial"/>
+        <Label x:Name="roomLabel" Content="Room Schedules" HorizontalAlignment="Center" Margin="0,20,0,0" VerticalAlignment="Top" FontSize="25" FontWeight="Bold" FontFamily="Arial"/>
     </Grid>
 </Window>
