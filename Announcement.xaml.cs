@@ -38,6 +38,12 @@ namespace STI_ONN
 
         }
 
+        private void ScrollViewer_ManipulationBoundaryFeedback(object sender, ManipulationBoundaryFeedbackEventArgs e)
+        {
+            // Suppress the boundary feedback to prevent window movement
+            e.Handled = true;
+        }
+
         private void OpenAnnouncementDetail(AnnouncementItem announcement)
         {
             // Dim the announcement cards

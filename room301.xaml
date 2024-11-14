@@ -12,7 +12,13 @@
         ResizeMode="NoResize">
 
     <Grid Background="#FFEAF2FF">
-        <DataGrid x:Name="excelDataGrid" Margin="100,80,100,50" HeadersVisibility="None" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Stretch" FontSize="20">
+        <DataGrid x:Name="excelDataGrid" 
+                  Margin="100,80,100,50" 
+                  HeadersVisibility="None" 
+                  AutoGenerateColumns="False" 
+                  IsReadOnly="True" 
+                  HorizontalAlignment="Stretch" 
+                  FontSize="20">
             <DataGrid.CellStyle>
                 <Style TargetType="DataGridCell">
                     <Setter Property="Background" Value="#FFF2CC"/>

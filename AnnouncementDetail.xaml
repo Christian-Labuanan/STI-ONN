@@ -9,28 +9,24 @@
         Background="Transparent">
 
     <Grid>
-
         <DockPanel Background="#FFEAF2FF">
             <!-- Fixed Top Overlay for Title and Buttons -->
             <Grid VerticalAlignment="Top" Height="60" Background="#FFD6E6F2" Panel.ZIndex="1" DockPanel.Dock="Top">
-                <!-- Title Label -->
                 <TextBlock Text="Announcement" 
-                       HorizontalAlignment="Center" 
-                       VerticalAlignment="Center" 
-                       FontSize="20" 
-                       FontWeight="Bold"
-                       Foreground="#333" />
+                           HorizontalAlignment="Center" 
+                           VerticalAlignment="Center" 
+                           FontSize="20" 
+                           FontWeight="Bold"
+                           Foreground="#333" />
 
                 <!-- Fullscreen Button -->
                 <Button Content="⛶" Width="55" Height="55" 
-                    HorizontalAlignment="Right" VerticalAlignment="Top" 
-                    Margin="0,3,75,0" 
-                    FontSize="18" FontFamily="Arial" FontWeight="Bold" 
-                    Background="#FF305496" Foreground="White" BorderBrush="{x:Null}"
-                    Click="FullscreenButton_Click"
-                    Focusable="False">
-                    <!-- Added Focusable="False" -->
-
+                        HorizontalAlignment="Right" VerticalAlignment="Top" 
+                        Margin="0,3,75,0" 
+                        FontSize="18" FontFamily="Arial" FontWeight="Bold" 
+                        Background="#FF305496" Foreground="White" BorderBrush="{x:Null}"
+                        Click="FullscreenButton_Click"
+                        Focusable="False">
                     <Button.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="30"/>
@@ -40,13 +36,12 @@
 
                 <!-- Close Button -->
                 <Button Content="X" Width="55" Height="55" 
-                    HorizontalAlignment="Right" VerticalAlignment="Top" 
-                    Margin="0,3,10,0" 
-                    FontSize="18" FontFamily="Arial" FontWeight="Bold" 
-                    Background="#FF305496" Foreground="White" BorderBrush="{x:Null}"
-                    Click="CloseButton_Click"
-                    Focusable="False">
-                    <!-- Added Focusable="False" -->
+                        HorizontalAlignment="Right" VerticalAlignment="Top" 
+                        Margin="0,3,10,0" 
+                        FontSize="18" FontFamily="Arial" FontWeight="Bold" 
+                        Background="#FF305496" Foreground="White" BorderBrush="{x:Null}"
+                        Click="CloseButton_Click"
+                        Focusable="False">
                     <Button.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="30"/>
@@ -55,10 +50,12 @@
                 </Button>
             </Grid>
 
-            <!-- Main container with scrollable content -->
-            <ScrollViewer VerticalScrollBarVisibility="Hidden" 
-                         HorizontalScrollBarVisibility="Disabled" 
-                         DockPanel.Dock="Top" >
+            <!-- Main container with scrollable content, configured for touch scrolling -->
+            <ScrollViewer VerticalScrollBarVisibility="Auto" 
+                          HorizontalScrollBarVisibility="Disabled" 
+                          PanningMode="VerticalOnly"
+                          PanningDeceleration="0.001"
+                          DockPanel.Dock="Top">
                 <StackPanel Margin="20,10,20,40">
                     <!-- Announcement title display -->
                     <Border Background="White" 
@@ -68,10 +65,10 @@
                             BorderBrush="#FFD6E6F2"
                             BorderThickness="2">
                         <TextBlock x:Name="DetailTitle" 
-                               FontSize="24" 
-                               FontWeight="Bold" 
-                               TextWrapping="Wrap" 
-                               TextAlignment="Center"/>
+                                   FontSize="24" 
+                                   FontWeight="Bold" 
+                                   TextWrapping="Wrap" 
+                                   TextAlignment="Center"/>
                     </Border>
 
                     <!-- Announcement image display -->
@@ -83,10 +80,10 @@
                             BorderThickness="2"
                             Effect="{DynamicResource DropShadowEffect}">
                         <Image x:Name="DetailImage" 
-                           Stretch="Uniform" 
-                           MaxHeight="400" 
-                           MaxWidth="700"
-                           RenderOptions.BitmapScalingMode="HighQuality"/>
+                               Stretch="Uniform" 
+                               MaxHeight="400" 
+                               MaxWidth="700"
+                               RenderOptions.BitmapScalingMode="HighQuality"/>
                     </Border>
 
                     <!-- Announcement content -->
@@ -96,22 +93,19 @@
                             Margin="0,0,0,20"
                             BorderBrush="#FFD6E6F2"
                             BorderThickness="2">
-
-                    <!-- Announcement text/details -->
-                    <!-- Replace the TextBlock for DetailText with a RichTextBox to handle formatted content -->
-                    <RichTextBox x:Name="DetailTextBox" 
-                                FontSize="16" 
-                                IsReadOnly="True" 
-                                Margin="75,10,75,0" 
-                                BorderThickness="0" 
-                                Background="Transparent">
-                        <RichTextBox.Resources>
-                            <!-- Style for better paragraph spacing -->
-                            <Style TargetType="{x:Type Paragraph}">
-                                <Setter Property="Margin" Value="0,0,0,5"/>
-                            </Style>
-                        </RichTextBox.Resources>
-                    </RichTextBox>
+                        <RichTextBox x:Name="DetailTextBox" 
+                                     FontSize="16" 
+                                     IsReadOnly="True" 
+                                     Margin="75,10,75,0" 
+                                     BorderThickness="0" 
+                                     Background="Transparent">
+                            <RichTextBox.Resources>
+                                <!-- Style for better paragraph spacing -->
+                                <Style TargetType="{x:Type Paragraph}">
+                                    <Setter Property="Margin" Value="0,0,0,5"/>
+                                </Style>
+                            </RichTextBox.Resources>
+                        </RichTextBox>
                     </Border>
                 </StackPanel>
             </ScrollViewer>
@@ -120,10 +114,10 @@
     <Window.Resources>
         <!-- Drop shadow effect for images -->
         <DropShadowEffect x:Key="DropShadowEffect"
-                         ShadowDepth="2"
-                         Direction="270"
-                         Color="Gray"
-                         Opacity="0.3"
-                         BlurRadius="5"/>
+                          ShadowDepth="2"
+                          Direction="270"
+                          Color="Gray"
+                          Opacity="0.3"
+                          BlurRadius="5"/>
     </Window.Resources>
 </Window>
