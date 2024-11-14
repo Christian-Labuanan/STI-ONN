@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:STI_ONN"
         mc:Ignorable="d"
         Title="STI ONN" 
-        WindowState="Normal"
+        WindowState="Maximized"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanResize"
         WindowStyle="None" Background="#FFEAF2FF"
