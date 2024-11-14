@@ -49,6 +49,8 @@ namespace STI_ONN
         private void LoadAnnouncementContent(AnnouncementItem announcement)
         {
             string htmlContent = HttpUtility.HtmlDecode(announcement.Text); // Decode HTML entities
+                                                                            // Convert Facebook emoji images to Unicode emoji
+            htmlContent = ConvertEmojiImagesToUnicode(htmlContent);
 
             // Load HTML content into HtmlAgilityPack's HtmlDocument
             HtmlDocument doc = new HtmlDocument();
@@ -86,6 +88,29 @@ namespace STI_ONN
 
             // Handle links
             HandleLinks(doc, flowDoc);
+        }
+        private string ConvertEmojiImagesToUnicode(string htmlContent)
+        {
+            HtmlDocument tempDoc = new HtmlDocument();
+            tempDoc.LoadHtml(htmlContent);
+
+            var emojiImages = tempDoc.DocumentNode.SelectNodes("//img[contains(@src, 'emoji.php')]");
+            if (emojiImages != null)
+            {
+                foreach (var img in emojiImages)
+                {
+                    // Check if the alt attribute contains the emoji
+                    string altText = img.GetAttributeValue("alt", "");
+                    if (!string.IsNullOrEmpty(altText))
+                    {
+                        // Replace the entire img tag with the alt text (which contains the Unicode emoji)
+                        var newNode = tempDoc.CreateTextNode(altText);
+                        img.ParentNode.ReplaceChild(newNode, img);
+                    }
+                }
+                return tempDoc.DocumentNode.InnerHtml;
+            }
+            return htmlContent;
         }
 
         private void HandleTextStyles(HtmlDocument doc, FlowDocument flowDoc)
@@ -158,14 +183,36 @@ namespace STI_ONN
             foreach (HtmlNode imgTag in doc.DocumentNode.SelectNodes("//img") ?? Enumerable.Empty<HtmlNode>())
             {
                 string imgSrc = imgTag.GetAttributeValue("src", string.Empty);
+
+                // Create a border for the image
+                Border imageBorder = new Border
+                {
+                    BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFD6E6F2")),
+                    BorderThickness = new Thickness(2),
+                    CornerRadius = new CornerRadius(5),
+                    Padding = new Thickness(5),
+                    Margin = new Thickness(0, 10, 0, 10),
+                    Background = Brushes.White
+                };
+
+                Image img = new Image
+                {
+                    Stretch = Stretch.Uniform,
+                    MaxHeight = 400,
+                    MaxWidth = 700
+                };
+
                 if (imgSrc.StartsWith("data:image"))
                 {
-                    AddBase64Image(flowDoc, imgSrc);
+                    LoadBase64Image(img, imgSrc);
                 }
                 else if (Uri.IsWellFormedUriString(imgSrc, UriKind.Absolute))
                 {
-                    AddExternalImage(flowDoc, imgSrc);
+                    LoadExternalImage(img, imgSrc);
                 }
+
+                imageBorder.Child = img;
+                flowDoc.Blocks.Add(new BlockUIContainer(imageBorder));
             }
         }
 
@@ -191,6 +238,48 @@ namespace STI_ONN
             catch (Exception ex)
             {
                 Console.WriteLine("Error decoding base64 image: " + ex.Message);
+            }
+        }
+        private void LoadBase64Image(Image img, string base64String)
+        {
+            try
+            {
+                string base64Data = base64String.Split(',')[1];
+                byte[] binaryData = Convert.FromBase64String(base64Data);
+
+                BitmapImage bitmap = new BitmapImage();
+                using (var stream = new MemoryStream(binaryData))
+                {
+                    bitmap.BeginInit();
+                    bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmap.StreamSource = stream;
+                    bitmap.DecodePixelWidth = 1000; // Optimize loading performance
+                    bitmap.EndInit();
+                }
+
+                img.Source = bitmap;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error loading base64 image: {ex.Message}");
+            }
+        }
+        private void LoadExternalImage(Image img, string imageUrl)
+        {
+            try
+            {
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(imageUrl);
+                bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                bitmap.DecodePixelWidth = 1000; // Optimize loading performance
+                bitmap.EndInit();
+
+                img.Source = bitmap;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error loading external image: {ex.Message}");
             }
         }
 
@@ -229,6 +318,10 @@ namespace STI_ONN
                 TextDecorations = textDecorations,
                 FontSize = fontSize
             };
+            Paragraph paragraph = new Paragraph(run)
+            {
+                Margin = new Thickness(0, 0, 0, 10) // Add spacing between paragraphs
+            };
             flowDoc.Blocks.Add(new Paragraph(run));
         }
 
@@ -236,7 +329,13 @@ namespace STI_ONN
         {
             try
             {
-                DetailImage.Source = new BitmapImage(new Uri(imageUrl));
+                BitmapImage bitmapImage = new BitmapImage();
+                bitmapImage.BeginInit();
+                bitmapImage.UriSource = new Uri(imageUrl);
+                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                bitmapImage.DecodePixelWidth = 1000; // Optimize loading performance
+                bitmapImage.EndInit();
+                DetailImage.Source = bitmapImage;
             }
             catch (UriFormatException)
             {

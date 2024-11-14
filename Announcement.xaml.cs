@@ -120,7 +120,7 @@ namespace STI_ONN
             var sortedAnnouncements = announcements
                 .Select(announcement =>
                 {
-                    announcement.IsNew = (now - announcement.Timestamp).TotalHours < 6; // Mark as new if posted within the last 3 hours
+                    announcement.IsNew = (now - announcement.Timestamp).TotalHours < 24; // Mark as new if posted within the last 3 hours
                     return announcement;
                 })
                 .OrderByDescending(announcement => announcement.Timestamp) // Sort from newest to oldest
@@ -154,8 +154,8 @@ namespace STI_ONN
 
             var cardBorder = new Border
             {
-                Width = 350,
-                Height = 250,
+                Width = 400,
+                Height = 300,
                 Margin = new Thickness(15),
                 Background = Background = announcement.IsNew ? Brushes.LightBlue : Brushes.White, // Change color if new
                 CornerRadius = new CornerRadius(15),
@@ -168,58 +168,64 @@ namespace STI_ONN
                     ShadowDepth = 2
                 }
             };
+            var cardStackPanel = new StackPanel();
 
+            // Create a Grid for the title and dot indicator
+            var titleGrid = new Grid();
+
+            // Add title
+            var titleBlock = CreateTitleTextBlock(announcement.Title);
+            titleGrid.Children.Add(titleBlock);
+
+            // Add dot indicator for new announcements
+            Ellipse dotIndicator = null;
             // Create a dot indicator if the announcement is new
             if (announcement.IsNew)
             {
-                var dotIndicator = new Ellipse
+                dotIndicator = new Ellipse
                 {
                     Width = 10,
                     Height = 10,
                     Fill = Brushes.Red, // Red dot for new announcements
                     HorizontalAlignment = HorizontalAlignment.Right,
                     VerticalAlignment = VerticalAlignment.Top,
-                    Margin = new Thickness(0, 5, 5, 0)
+                    Margin = new Thickness(0, 5, 20, 0)
                 };
+                titleGrid.Children.Add(dotIndicator); 
+            }
+            // Add components to the stack panel
+            cardStackPanel.Children.Add(titleGrid);
+            cardStackPanel.Children.Add(CreateAnnouncementImage(announcement.ImageUrl));
 
-                // Add the dot to the StackPanel
-                var cardStackPanel = new StackPanel
+            cardBorder.Child = cardStackPanel;
+
+            // Handle click event
+            cardBorder.MouseDown += (s, e) =>
+            {
+                // Reset the background to default before opening detail
+                cardBorder.Background = Brushes.White;
+                announcement.IsNew = false; // Mark as no longer new
+                                            // Remove the dot indicator if it exists
+                if (dotIndicator != null)
                 {
-                    Children =
-                    {
-                CreateTitleTextBlock(announcement.Title),
-                dotIndicator, // Add dot indicator here
-                CreateAnnouncementImage(announcement.ImageUrl),
-                    }
-                };
+                    titleGrid.Children.Remove(dotIndicator);
+                }
 
-                cardBorder.Child = cardStackPanel;
-            }
-            else
-            {
-                // Normal flow for non-new announcements
-                var cardStackPanel = new StackPanel
-                {
-                    Children =
-            {
-                CreateTitleTextBlock(announcement.Title),
-                CreateAnnouncementImage(announcement.ImageUrl),
-            }
-                };
+                OpenAnnouncementDetail(announcement);
+            };
 
-                cardBorder.Child = cardStackPanel;
-            }
-            // Make the entire card clickable to view full details
-            cardBorder.MouseDown += (s, e) => OpenAnnouncementDetail(announcement);
-            // Highlighting logic for new announcements
-            if (announcement.IsNew)
-            {
-                cardBorder.Background = Brushes.LightBlue; // Set background to blue for new announcements
-            }
-            // hover effect
+            // Hover effects with proper state management
             cardBorder.MouseEnter += (s, e) =>
             {
-                cardBorder.Background = Brushes.LightGray; // Change background on hover
+                if (announcement.IsNew)
+                {
+                    cardBorder.Background = new SolidColorBrush(Color.FromRgb(173, 216, 230)); // Slightly darker light blue
+                }
+                else
+                {
+                    cardBorder.Background = Brushes.LightGray;
+                }
+
                 cardBorder.Effect = new System.Windows.Media.Effects.DropShadowEffect
                 {
                     Color = Colors.Black,
@@ -230,7 +236,7 @@ namespace STI_ONN
 
             cardBorder.MouseLeave += (s, e) =>
             {
-                cardBorder.Background = Brushes.White; // Revert background color
+                cardBorder.Background = announcement.IsNew ? Brushes.LightBlue : Brushes.White;
                 cardBorder.Effect = new System.Windows.Media.Effects.DropShadowEffect
                 {
                     Color = Colors.Gray,
@@ -238,26 +244,10 @@ namespace STI_ONN
                     ShadowDepth = 2
                 };
             };
+
             return cardBorder;
         }
 
-        // Creates a dot indicator for new announcements
-        private UIElement CreateDotIndicator(bool isNew)
-        {
-            if (!isNew) return null;
-
-            var dot = new Ellipse
-            {
-                Fill = Brushes.Red, // Dot color
-                Width = 10,
-                Height = 10,
-                HorizontalAlignment = HorizontalAlignment.Right,
-                VerticalAlignment = VerticalAlignment.Top,
-                Margin = new Thickness(0, 5, 5, 0) // Adjust margin for positioning
-            };
-
-            return dot;
-        }
 
         // Creates a TextBlock for the announcement title
         private static TextBlock CreateTitleTextBlock(string title)
@@ -268,6 +258,7 @@ namespace STI_ONN
                 FontWeight = FontWeights.Bold,
                 FontSize = 18,
                 TextWrapping = TextWrapping.Wrap,
+                TextAlignment = TextAlignment.Center,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 Margin = new Thickness(10)
             };
