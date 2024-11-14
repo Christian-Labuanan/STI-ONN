@@ -1,0 +1,162 @@
+﻿<Window x:Class="STI_ONN.StaticSchedule"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:STI_ONN"
+        mc:Ignorable="d"
+        Title="StaticSchedule" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        WindowState="Normal"
+        ResizeMode="NoResize"
+        AllowsTransparency="True"
+        Background="Transparent">
+    <Window.Resources>
+        <Style x:Key="WindowStyle">
+            <Setter Property="Control.Background" Value="White"/>
+            <Setter Property="Control.BorderBrush" Value="#FF0B5793"/>
+            <Setter Property="Control.BorderThickness" Value="1"/>
+        </Style>
+    </Window.Resources>
+    <!-- Main Container with Dimmed Background -->
+    <Grid Background="Transparent">
+        <!-- Window Content with Rounded Corners -->
+        <Border CornerRadius="20" 
+                Width="700" 
+                Height="410"
+                Style="{StaticResource WindowStyle}">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="15" 
+                                Direction="-90" 
+                                RenderingBias="Quality" 
+                                ShadowDepth="2" 
+                                Opacity="0.2"/>
+            </Border.Effect>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Header -->
+                <Border Background="#FF0B5793" 
+                        Grid.Row="0"
+                        CornerRadius="20,20,0,0">
+                    <StackPanel Margin="20,10">
+                        <TextBlock Text="Cashier Schedule" 
+                                 FontSize="24" 
+                                 FontWeight="Bold" 
+                                 Foreground="White"
+                                 FontFamily="Tw Cen MT"/>
+                        <TextBlock Text="Operating Hours" 
+                                 FontSize="16" 
+                                 Foreground="White"
+                                 FontFamily="Tw Cen MT"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Schedule Content -->
+                <ScrollViewer Grid.Row="1" 
+                            Margin="20" 
+                            VerticalScrollBarVisibility="Disabled">
+                    <StackPanel>
+                        <Grid Margin="0,0,0,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <!-- Regular Days -->
+                            <TextBlock Text="Regular Days:" 
+                                     FontWeight="Bold" 
+                                     FontSize="16" 
+                                     Grid.Column="0" 
+                                     Grid.Row="0"
+                                     Margin="0,5"/>
+                            <TextBlock Text="Monday - Friday: 8:00 AM - 5:00 PM" 
+                                     FontSize="16" 
+                                     Grid.Column="1" 
+                                     Grid.Row="0"
+                                     Margin="0,5"/>
+
+                            <!-- Weekend -->
+                            <TextBlock Text="Weekend:" 
+                                     FontWeight="Bold" 
+                                     FontSize="16" 
+                                     Grid.Column="0" 
+                                     Grid.Row="1"
+                                     Margin="0,5"/>
+                            <TextBlock Text="Saturday: 8:00 AM - 12:00 PM&#x0a;Sunday: Closed" 
+                                     FontSize="16" 
+                                     Grid.Column="1" 
+                                     Grid.Row="1"
+                                     Margin="0,5"/>
+
+                            <!-- Break Time -->
+                            <TextBlock Text="Break Time:" 
+                                     FontWeight="Bold" 
+                                     FontSize="16" 
+                                     Grid.Column="0" 
+                                     Grid.Row="2"
+                                     Margin="0,5"/>
+                            <TextBlock Text="12:00 PM - 1:00 PM" 
+                                     FontSize="16" 
+                                     Grid.Column="1" 
+                                     Grid.Row="2"
+                                     Margin="0,5"/>
+                        </Grid>
+
+                        <!-- Additional Information -->
+                        <Border Background="#FFEAF2FF" 
+                                Padding="10" 
+                                Margin="0,10" 
+                                CornerRadius="10">
+                            <StackPanel>
+                                <TextBlock Text="Important Notes:" 
+                                         FontWeight="Bold" 
+                                         FontSize="16" 
+                                         Margin="0,0,0,5"/>
+                                <TextBlock Text="• Early payment is encouraged to avoid long queues" 
+                                         FontSize="14" 
+                                         TextWrapping="Wrap"/>
+                                <TextBlock Text="• Please prepare exact amount when possible" 
+                                         FontSize="14" 
+                                         TextWrapping="Wrap"/>
+                                <TextBlock Text="• Bring your Statement of Account and School ID" 
+                                         FontSize="14" 
+                                         TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+
+                <!-- Close Button -->
+                <Button Content="Close"
+                FontSize="16"
+                FontWeight="SemiBold"
+                Grid.Row="2" 
+                Width="100" 
+                Height="40" 
+                Margin="0,10,0,20"
+                Background="#FF0B5793"
+                Foreground="White"
+                Click="CloseButton_Click">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="18"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Grid>
+        </Border>
+        <Grid Name="dimmingOverlay" Background="#80000000" Visibility="Collapsed" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+    </Grid>
+</Window>

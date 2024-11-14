@@ -398,6 +398,20 @@ namespace STI_ONN
             // Show the room 301 window
             floor1.ShowDialog();
         }
+        private void ShowCashierSchedule(object sender, MouseButtonEventArgs e)
+        {
+            // Show dimming overlay
+            dimmingOverlay.Visibility = Visibility.Visible;
+            StaticSchedule scheduleWindow = new StaticSchedule();
+            scheduleWindow.Owner = this;
+            scheduleWindow.Closed += (s, args) =>
+            {
+                // Hide dimming overlay after StaticSchedule window is closed
+                dimmingOverlay.Visibility = Visibility.Collapsed;
+            };
+
+            scheduleWindow.ShowDialog();
+        }
 
         private void home_btn(object sender, RoutedEventArgs e)
         {
