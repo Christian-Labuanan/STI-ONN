@@ -245,14 +245,14 @@
                                 </TransformGroup>
                             </Rectangle.RenderTransform>
                         </Rectangle>
-                        <Rectangle Name="cashier" Fill="transparent"
-                        MouseDown="ShowCashierSchedule" Canvas.Left="258" Canvas.Top="410" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Height="128" Width="191">
+                        <Rectangle Name="clickableSection_Copy2" Fill="transparent"
+                        MouseDown="ShowCashierSchedule" Canvas.Left="247" Canvas.Top="403" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="143" Width="182">
                             <Rectangle.RenderTransform>
                                 <TransformGroup>
-                                    <ScaleTransform ScaleX="1.027"/>
-                                    <SkewTransform AngleX="-25" AngleY="11.724"/>
+                                    <ScaleTransform ScaleX="1.041"/>
+                                    <SkewTransform AngleX="-25" AngleY="9.944"/>
                                     <RotateTransform Angle="-10.219"/>
-                                    <TranslateTransform X="3.729" Y="-8.235"/>
+                                    <TranslateTransform X="4.551" Y="-11.351"/>
                                 </TransformGroup>
                             </Rectangle.RenderTransform>
                         </Rectangle>

@@ -24,22 +24,27 @@ namespace STI_ONN
         private const double maxScale = 1.5; // Maximum zoom level
 
 
-        //201
+        //101
         private double originalClickableSectionLeft;
         private double originalClickableSectionTop;
         private double originalClickableSectionWidth;
         private double originalClickableSectionHeight;
 
-        //202
+        //102
         private double originalClickableSectionCopyLeft;
         private double originalClickableSectionCopyTop;
         private double originalClickableSectionCopyWidth;
         private double originalClickableSectionCopyHeight;
-        //203
+        //103
         private double originalClickableSectionCopyLeft303;
         private double originalClickableSectionCopyTop303;
         private double originalClickableSectionCopyWidth303;
         private double originalClickableSectionCopyHeight303;
+        //cashier
+        private double originalClickableSectionCopyLeft304;
+        private double originalClickableSectionCopyTop304;
+        private double originalClickableSectionCopyWidth304;
+        private double originalClickableSectionCopyHeight304;
 
         private bool isDragging = false;
         private Point lastPosition;
@@ -65,16 +70,21 @@ namespace STI_ONN
             originalClickableSectionTop = Canvas.GetTop(clickableSection);
             originalClickableSectionWidth = clickableSection.Width;
             originalClickableSectionHeight = clickableSection.Height;
-            //202
+            //102
             originalClickableSectionCopyLeft = Canvas.GetLeft(clickableSection_Copy);
             originalClickableSectionCopyTop = Canvas.GetTop(clickableSection_Copy);
             originalClickableSectionCopyWidth = clickableSection_Copy.Width;
             originalClickableSectionCopyHeight = clickableSection_Copy.Height;
-            //203
+            //103
             originalClickableSectionCopyLeft303 = Canvas.GetLeft(clickableSection_Copy1);
             originalClickableSectionCopyTop303 = Canvas.GetTop(clickableSection_Copy1);
             originalClickableSectionCopyWidth303 = clickableSection_Copy1.Width;
             originalClickableSectionCopyHeight303 = clickableSection_Copy1.Height;
+            //cashier
+            originalClickableSectionCopyLeft304 = Canvas.GetLeft(clickableSection_Copy2);
+            originalClickableSectionCopyTop304 = Canvas.GetTop(clickableSection_Copy2);
+            originalClickableSectionCopyWidth304 = clickableSection_Copy2.Width;
+            originalClickableSectionCopyHeight304 = clickableSection_Copy2.Height;
 
             // Initialize and start the interaction timer
             interactionTimer = new DispatcherTimer();
@@ -194,15 +204,18 @@ namespace STI_ONN
                 Canvas.SetLeft(image, Canvas.GetLeft(image) + deltaX);
                 Canvas.SetTop(image, Canvas.GetTop(image) + deltaY);
 
-                //201
+                //101
                 Canvas.SetLeft(clickableSection, Canvas.GetLeft(clickableSection) + deltaX);
                 Canvas.SetTop(clickableSection, Canvas.GetTop(clickableSection) + deltaY);
-                //202
+                //102
                 Canvas.SetLeft(clickableSection_Copy, Canvas.GetLeft(clickableSection_Copy) + deltaX);
                 Canvas.SetTop(clickableSection_Copy, Canvas.GetTop(clickableSection_Copy) + deltaY);
-                //203
+                //103
                 Canvas.SetLeft(clickableSection_Copy1, Canvas.GetLeft(clickableSection_Copy1) + deltaX);
                 Canvas.SetTop(clickableSection_Copy1, Canvas.GetTop(clickableSection_Copy1) + deltaY);
+                //cashier
+                Canvas.SetLeft(clickableSection_Copy2, Canvas.GetLeft(clickableSection_Copy2) + deltaX);
+                Canvas.SetTop(clickableSection_Copy2, Canvas.GetTop(clickableSection_Copy2) + deltaY);
 
                 ResetInteractionTimer();
             }
@@ -228,16 +241,21 @@ namespace STI_ONN
             Canvas.SetTop(clickableSection, originalClickableSectionTop);
             clickableSection.Width = originalClickableSectionWidth;
             clickableSection.Height = originalClickableSectionHeight;
-            //202
+            //102
             Canvas.SetLeft(clickableSection_Copy, originalClickableSectionCopyLeft);
             Canvas.SetTop(clickableSection_Copy, originalClickableSectionCopyTop);
             clickableSection_Copy.Width = originalClickableSectionCopyWidth;
             clickableSection_Copy.Height = originalClickableSectionCopyHeight;
-            //203
+            //103
             Canvas.SetLeft(clickableSection_Copy1, originalClickableSectionCopyLeft303);
             Canvas.SetTop(clickableSection_Copy1, originalClickableSectionCopyTop303);
             clickableSection_Copy1.Width = originalClickableSectionCopyWidth303;
             clickableSection_Copy1.Height = originalClickableSectionCopyHeight303;
+            //cashier
+            Canvas.SetLeft(clickableSection_Copy2, originalClickableSectionCopyLeft304);
+            Canvas.SetTop(clickableSection_Copy2, originalClickableSectionCopyTop304);
+            clickableSection_Copy2.Width = originalClickableSectionCopyWidth304;
+            clickableSection_Copy2.Height = originalClickableSectionCopyHeight304;
 
             ShowArrows(); // Show the arrows after resetting
             ResetInteractionTimer(); // Reset the screensaver timer
@@ -250,21 +268,26 @@ namespace STI_ONN
             image.Width = originalWidth * scale;
             image.Height = originalHeight * scale;
 
-            //201
+            //101
             Canvas.SetLeft(clickableSection, originalClickableSectionLeft * scale);
             Canvas.SetTop(clickableSection, originalClickableSectionTop * scale);
             clickableSection.Width = originalClickableSectionWidth * scale;
             clickableSection.Height = originalClickableSectionHeight * scale;
-            //202
+            //102
             Canvas.SetLeft(clickableSection_Copy, originalClickableSectionCopyLeft * scale);
             Canvas.SetTop(clickableSection_Copy, originalClickableSectionCopyTop * scale);
             clickableSection_Copy.Width = originalClickableSectionCopyWidth * scale;
             clickableSection_Copy.Height = originalClickableSectionCopyHeight * scale;
-            //203
+            //103
             Canvas.SetLeft(clickableSection_Copy1, originalClickableSectionCopyLeft303 * scale);
             Canvas.SetTop(clickableSection_Copy1, originalClickableSectionCopyTop303 * scale);
             clickableSection_Copy1.Width = originalClickableSectionCopyWidth303 * scale;
             clickableSection_Copy1.Height = originalClickableSectionCopyHeight303 * scale;
+            //cashier
+            Canvas.SetLeft(clickableSection_Copy2, originalClickableSectionCopyLeft304 * scale);
+            Canvas.SetTop(clickableSection_Copy2, originalClickableSectionCopyTop304 * scale);
+            clickableSection_Copy2.Width = originalClickableSectionCopyWidth304 * scale;
+            clickableSection_Copy2.Height = originalClickableSectionCopyHeight304 * scale;
 
             HideArrows();
         }
