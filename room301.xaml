@@ -18,7 +18,7 @@
                   AutoGenerateColumns="False" 
                   IsReadOnly="True" 
                   HorizontalAlignment="Stretch" 
-                  FontSize="20">
+                  FontSize="18">
             <DataGrid.CellStyle>
                 <Style TargetType="DataGridCell">
                     <Setter Property="Background" Value="#FFF2CC"/>
