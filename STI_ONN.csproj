@@ -9,7 +9,6 @@
     <UseWPF>true</UseWPF>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	  <PackageId>STI_ONN</PackageId>
-	  <ApplicationIcon>assets\Icons\sti_onn_logo_transparent_3_4BA_icon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -131,7 +130,6 @@
     <Resource Include="assets\Icons\zoom-in.png" />
     <Resource Include="assets\Icons\zoom-out.png" />
     <Resource Include="assets\Icons\zoom-reset.png" />
-    <Content Include="assets\Icons\sti_onn_logo_transparent_3_4BA_icon.ico" />
     <Content Include="Firebase\ServiceAccountKey.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
