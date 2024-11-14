@@ -15,35 +15,58 @@ namespace STI_ONN
     /// </summary>
     public partial class ScheduleViewer : Window
     {
+        private const double SCROLL_SPEED = 50.0; // Adjust this value to control scroll speed
         public ScheduleViewer()
         {
-            InitializeComponent();
-            // Attach PreviewMouseWheel event to pass scroll events to ScrollViewer
-            ScheduleDataGrid.PreviewMouseWheel += DataGrid_PreviewMouseWheel;
+            InitializeComponent();   
         }
+
         private void DataGrid_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {
-            // Find the ScrollViewer that contains the DataGrid
-            var scrollViewer = VisualTreeHelper.GetParent(ScheduleDataGrid) as ScrollViewer;
-
-            // If ScrollViewer exists, adjust its scroll position based on the mouse wheel delta
-            if (scrollViewer != null)
+            if (VisualTreeHelper.GetParent(ScheduleDataGrid) is ScrollViewer scrollViewer)
             {
-                scrollViewer.ScrollToVerticalOffset(scrollViewer.VerticalOffset - e.Delta / 3);
-                e.Handled = true; // Mark event as handled to prevent further processing
+                // Adjust vertical offset
+                double newOffset = scrollViewer.VerticalOffset - (e.Delta / Math.Abs(e.Delta) * SCROLL_SPEED);
+                newOffset = Math.Max(0, Math.Min(newOffset, scrollViewer.ScrollableHeight));
+                scrollViewer.ScrollToVerticalOffset(newOffset);
+                e.Handled = true;
             }
         }
+        private void ScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            if (sender is ScrollViewer scrollViewer)
+            {
+                scrollViewer.ScrollToVerticalOffset(scrollViewer.VerticalOffset - e.Delta * 0.2);
+                e.Handled = true;
+            }
+        }
+
         private void DataGrid_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
         {
-            // Find the ScrollViewer that contains the DataGrid
-            var scrollViewer = VisualTreeHelper.GetParent(ScheduleDataGrid) as ScrollViewer;
-
-            if (scrollViewer != null)
+            if (VisualTreeHelper.GetParent(ScheduleDataGrid) is ScrollViewer scrollViewer)
             {
-                // Scroll the ScrollViewer based on the Y component of the DeltaManipulation
-                scrollViewer.ScrollToVerticalOffset(scrollViewer.VerticalOffset - e.DeltaManipulation.Translation.Y);
-                e.Handled = true; // Mark event as handled to prevent further processing
+                // Adjust vertical offset for touch scrolling
+                double newOffset = scrollViewer.VerticalOffset - e.DeltaManipulation.Translation.Y;
+                newOffset = Math.Max(0, Math.Min(newOffset, scrollViewer.ScrollableHeight));
+                scrollViewer.ScrollToVerticalOffset(newOffset);
+                e.Handled = true;
             }
+        }
+
+        private static T GetTemplatedChild<T>(DependencyObject parent) where T : DependencyObject
+        {
+            var count = VisualTreeHelper.GetChildrenCount(parent);
+            for (var i = 0; i < count; i++)
+            {
+                var child = VisualTreeHelper.GetChild(parent, i);
+                if (child is T typedChild)
+                    return typedChild;
+
+                var foundChild = GetTemplatedChild<T>(child);
+                if (foundChild != null)
+                    return foundChild;
+            }
+            return null;
         }
         public async Task LoadSchedule(string scheduleUrl, string instructorName, string instructorAvatarUrl)
         {

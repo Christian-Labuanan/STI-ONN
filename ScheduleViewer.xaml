@@ -52,62 +52,80 @@
                 </Button.Resources>
             </Button>
         </Grid>
-
-        <!-- Scrollable Area Excluding Title and Buttons -->
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,50,0,0">
-            <Grid>
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20">
-                    <!-- Instructor's Avatar -->
-                    <Image x:Name="InstructorImage" Height="200" Width="200" Stretch="Uniform" HorizontalAlignment="Center" Margin="10" >
-                        <Image.Clip>
-                            <EllipseGeometry Center="100,100" RadiusX="100" RadiusY="100" />
-                        </Image.Clip>
-                    </Image>
-
-                    <!-- Instructor's Name -->
-                    <TextBlock x:Name="InstructorNameTextBlock" FontWeight="Bold" FontSize="24" HorizontalAlignment="Center" Margin="10"/>
-
-                    <!-- Schedule DataGrid (Read-Only) -->
-                    <DataGrid x:Name="ScheduleDataGrid" AutoGenerateColumns="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
-                              IsReadOnly="True" ColumnWidth="*" Margin="20" BorderThickness="2" CanUserResizeColumns="False" CanUserResizeRows="False" 
-                              CanUserReorderColumns="False" CanUserSortColumns="False" PreviewMouseWheel="DataGrid_PreviewMouseWheel" ManipulationDelta="DataGrid_ManipulationDelta">
-                        
-                        <!-- Styles for DataGrid Cells -->
-                        <DataGrid.Resources>
-                            <!-- General Style for all DataGridCells -->
-                            <Style TargetType="DataGridCell">
-                                <Setter Property="Background" Value="#FFF2CC"/>
-                                <Setter Property="Foreground" Value="Black"/>
-                                <Setter Property="FontWeight" Value="Normal"/>
-                                <Setter Property="Padding" Value="10"/>
-                                <Setter Property="BorderBrush" Value="#FFF2CC"/>
-                                <Setter Property="BorderThickness" Value="5"/>
-
-                                <Style.Triggers>
-                                    <!-- Style for the first column (blue background) -->
-                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Column.DisplayIndex}" Value="0">
-                                        <Setter Property="Background" Value="#305496"/>
-                                        <Setter Property="Foreground" Value="White"/>
-                                        <Setter Property="FontWeight" Value="Bold"/>
-                                        <Setter Property="Padding" Value="10"/>
-                                        <Setter Property="BorderThickness" Value="1"/>
-                                        
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-
-                            <!-- Style for DataGridColumnHeader (blue background for header) -->
-                            <Style TargetType="DataGridColumnHeader">
+        <!-- Instructor Info -->
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" Margin="20">
+            <Border Width="200" Height="200" CornerRadius="100" 
+                    Background="White" Margin="0,50,0,10">
+                <Image x:Name="InstructorImage" Stretch="UniformToFill">
+                    <Image.Clip>
+                        <EllipseGeometry Center="100,100" RadiusX="100" RadiusY="100"/>
+                    </Image.Clip>
+                </Image>
+            </Border>
+            <TextBlock x:Name="InstructorNameTextBlock" 
+                      FontWeight="Bold" FontSize="24" 
+                      HorizontalAlignment="Center" 
+                      Margin="0,10,0,20"/>
+        </StackPanel>
+        
+        <!-- Scrollable DataGrid Section -->
+        <!-- Schedule Grid -->
+        <ScrollViewer Grid.Row="2" 
+                      Margin="40,330,40,20"
+                      VerticalScrollBarVisibility="auto"
+                      PanningMode="VerticalOnly"
+                      IsManipulationEnabled="True"
+                      PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
+            <DataGrid x:Name="ScheduleDataGrid" 
+                      AutoGenerateColumns="True" 
+                      IsReadOnly="True" 
+                      ColumnWidth="*"
+                      BorderThickness="2" 
+                      CanUserResizeColumns="False" 
+                      CanUserResizeRows="False" 
+                      CanUserReorderColumns="False" 
+                      CanUserSortColumns="False"
+                      PreviewMouseWheel="DataGrid_PreviewMouseWheel"
+                      ManipulationDelta="DataGrid_ManipulationDelta"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto">
+                <DataGrid.Resources>
+                    <Style TargetType="ScrollViewer">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ScrollViewer">
+                                    <Grid>
+                                        <ScrollContentPresenter />
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="Background" Value="#FFF2CC"/>
+                        <Setter Property="Foreground" Value="Black"/>
+                        <Setter Property="FontWeight" Value="Normal"/>
+                        <Setter Property="Padding" Value="10"/>
+                        <Setter Property="BorderBrush" Value="#FFF2CC"/>
+                        <Setter Property="BorderThickness" Value="5"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Column.DisplayIndex}" Value="0">
                                 <Setter Property="Background" Value="#305496"/>
                                 <Setter Property="Foreground" Value="White"/>
                                 <Setter Property="FontWeight" Value="Bold"/>
-                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                <Setter Property="Padding" Value="10,5,10,5"/>
-                            </Style>
-                        </DataGrid.Resources>
-                    </DataGrid>
-                </StackPanel>
-            </Grid>
+                                <Setter Property="Padding" Value="10"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="#305496"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="Padding" Value="10,5,10,5"/>
+                    </Style>
+                </DataGrid.Resources>
+            </DataGrid>
         </ScrollViewer>
     </Grid>
 </Window>
