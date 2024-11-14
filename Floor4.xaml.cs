@@ -199,6 +199,16 @@ namespace STI_ONN
 
         private void ApplyZoom(double scale)
         {
+            // Zoom image
+            image.Width = originalWidth * scale;
+            image.Height = originalHeight * scale;
+
+            HideArrows();
+        }
+
+        private void ZoomInButton_Click(object sender, RoutedEventArgs e)
+        {
+
             if (originalScale < maxScale)
             {
                 HideArrows();
@@ -208,7 +218,7 @@ namespace STI_ONN
             }
         }
 
-        private void ZoomInButton_Click(object sender, RoutedEventArgs e)
+        private void ZoomOutButton_Click(object sender, RoutedEventArgs e)
         {
             if (originalScale > minScale)
             {
@@ -217,14 +227,6 @@ namespace STI_ONN
                 HideArrows();
                 ResetInteractionTimer();
             }
-        }
-
-        private void ZoomOutButton_Click(object sender, RoutedEventArgs e)
-        {
-            HideArrows();
-            originalScale -= 0.1;
-            ApplyZoom(originalScale);
-            ResetInteractionTimer();
         }
 
         // Function to hide the arrows

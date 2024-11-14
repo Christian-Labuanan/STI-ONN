@@ -18,6 +18,9 @@ namespace STI_ONN
 
         private double originalScale = 1.0;
 
+        // Define the zoom limits
+        private const double minScale = 0.8; // Minimum zoom level
+        private const double maxScale = 1.5; // Maximum zoom level
 
         private bool isDragging = false;
         private Point lastPosition;
@@ -138,16 +141,22 @@ namespace STI_ONN
 
         private void ZoomInButton_Click(object sender, RoutedEventArgs e)
         {
-            originalScale += 0.1;
-            ApplyZoom(originalScale);
-            ResetInteractionTimer();
+            if (originalScale < maxScale)
+            {
+                originalScale += 0.1;
+                ApplyZoom(originalScale);
+                ResetInteractionTimer();
+            }
         }
 
         private void ZoomOutButton_Click(object sender, RoutedEventArgs e)
         {
-            originalScale -= 0.1;
-            ApplyZoom(originalScale);
-            ResetInteractionTimer();
+            if (originalScale > minScale)
+            {
+                originalScale -= 0.1;
+                ApplyZoom(originalScale);
+                ResetInteractionTimer();
+            }
         }
 
         #region timer
