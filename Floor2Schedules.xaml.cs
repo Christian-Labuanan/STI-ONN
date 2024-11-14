@@ -6,12 +6,10 @@ using Google.Apis.Auth.OAuth2;
 using FirebaseAdmin;
 using System.IO;
 using System.Threading.Tasks;
-using Firebase.Storage.Client;
 using Google.Cloud.Storage.V1;
 using SystemDataTable = System.Data.DataTable;
 using ExcelDataTable = Microsoft.Office.Interop.Excel.DataTable;
 using System;
-using Firebase.Storage.Options;
 using System.Runtime.InteropServices;
 
 namespace STI_ONN

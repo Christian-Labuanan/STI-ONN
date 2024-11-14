@@ -72,7 +72,7 @@
             </Button.Resources>
         </Button>
         <Label x:Name="roomLabel" Content="Room Schedules" HorizontalAlignment="Center" Margin="0,20,0,0" VerticalAlignment="Top" FontSize="25" FontWeight="Bold" FontFamily="Arial"/>
-        <Label x:Name="roomLabel2" Content="" HorizontalAlignment="Center" Margin="0,78,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" FontFamily="Arial"/>
+        <Label x:Name="roomLabel2" Content="" HorizontalAlignment="Center" Margin="0,100,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" FontFamily="Arial"/>
     </Grid>
 </Window>
 
