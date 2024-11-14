@@ -80,7 +80,7 @@
                             BorderThickness="2"
                             Effect="{DynamicResource DropShadowEffect}">
                         <Image x:Name="DetailImage" 
-                               Stretch="Uniform" 
+                               Stretch="UniformToFill" 
                                MaxHeight="400" 
                                MaxWidth="700"
                                RenderOptions.BitmapScalingMode="HighQuality"/>

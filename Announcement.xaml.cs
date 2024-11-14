@@ -195,7 +195,7 @@ namespace STI_ONN
                     Fill = Brushes.Red, // Red dot for new announcements
                     HorizontalAlignment = HorizontalAlignment.Right,
                     VerticalAlignment = VerticalAlignment.Top,
-                    Margin = new Thickness(0, 5, 20, 0)
+                    Margin = new Thickness(0, 20, 20, 0)
                 };
                 titleGrid.Children.Add(dotIndicator); 
             }
