@@ -15,42 +15,9 @@ namespace STI_ONN
     /// </summary>
     public partial class ScheduleViewer : Window
     {
-        private const double SCROLL_SPEED = 50.0; // Adjust this value to control scroll speed
         public ScheduleViewer()
         {
             InitializeComponent();   
-        }
-
-        private void DataGrid_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
-        {
-            if (VisualTreeHelper.GetParent(ScheduleDataGrid) is ScrollViewer scrollViewer)
-            {
-                // Adjust vertical offset
-                double newOffset = scrollViewer.VerticalOffset - (e.Delta / Math.Abs(e.Delta) * SCROLL_SPEED);
-                newOffset = Math.Max(0, Math.Min(newOffset, scrollViewer.ScrollableHeight));
-                scrollViewer.ScrollToVerticalOffset(newOffset);
-                e.Handled = true;
-            }
-        }
-        private void ScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
-        {
-            if (sender is ScrollViewer scrollViewer)
-            {
-                scrollViewer.ScrollToVerticalOffset(scrollViewer.VerticalOffset - e.Delta * 0.2);
-                e.Handled = true;
-            }
-        }
-
-        private void DataGrid_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
-        {
-            if (VisualTreeHelper.GetParent(ScheduleDataGrid) is ScrollViewer scrollViewer)
-            {
-                // Adjust vertical offset for touch scrolling
-                double newOffset = scrollViewer.VerticalOffset - e.DeltaManipulation.Translation.Y;
-                newOffset = Math.Max(0, Math.Min(newOffset, scrollViewer.ScrollableHeight));
-                scrollViewer.ScrollToVerticalOffset(newOffset);
-                e.Handled = true;
-            }
         }
 
         private static T GetTemplatedChild<T>(DependencyObject parent) where T : DependencyObject

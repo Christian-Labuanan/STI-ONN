@@ -12,7 +12,7 @@
         ResizeMode="NoResize">
 
     <Grid Background="#FFEAF2FF">
-        <DataGrid x:Name="excelDataGrid" Margin="100,80,100,50" HeadersVisibility="None" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Stretch" FontSize="20">
+        <DataGrid x:Name="excelDataGrid" Margin="100,80,100,50" HeadersVisibility="Row" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Stretch" FontSize="20">
             <DataGrid.CellStyle>
                 <Style TargetType="DataGridCell">
                     <Setter Property="Background" Value="#FFF2CC"/>
@@ -53,7 +53,7 @@
                 <DataGridTextColumn Header="Column4" Binding="{Binding Column4}" Width="*" ElementStyle="{StaticResource LeftAlignedText}" />
                 <DataGridTextColumn Header="Column5" Binding="{Binding Column5}" Width="*" ElementStyle="{StaticResource LeftAlignedText}" />
                 <DataGridTextColumn Header="Column6" Binding="{Binding Column6}" Width="*" ElementStyle="{StaticResource LeftAlignedText}" />
-                <DataGridTextColumn Header="Column7" Binding="{Binding Column7}" Width="*" ElementStyle="{StaticResource LeftAlignedText}" />
+                <DataGridTextColumn Header="Colfumn7" Binding="{Binding Column7}" Width="*" ElementStyle="{StaticResource LeftAlignedText}" />
             </DataGrid.Columns>
         </DataGrid>
         <!-- Close Button -->

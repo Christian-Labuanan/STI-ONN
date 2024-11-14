@@ -70,13 +70,7 @@
         
         <!-- Scrollable DataGrid Section -->
         <!-- Schedule Grid -->
-        <ScrollViewer Grid.Row="2" 
-                      Margin="40,330,40,20"
-                      VerticalScrollBarVisibility="auto"
-                      PanningMode="VerticalOnly"
-                      IsManipulationEnabled="True"
-                      PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
-            <DataGrid x:Name="ScheduleDataGrid" 
+        <DataGrid x:Name="ScheduleDataGrid" 
                       AutoGenerateColumns="True" 
                       IsReadOnly="True" 
                       ColumnWidth="*"
@@ -85,47 +79,35 @@
                       CanUserResizeRows="False" 
                       CanUserReorderColumns="False" 
                       CanUserSortColumns="False"
-                      PreviewMouseWheel="DataGrid_PreviewMouseWheel"
-                      ManipulationDelta="DataGrid_ManipulationDelta"
+                      Grid.Row="2" 
+                      Margin="40,330,40,20"
                       ScrollViewer.VerticalScrollBarVisibility="Auto">
-                <DataGrid.Resources>
-                    <Style TargetType="ScrollViewer">
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="ScrollViewer">
-                                    <Grid>
-                                        <ScrollContentPresenter />
-                                    </Grid>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                    <Style TargetType="DataGridCell">
-                        <Setter Property="Background" Value="#FFF2CC"/>
-                        <Setter Property="Foreground" Value="Black"/>
-                        <Setter Property="FontWeight" Value="Normal"/>
-                        <Setter Property="Padding" Value="10"/>
-                        <Setter Property="BorderBrush" Value="#FFF2CC"/>
-                        <Setter Property="BorderThickness" Value="5"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Column.DisplayIndex}" Value="0">
-                                <Setter Property="Background" Value="#305496"/>
-                                <Setter Property="Foreground" Value="White"/>
-                                <Setter Property="FontWeight" Value="Bold"/>
-                                <Setter Property="Padding" Value="10"/>
-                                <Setter Property="BorderThickness" Value="1"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                    <Style TargetType="DataGridColumnHeader">
-                        <Setter Property="Background" Value="#305496"/>
-                        <Setter Property="Foreground" Value="White"/>
-                        <Setter Property="FontWeight" Value="Bold"/>
-                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                        <Setter Property="Padding" Value="10,5,10,5"/>
-                    </Style>
-                </DataGrid.Resources>
-            </DataGrid>
-        </ScrollViewer>
+            <DataGrid.Resources>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="Background" Value="#FFF2CC"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                    <Setter Property="FontWeight" Value="Normal"/>
+                    <Setter Property="Padding" Value="10"/>
+                    <Setter Property="BorderBrush" Value="#FFF2CC"/>
+                    <Setter Property="BorderThickness" Value="5"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Column.DisplayIndex}" Value="0">
+                            <Setter Property="Background" Value="#305496"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="Padding" Value="10"/>
+                            <Setter Property="BorderThickness" Value="1"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="#305496"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="Padding" Value="10,5,10,5"/>
+                </Style>
+            </DataGrid.Resources>
+        </DataGrid>
     </Grid>
 </Window>
