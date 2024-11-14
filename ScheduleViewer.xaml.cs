@@ -20,6 +20,12 @@ namespace STI_ONN
             InitializeComponent();   
         }
 
+        private void ScrollViewer_ManipulationBoundaryFeedback(object sender, ManipulationBoundaryFeedbackEventArgs e)
+        {
+            // Suppress boundary feedback to prevent the window from moving at scroll boundaries
+            e.Handled = true;
+        }
+
         private static T GetTemplatedChild<T>(DependencyObject parent) where T : DependencyObject
         {
             var count = VisualTreeHelper.GetChildrenCount(parent);

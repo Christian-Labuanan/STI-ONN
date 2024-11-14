@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="ScheduleViewer" Height="800" Width="950"
         WindowStartupLocation="CenterScreen"
-        WindowStyle="SingleBorderWindow" ResizeMode="NoResize"
+        WindowStyle="none" ResizeMode="NoResize"
         
         Background="#FFEAF2FF">
     <Grid>
@@ -82,7 +82,9 @@
                       CanUserSortColumns="False"
                       Grid.Row="2" 
                       Margin="40,330,40,20"
-                      ScrollViewer.VerticalScrollBarVisibility="Auto">
+                      ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                      IsManipulationEnabled="True" 
+                      ManipulationBoundaryFeedback="ScrollViewer_ManipulationBoundaryFeedback">
             <DataGrid.Resources>
                 <Style TargetType="DataGridCell">
                     <Setter Property="Background" Value="#FFF2CC"/>

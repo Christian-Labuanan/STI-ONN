@@ -3,6 +3,7 @@ using Firebase.Database.Query;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -21,6 +22,12 @@ namespace STI_ONN
             InitializeComponent();
             LoadInstructors();
 
+        }
+
+        private void ScrollViewer_ManipulationBoundaryFeedback(object sender, ManipulationBoundaryFeedbackEventArgs e)
+        {
+            // Suppress boundary feedback to prevent the window from moving at scroll boundaries
+            e.Handled = true;
         }
 
 
