@@ -108,7 +108,7 @@
                         <RichTextBox.Resources>
                             <!-- Style for better paragraph spacing -->
                             <Style TargetType="{x:Type Paragraph}">
-                                <Setter Property="Margin" Value="0,0,0,10"/>
+                                <Setter Property="Margin" Value="0,0,0,5"/>
                             </Style>
                         </RichTextBox.Resources>
                     </RichTextBox>

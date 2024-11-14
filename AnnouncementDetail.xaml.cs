@@ -69,25 +69,144 @@ namespace STI_ONN
         private void ProcessHtmlTags(HtmlDocument doc, FlowDocument flowDoc)
         {
             // Handle inline styles (bold, italic, underline)
-            HandleTextStyles(doc, flowDoc);
+            // Create a queue of nodes to process
+            var nodesToProcess = new Queue<HtmlNode>();
+            nodesToProcess.Enqueue(doc.DocumentNode);
 
-            // Handle headers (h1, h2)
-            HandleHeaders(doc, flowDoc);
+            while (nodesToProcess.Count > 0)
+            {
+                var currentNode = nodesToProcess.Dequeue();
 
-            // Handle paragraphs
-            HandleParagraphs(doc, flowDoc);
+                // Handle lists first
+                var lists = currentNode.SelectNodes(".//ul | .//ol");
+                if (lists != null)
+                {
+                    foreach (var list in lists)
+                    {
+                        var listBlock = new List();
+                        listBlock.MarkerStyle = list.Name == "ul" ? TextMarkerStyle.Disc : TextMarkerStyle.Decimal;
 
-            // Handle line breaks
-            HandleLineBreaks(doc, flowDoc);
+                        foreach (var li in list.SelectNodes(".//li"))
+                        {
+                            var listItem = new ListItem();
+                            var paragraph = new Paragraph();
 
-            // Handle lists (unordered and ordered)
-            HandleLists(doc, flowDoc);
+                            // Process formatting within list items
+                            foreach (var child in li.ChildNodes)
+                            {
+                                if (child.NodeType == HtmlNodeType.Text)
+                                {
+                                    paragraph.Inlines.Add(new Run(child.InnerText));
+                                }
+                                else if (child.Name == "b" || child.Name == "strong")
+                                {
+                                    paragraph.Inlines.Add(new Run(child.InnerText) { FontWeight = FontWeights.Bold });
+                                }
+                                else if (child.Name == "i")
+                                {
+                                    paragraph.Inlines.Add(new Run(child.InnerText) { FontStyle = FontStyles.Italic });
+                                }
+                                else if (child.Name == "u")
+                                {
+                                    paragraph.Inlines.Add(new Run(child.InnerText) { TextDecorations = TextDecorations.Underline });
+                                }
+                            }
 
-            // Handle images
+                            listItem.Blocks.Add(paragraph);
+                            listBlock.ListItems.Add(listItem);
+                        }
+
+                        flowDoc.Blocks.Add(listBlock);
+
+                        // Remove the processed list node to prevent double processing
+                        list.Remove();
+                    }
+                }
+
+                // Process remaining text formatting
+                var boldTags = currentNode.SelectNodes(".//b | .//strong");
+                if (boldTags != null)
+                {
+                    foreach (var tag in boldTags)
+                    {
+                        // Only process if not within a list
+                        if (!IsWithinList(tag))
+                        {
+                            var paragraph = new Paragraph(new Run(tag.InnerText) { FontWeight = FontWeights.Bold });
+                            flowDoc.Blocks.Add(paragraph);
+                        }
+                    }
+                }
+
+                // Handle headers
+                var headers = currentNode.SelectNodes(".//h1 | .//h2");
+                if (headers != null)
+                {
+                    foreach (var header in headers)
+                    {
+                        double fontSize = header.Name == "h1" ? 24 : 20;
+                        var paragraph = new Paragraph(new Run(header.InnerText)
+                        {
+                            FontWeight = FontWeights.Bold,
+                            FontSize = fontSize
+                        });
+                        flowDoc.Blocks.Add(paragraph);
+                    }
+                }
+
+                // Process regular paragraphs
+                var paragraphs = currentNode.SelectNodes(".//p");
+                if (paragraphs != null)
+                {
+                    foreach (var p in paragraphs)
+                    {
+                        if (!IsWithinList(p))
+                        {
+                            var paragraph = new Paragraph(new Run(p.InnerText));
+                            flowDoc.Blocks.Add(paragraph);
+                        }
+                    }
+                }
+
+                // Handle line breaks
+                var lineBreaks = currentNode.SelectNodes(".//br");
+                if (lineBreaks != null)
+                {
+                    foreach (var br in lineBreaks)
+                    {
+                        if (!IsWithinList(br))
+                        {
+                            flowDoc.Blocks.Add(new Paragraph(new LineBreak()));
+                        }
+                    }
+                }
+
+                // Queue up any remaining child nodes
+                foreach (var child in currentNode.ChildNodes)
+                {
+                    nodesToProcess.Enqueue(child);
+                }
+            }
+
+            // Handle images (keep existing implementation)
             HandleImages(doc, flowDoc);
 
-            // Handle links
+            // Handle links (keep existing implementation)
             HandleLinks(doc, flowDoc);
+        }
+
+        private bool IsWithinList(HtmlNode node)
+        {
+            var parent = node.ParentNode;
+            while (parent != null)
+            {
+                if (parent.Name == "ul" || parent.Name == "ol" || parent.Name == "li")
+                {
+                    return true;
+                }
+                parent = parent.ParentNode;
+            }
+            return false;
         }
         private string ConvertEmojiImagesToUnicode(string htmlContent)
         {
