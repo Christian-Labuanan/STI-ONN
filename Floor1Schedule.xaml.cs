@@ -11,6 +11,7 @@ using SystemDataTable = System.Data.DataTable;
 using ExcelDataTable = Microsoft.Office.Interop.Excel.DataTable;
 using System;
 using System.Runtime.InteropServices;
+using System.Windows.Threading;
 
 namespace STI_ONN
 {
@@ -30,6 +31,28 @@ namespace STI_ONN
             // Call the centralized Firebase initialization
             FirebaseManager.InitializeFirebase();
         }
+
+        private async Task<string> GetLatestFileNameAsync()
+        {
+            string latestFile = null;
+
+            var storageClient = StorageClient.Create();
+            var bucketName = "sti-onn-d0161.appspot.com";
+            var files = storageClient.ListObjects(bucketName, "schedules/Floor2/");
+
+            // Find the latest file
+            foreach (var file in files)
+            {
+                if (file.Name.EndsWith(".xlsx"))
+                {
+                    latestFile = file.Name;
+                    break; // Exit loop on finding the first file
+                }
+            }
+
+            return latestFile;
+        }
+
         private async void DisplayExcelContent()
         {
             // Disable the main window to prevent user interaction
@@ -44,7 +67,7 @@ namespace STI_ONN
             try
             {
                 // Load Excel content asynchronously
-                await Task.Run(() => LoadExcelContent());
+                await Task.Run(() => LoadExcelContent(sheetNumber));
 
                 // Update roomLabel on the UI thread
                 Dispatcher.Invoke(() => { roomLabel.Content = roomNumber; });
@@ -66,10 +89,26 @@ namespace STI_ONN
             }
         }
 
-        private async Task LoadExcelContent()
+        private async Task LoadExcelContent(int sheetNumber)
         {
-            // Unique temp file to avoid conflicts
-            string tempFilePath = Path.Combine(Path.GetTempPath(), $"tempfile_{Guid.NewGuid()}.xlsx");
+            string tempFilePath = Path.Combine(Path.GetTempPath(), $"tempfile_{Guid.NewGuid()}.xls");  // Default to .xls
+
+            // Ensure the temp file is deleted if it already exists
+            if (File.Exists(tempFilePath))
+            {
+                try
+                {
+                    File.Delete(tempFilePath);
+                }
+                catch (IOException ex)
+                {
+                    Dispatcher.Invoke(() =>
+                    {
+                        MessageBox.Show($"Error deleting temporary file: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    });
+                }
+            }
+
             Microsoft.Office.Interop.Excel.Application excelApp = null;
             Workbook workbook = null;
             Worksheet worksheet = null;
@@ -77,36 +116,50 @@ namespace STI_ONN
 
             try
             {
-
                 // Initialize Google Cloud Storage client
                 var storageClient = StorageClient.Create();
-
-                // Initialize the FirebaseStorage instance with your bucket name
                 var bucketName = "sti-onn-d0161.appspot.com";
 
-                // List all objects in the 'schedules/Floor2/' directory
-                var files = storageClient.ListObjects(bucketName, "schedules/Floor1/");
+                // List files in the 'schedules/Floor2/' directory
+                var files = storageClient.ListObjects(bucketName, "schedules/Floor1/").ToList();
 
-                // Find the file that matches the Excel file criteria (e.g., ending with .xlsx)
-                string filePath = null;
-                foreach (var file in files)
+                if (files == null || !files.Any())
                 {
-                    if (file.Name.EndsWith(".xlsx"))
-                    {
-                        filePath = file.Name;
-                        break; // Exit loop once the file is found
-                    }
+                    throw new Exception("No Excel file found in Firebase Storage for Floor 2 schedules.");
                 }
 
-                if (filePath == null)
+                // Get the most recent file based on the updated time
+                var latestFile = files
+                    .OrderByDescending(file => file.Updated) // Sort by updated date
+                    .FirstOrDefault(); // Select the latest file
+
+                if (latestFile == null)
                 {
-                    throw new Exception("Excel file not found in Firebase Storage.");
+                    throw new Exception("No file found after checking Firebase Storage.");
                 }
-                // Create a memory stream to download the file
+
+                // Check the content type (MIME type) of the file
+                var contentType = latestFile.ContentType;
+
+                // Check if the file is an Excel file (either xls or xlsx)
+                if (contentType == "application/vnd.ms-excel")
+                {
+                    // If it's an older Excel file, we handle it as .xls
+                    tempFilePath = Path.ChangeExtension(tempFilePath, ".xls");
+                }
+                else if (contentType == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+                {
+                    // If it's a modern Excel file, we handle it as .xlsx
+                    tempFilePath = Path.ChangeExtension(tempFilePath, ".xlsx");
+                }
+                else
+                {
+                    throw new Exception("The file is not a valid Excel file. Content Type: " + contentType);
+                }
+
+                // Download the file into a memory stream
                 var memoryStream = new MemoryStream();
-
-                // Download the file from Firebase Storage
-                await storageClient.DownloadObjectAsync(bucketName, filePath, memoryStream);
+                await storageClient.DownloadObjectAsync(bucketName, latestFile.Name, memoryStream);
 
                 // Set the position of the stream to the beginning
                 memoryStream.Position = 0;
@@ -114,23 +167,28 @@ namespace STI_ONN
                 // Write the memory stream to the temporary file
                 File.WriteAllBytes(tempFilePath, memoryStream.ToArray());
 
+                // Check if the file exists and has the proper extension
+                if (!File.Exists(tempFilePath) || !tempFilePath.EndsWith(".xls") && !tempFilePath.EndsWith(".xlsx"))
+                {
+                    throw new Exception("Temporary file is not a valid Excel file or does not have a proper extension.");
+                }
+
                 // Open Excel and read data
                 excelApp = new Microsoft.Office.Interop.Excel.Application();
                 workbook = excelApp.Workbooks.Open(tempFilePath);
-                worksheet = (Worksheet)workbook.Sheets[1];
-                range = worksheet.UsedRange;
 
-                if (worksheet.Index != sheetNumber)
+                // Check if the sheet number is valid
+                if (sheetNumber < 1 || sheetNumber > workbook.Sheets.Count)
                 {
-                    Dispatcher.Invoke(() =>
-                    {
-                        roomLabel2.Content = "No available schedule for this room.";
-                    });
-                    return;
+                    throw new Exception($"Sheet number {sheetNumber} is out of range. The workbook has {workbook.Sheets.Count} sheets.");
                 }
 
+                // Get the specified sheet by sheet number
+                worksheet = (Worksheet)workbook.Sheets[sheetNumber]; // Use the specified sheet number
+                range = worksheet.UsedRange;
+
                 // Create a DataTable to hold the Excel data
-                System.Data.DataTable dataTable = new System.Data.DataTable();
+                SystemDataTable dataTable = new SystemDataTable();
 
                 // Add columns to DataTable
                 for (int col = 1; col <= 7; col++)
@@ -161,32 +219,10 @@ namespace STI_ONN
 
                 // Release COM objects
                 ReleaseExcelObjects(excelApp, workbook, worksheet);
+
                 // Wait a bit and then try deleting the temporary file
-                await Task.Delay(500);  // Wait for 1 second
-                                        // Try deleting the temp file
+                await Task.Delay(500);
                 await DeleteTempFile(tempFilePath);
-
-
-                if (File.Exists(tempFilePath))
-                {
-                    try
-                    {
-                        // Try opening the file exclusively to check if it is still in use
-                        using (FileStream fs = new FileStream(tempFilePath, FileMode.Open, FileAccess.ReadWrite, FileShare.None))
-                        {
-                            // If it is not in use, delete it
-                            File.Delete(tempFilePath);
-                        }
-                    }
-                    catch (IOException ex)
-                    {
-                        // Handle the case where the file is still in use
-                        Dispatcher.Invoke(() =>
-                        {
-                            MessageBox.Show($"Error deleting file: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                        });
-                    }
-                }
             }
             catch (Exception ex)
             {
@@ -197,6 +233,7 @@ namespace STI_ONN
                 });
             }
         }
+
         private async Task DeleteTempFile(string filePath)
         {
             const int maxAttempts = 5;
