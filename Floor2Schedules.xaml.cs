@@ -40,7 +40,7 @@ namespace STI_ONN
             // Show loading window
             Loading loadingWindow = new Loading();
             loadingWindow.Topmost = true;
-            loadingWindow.LoadingMessage = "Loading 3rd Floor Room Schedule, please wait...";
+            loadingWindow.LoadingMessage = "Loading 2nd Floor Room Schedule, please wait...";
             loadingWindow.Show();
 
             try
