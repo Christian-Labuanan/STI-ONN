@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="STI ONN" 
         Height="auto" Width="auto"
-        WindowState="Maximized"
+        WindowState="Normal"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None" Background="#FFEAF2FF"
         x:Name="MainWindowInstance">
