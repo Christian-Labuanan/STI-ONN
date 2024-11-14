@@ -12,13 +12,15 @@ namespace STI_ONN
     internal class AppSettings
     {
         // Property to store the path to the Firebase service account key file
+        private static FirebaseApp firebaseApp;
         public string FirebaseCredentialsPath { get; set; }
 
         // Constructor to initialize the settings (could load from config file or environment)
         public AppSettings()
         {
             // You can initialize the credentials path or load it from a config file/environment variable
-            FirebaseCredentialsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Firebase", "ServiceAccountKey.json");
+            FirebaseCredentialsPath = Environment.GetEnvironmentVariable("FIREBASE_CREDENTIALS_PATH")
+                ?? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Firebase", "ServiceAccountKey.json");
         }
 
         // Method to initialize Firebase with the stored credentials

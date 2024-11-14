@@ -6,13 +6,13 @@
         xmlns:local="clr-namespace:STI_ONN"
         mc:Ignorable="d"
         Title="STI ONN" 
-        Height="auto" Width="auto"
         WindowState="Normal"
         WindowStartupLocation="CenterScreen"
+        ResizeMode="CanResize"
         WindowStyle="None" Background="#FFEAF2FF"
         x:Name="MainWindowInstance">
     
-    <Viewbox  StretchDirection="Both">
+    <Viewbox  Stretch="Uniform">
         <Grid Background="#FFEAF2FF" HorizontalAlignment="Center" VerticalAlignment="Center" Height="1080" Width="1920">
             <Image Margin="0,0,-42,63" Source="/assets/sti calamba.png" Stretch="Fill" Opacity="0.45">
                 <Image.OpacityMask>
