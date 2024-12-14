@@ -22,6 +22,8 @@ namespace STI_ONN
         private const double maxScale = 1.5; // Maximum zoom level
 
         private double originalScale = 1.0;
+
+        #region initialize clickables
         //301
         private double originalClickableSectionLeft;
         private double originalClickableSectionTop;
@@ -81,6 +83,7 @@ namespace STI_ONN
         private double originalClickableSectionCopyTop311;
         private double originalClickableSectionCopyWidth311;
         private double originalClickableSectionCopyHeight311;
+        #endregion
 
         private bool isDragging = false;
         private Point lastPosition;
@@ -101,6 +104,7 @@ namespace STI_ONN
             originalImageLeft = Canvas.GetLeft(image);
             originalImageTop = Canvas.GetTop(image);
 
+            #region clickables
             // Store the original position and size of the clickable section
             originalClickableSectionLeft = Canvas.GetLeft(clickableSection);
             originalClickableSectionTop = Canvas.GetTop(clickableSection);
@@ -161,7 +165,7 @@ namespace STI_ONN
             originalClickableSectionCopyTop311 = Canvas.GetTop(clickableSection_Copy10);
             originalClickableSectionCopyWidth311 = clickableSection_Copy10.Width;
             originalClickableSectionCopyHeight311 = clickableSection_Copy10.Height;
-
+            #endregion
 
             // Initialize and start the interaction timer
             interactionTimer = new DispatcherTimer();
@@ -538,6 +542,7 @@ namespace STI_ONN
 
         private void ReturnToPreviousWindow()
         {
+            interactionTimer.Stop();
             // Close the current window and show the previous window
             this.Close();
             MainWindow main = new MainWindow();
@@ -554,32 +559,30 @@ namespace STI_ONN
         #endregion
 
         #region navbarleft
-        private void ClickableSection_Click(object sender, MouseButtonEventArgs e)
-        {
-            MessageBox.Show("Room 101/ Bar");
-
-            ResetInteractionTimer();
-        }
         private void home_btn(object sender, RoutedEventArgs e)
         {
+            interactionTimer.Stop();
             Home h1 = new Home();
             h1.Show();
             this.Close();
         }
         private void announcement_btn(object sender, RoutedEventArgs e)
         {
+            interactionTimer.Stop();
             Announcement a1 = new Announcement();
             a1.Show();
             this.Close();
         }
         private void instructor_schedule_btn(object sender, RoutedEventArgs e)
         {
+            interactionTimer.Stop();
             ProfessorSchedule ps = new ProfessorSchedule();
             ps.Show();
             this.Close();
         }
         private void ground_btn(object sender, RoutedEventArgs e)
         {
+            interactionTimer.Stop();
             Building b1 = new Building();
             b1.Show();
             this.Close();
@@ -587,6 +590,7 @@ namespace STI_ONN
 
         private void mezzanine_btn(object sender, RoutedEventArgs e)
         {
+            interactionTimer.Stop();
             Mezzanine m1 = new Mezzanine();
             m1.Show();
             this.Close();
@@ -594,6 +598,7 @@ namespace STI_ONN
 
         private void floor2_btn(object sender, RoutedEventArgs e)
         {
+            interactionTimer.Stop();
             Floor2 f2 = new Floor2();
             f2.Show();
             this.Close();
@@ -601,6 +606,7 @@ namespace STI_ONN
 
         private void floor4_btn(object sender, RoutedEventArgs e)
         {
+            interactionTimer.Stop();
             Floor4 floor4 = new Floor4();
             floor4.Show();
             this.Close();
@@ -608,12 +614,14 @@ namespace STI_ONN
 
         private void roofdeck_btn(object sender, RoutedEventArgs e)
         {
+            interactionTimer.Stop();
             Roofdeck roofdeck = new Roofdeck();
             roofdeck.Show();
             this.Close();
         }
         private void court_btn(object sender, RoutedEventArgs e)
         {
+            interactionTimer.Stop(); interactionTimer.Stop();
             Court court = new Court();
             court.Show();
             this.Close();

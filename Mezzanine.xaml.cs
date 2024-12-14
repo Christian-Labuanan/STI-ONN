@@ -45,18 +45,10 @@ namespace STI_ONN
             // Store the original size of the image
             originalWidth = image.Width;
             originalHeight = image.Height;
-            squareWidth = clickableSection.Width;
-            squareHeight = clickableSection.Height;
 
             // Store the original position of the image
             originalImageLeft = Canvas.GetLeft(image);
             originalImageTop = Canvas.GetTop(image);
-
-            // Store the original position and size of the clickable section
-            originalClickableSectionLeft = Canvas.GetLeft(clickableSection);
-            originalClickableSectionTop = Canvas.GetTop(clickableSection);
-            originalClickableSectionWidth = clickableSection.Width;
-            originalClickableSectionHeight = clickableSection.Height;
 
             // Initialize and start the interaction timer
             interactionTimer = new DispatcherTimer();
@@ -162,7 +154,6 @@ namespace STI_ONN
             HideArrows();
             isDragging = false;
             image.ReleaseMouseCapture();
-            clickableSection.ReleaseMouseCapture();
             ResetInteractionTimer();
         }
 
@@ -178,9 +169,6 @@ namespace STI_ONN
                 Canvas.SetLeft(image, Canvas.GetLeft(image) + deltaX);
                 Canvas.SetTop(image, Canvas.GetTop(image) + deltaY);
 
-                //301
-                Canvas.SetLeft(clickableSection, Canvas.GetLeft(clickableSection) + deltaX);
-                Canvas.SetTop(clickableSection, Canvas.GetTop(clickableSection) + deltaY);
                 HideArrows();
                 ResetInteractionTimer();
             }
@@ -209,12 +197,6 @@ namespace STI_ONN
             // Reset the position of the image to its original position
             Canvas.SetLeft(image, originalImageLeft);
             Canvas.SetTop(image, originalImageTop);
-
-            // Reset the position and size of the clickable section to its original values
-            Canvas.SetLeft(clickableSection, originalClickableSectionLeft);
-            Canvas.SetTop(clickableSection, originalClickableSectionTop);
-            clickableSection.Width = originalClickableSectionWidth;
-            clickableSection.Height = originalClickableSectionHeight;
 
             ShowArrows();
             // Reset the screensaver timer
@@ -285,6 +267,7 @@ namespace STI_ONN
 
         private void ReturnToPreviousWindow()
         {
+            interactionTimer.Stop();
             // Close the current window and show the previous window
             this.Close();
             MainWindow main = new MainWindow();
@@ -300,21 +283,16 @@ namespace STI_ONN
 
         #endregion
 
-        private void ClickableSection_Click(object sender, MouseButtonEventArgs e)
-        {
-            MessageBox.Show("Room 101/ Bar");
-
-            ResetInteractionTimer();
-        }
-
         private void ground_btn(object sender, RoutedEventArgs e)
         {
+            interactionTimer.Stop();
             Building b1 = new Building();
             b1.Show();
             this.Close();
         }
         private void home_btn(object sender, RoutedEventArgs e)
         {
+            interactionTimer.Stop();
             Home h1 = new Home();
             h1.Show();
             this.Close();
@@ -322,12 +300,14 @@ namespace STI_ONN
 
         private void announcement_btn(object sender, RoutedEventArgs e)
         {
+            interactionTimer.Stop();
             Announcement a1 = new Announcement();
             a1.Show();
             this.Close();
         }
         private void instructor_schedule_btn(object sender, RoutedEventArgs e)
         {
+            interactionTimer.Stop();
             ProfessorSchedule ps = new ProfessorSchedule();
             ps.Show();
             this.Close();
@@ -335,6 +315,7 @@ namespace STI_ONN
 
         private void floor2_btn(object sender, RoutedEventArgs e)
         {
+            interactionTimer.Stop();
             Floor2 f2 = new Floor2();
             f2.Show();
             this.Close();
@@ -342,6 +323,7 @@ namespace STI_ONN
 
         private void floor3_btn(object sender, RoutedEventArgs e)
         {
+            interactionTimer.Stop();
             Floor3 floor3 = new Floor3();
             floor3.Show();
             this.Close();
@@ -349,6 +331,7 @@ namespace STI_ONN
 
         private void floor4_btn(object sender, RoutedEventArgs e)
         {
+            interactionTimer.Stop();
             Floor4 floor4 = new Floor4();
             floor4.Show();
             this.Close();
@@ -356,12 +339,14 @@ namespace STI_ONN
 
         private void roofdeck_btn(object sender, RoutedEventArgs e)
         {
+            interactionTimer.Stop();
             Roofdeck roofdeck = new Roofdeck();
             roofdeck.Show();
             this.Close();
         }
         private void court_btn(object sender, RoutedEventArgs e)
         {
+            interactionTimer.Stop();
             Court court = new Court();
             court.Show();
             this.Close();

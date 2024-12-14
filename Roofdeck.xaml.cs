@@ -149,6 +149,7 @@ namespace STI_ONN
 
         private void ReturnToPreviousWindow()
         {
+            interactionTimer.Stop();
             // Close the current window and show the previous window
             this.Close();
             MainWindow main = new MainWindow();
@@ -166,12 +167,14 @@ namespace STI_ONN
 
         private void ground_btn(object sender, RoutedEventArgs e)
         {
+            interactionTimer.Stop();
             Building b1 = new Building();
             b1.Show();
             this.Close();
         }
         private void home_btn(object sender, RoutedEventArgs e)
         {
+            interactionTimer.Stop();
             Home h1 = new Home();
             h1.Show();
             this.Close();
@@ -179,6 +182,7 @@ namespace STI_ONN
 
         private void announcement_btn(object sender, RoutedEventArgs e)
         {
+            interactionTimer.Stop();
             Announcement a1 = new Announcement();
             a1.Show();
             this.Close();
@@ -186,18 +190,21 @@ namespace STI_ONN
 
         private void mezzanine_btn(object sender, RoutedEventArgs e)
         {
+            interactionTimer.Stop();
             Mezzanine m1 = new Mezzanine();
             m1.Show();
             this.Close();
         }
         private void instructor_schedule_btn(object sender, RoutedEventArgs e)
         {
+            interactionTimer.Stop();
             ProfessorSchedule ps = new ProfessorSchedule();
             ps.Show();
             this.Close();
         }
         private void floor2_btn(object sender, RoutedEventArgs e)
         {
+            interactionTimer.Stop();
             Floor2 f2 = new Floor2();
             f2.Show();
             this.Close();
@@ -205,6 +212,7 @@ namespace STI_ONN
 
         private void floor3_btn(object sender, RoutedEventArgs e)
         {
+            interactionTimer.Stop();
             Floor3 floor3 = new Floor3();
             floor3.Show();
             this.Close();
@@ -212,12 +220,14 @@ namespace STI_ONN
 
         private void floor4_btn(object sender, RoutedEventArgs e)
         {
+            interactionTimer.Stop();
             Floor4 floor4 = new Floor4();
             floor4.Show();
             this.Close();
         }
         private void court_btn(object sender, RoutedEventArgs e)
         {
+            interactionTimer.Stop();
             Court court = new Court();
             court.Show();
             this.Close();

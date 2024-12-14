@@ -208,20 +208,8 @@
                                 </TransformGroup>
                             </Image.RenderTransform>
                         </Image>
-                        <Rectangle Name="clickableSection" Fill="Transparent"
-                    MouseDown="ClickableSection_Click" Canvas.Left="323" Canvas.Top="545" HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="75" Width="67">
-                            <Rectangle.RenderTransform>
-                                <TransformGroup>
-                                    <ScaleTransform ScaleX="1.073"/>
-                                    <SkewTransform AngleX="-25" AngleY="6.08"/>
-                                    <RotateTransform Angle="-5.231"/>
-                                    <TranslateTransform X="2.518" Y="-8.054"/>
-                                </TransformGroup>
-                            </Rectangle.RenderTransform>
-                        </Rectangle>
                     </Canvas>
                 </ScrollViewer>
-
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1057,936,0,0" Height="120" Width="305">
                     <Button Click="ZoomResetButton_Click" Margin="5" Background="White" BorderBrush="White" Height="84" Width="89">
